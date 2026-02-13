@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 CCNA Exam Prep - Switching & Routing</title>
+    <meta name="description" content="Application de préparation CCNA - Cours, QCM, Labs basés sur les PDFs Sebgui">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-brand">🎓 CCNA Prep</div>
+        <div class="nav-links">
+            <button class="active" onclick="showSection('cours')">📖 Cours</button>
+            <button onclick="showSection('qcm')">🎯 QCM</button>
+            <button onclick="showSection('labs')">🔧 Labs</button>
+            <button onclick="showSection('glossaire')">🔍 Glossaire</button>
+            <button onclick="showSection('stats')">📊 Stats</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- CONTRÔLES GLOBAUX -->
+        <div class="controls">
+            <input type="text" id="search-input" placeholder="🔎 Rechercher..." onkeyup="handleSearch()">
+            <select id="filter-chapter" onchange="applyFilters()">
+                <option value="">Tous les chapitres</option>
+                <option value="RT01">RT01 - Concevoir un réseau</option>
+                <option value="RT02">RT02 - Commutation</option>
+                <option value="RT03">RT03 - VLAN</option>
+                <option value="RT04">RT04 - Inter-VLAN</option>
+                <option value="RT05">RT05 - STP</option>
+                <option value="RT06">RT06 - EtherChannel</option>
+                <option value="RT07">RT07 - FHRP</option>
+                <option value="RT08">RT08 - Discovery</option>
+            </select>
+            <select id="filter-diff" onchange="applyFilters()">
+                <option value="">Toutes difficultés</option>
+                <option value="1">⭐ Facile</option>
+                <option value="2">⭐⭐ Moyen</option>
+                <option value="3">⭐⭐⭐ Difficile</option>
+            </select>
+        </div>
+
+        <!-- SECTION COURS -->
+        <section id="cours" class="section active">
+            <h1>📖 Cours - Switching & Routing</h1>
+            <p class="section-desc">Résumés structurés des 8 chapitres (RT01→RT08)</p>
+            <div id="cours-content"></div>
+        </section>
+
+        <!-- SECTION QCM -->
+        <section id="qcm" class="section">
+            <h1>🎯 QCM - 160 Questions</h1>
+            <div class="qcm-controls">
+                <button class="btn" onclick="startQuiz('training')">🎓 Mode Entraînement</button>
+                <button class="btn btn-accent" onclick="startQuiz('exam')">⏱️ Mode Examen (60 min)</button>
+                <button class="btn btn-outline" onclick="reviewErrors()">❌ Revoir mes erreurs</button>
+            </div>
+            <div id="qcm-info" class="qcm-info">
+                <span id="qcm-count">160 questions disponibles</span>
+                <div style="font-size:0.8rem;margin-top:0.5rem;">⌨️ Raccourcis : 1-4 ou A-D pour répondre • Entrée pour
+                    valider • ← → pour naviguer</div>
+            </div>
+            <div id="qcm-container" class="quiz-container" style="display:none;">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" id="qcm-progress"></div>
+                    </div>
+                    <div class="quiz-meta">
+                        <span id="qcm-counter">Question 1 / 20</span>
+                        <span id="qcm-timer" style="display:none;">⏱️ 60:00</span>
+                    </div>
+                </div>
+                <div id="qcm-content" class="quiz-question"></div>
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="qcm-prev" onclick="prevQuestion()">← Précédent</button>
+                    <button class="btn" id="qcm-check" onclick="checkAnswer()">Vérifier</button>
+                    <button class="btn btn-success" id="qcm-next" onclick="nextQuestion()" style="display:none;">Suivant
+                        →</button>
+                </div>
+            </div>
+            <div id="qcm-score" class="score-card" style="display:none;">
+                <h2>🎉 Résultat</h2>
+                <div id="final-score">0 / 20</div>
+                <div id="score-percent"></div>
+                <button class="btn" onclick="resetQuiz()">🔄 Recommencer</button>
+                <button class="btn btn-outline" onclick="reviewErrors()">❌ Revoir les erreurs</button>
+            </div>
+        </section>
+
+        <!-- SECTION LABS -->
+        <section id="labs" class="section">
+            <h1>🔧 Labs - Exercices Pratiques</h1>
+            <p class="section-desc">16 exercices de configuration et diagnostic</p>
+            <div id="labs-content"></div>
+        </section>
+
+        <!-- SECTION GLOSSAIRE -->
+        <section id="glossaire" class="section">
+            <h1>🔍 Glossaire CCNA</h1>
+            <p class="section-desc">50 termes essentiels</p>
+            <div id="glossaire-content"></div>
+        </section>
+
+        <!-- SECTION STATS -->
+        <section id="stats" class="section">
+            <h1>📊 Statistiques</h1>
+            <div id="stats-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div class="stat-label">Questions répondues</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-correct">0</div>
+                        <div class="stat-label">Bonnes réponses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-percent">0%</div>
+                        <div class="stat-label">Taux de réussite</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-streak">0</div>
+                        <div class="stat-label">Série en cours</div>
+                    </div>
+                </div>
+                <h2>📈 Progression par chapitre</h2>
+                <div id="chapter-progress"></div>
+                <button class="btn btn-danger" onclick="resetStats()">🗑️ Réinitialiser les stats</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-main">🎓 CCNA Exam Prep - Basé sur les cours Sebgui (RT01→RT08)</div>
+        <div class="footer-credit">
+            <a href="https://instagram.com/itssamifz" target="_blank">🦸 @itssamifz</a>
+            <span>|</span>
+            <span class="footer-prayer">🤲 الله يسهّل عليا وعليكم</span>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

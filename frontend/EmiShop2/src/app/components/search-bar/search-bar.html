@@ -1,0 +1,17 @@
+<!-- Search Bar Component -->
+<div class="search-bar-container">
+    <div class="input-group">
+        <span class="input-group-text bg-white border-0">
+            <i class="bi bi-search text-muted"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Chercher un produit, une marque, une référence..."
+            aria-label="Recherche" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+        <button class="btn btn-outline-secondary border-0" type="button" *ngIf="searchQuery" (click)="onClear()"
+            aria-label="Effacer">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <button class="btn btn-warning" type="button" (click)="onSearch()">
+            <i class="bi bi-search me-2"></i>Rechercher
+        </button>
+    </div>
+</div>

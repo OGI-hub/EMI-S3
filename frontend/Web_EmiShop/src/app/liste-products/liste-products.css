@@ -1,0 +1,47 @@
+:host {
+  display: block;
+}
+
+.product-section {
+  border: 1px solid var(--gray-200);
+}
+
+.product-card {
+  border: 1px solid var(--gray-200);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  border-radius: 1rem;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.product-card .card-body {
+  padding: 1rem 1rem 1.25rem;
+}
+
+.product-thumb {
+  height: 150px;
+  border-radius: 0.85rem;
+  background-size: cover;
+  background-position: center;
+  margin: 0.75rem;
+  position: relative;
+}
+
+.product-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.05));
+  border-radius: inherit;
+}
+
+.rating {
+  letter-spacing: 1px;
+}
+
+.price {
+  letter-spacing: 0.01em;
+}

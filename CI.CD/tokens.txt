@@ -1,0 +1,8 @@
+sonarcloud > jenkins: 
+
+jenkins token
+c36ca8b07a61647b15653e0d43aa2867afcddce8
+
+GitLab > jenkins: 
+Jenkins token
+glpat-wqsih3qdNGd9LfrhNVaVMm86MQp1Oml5NWxxCw.01.120fk5fja

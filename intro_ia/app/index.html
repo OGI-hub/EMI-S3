@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Expert - Préparation Examen IA</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">AI Expert</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">Accueil</span>
+                </li>
+                <li class="nav-item" data-section="theory">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-label">Théorie</span>
+                </li>
+                <li class="nav-item" data-section="visualizer">
+                    <span class="nav-icon">🎬</span>
+                    <span class="nav-label">Visualiseur</span>
+                </li>
+                <li class="nav-item" data-section="exercises">
+                    <span class="nav-icon">✏️</span>
+                    <span class="nav-label">Exercices</span>
+                </li>
+                <li class="nav-item" data-section="quiz">
+                    <span class="nav-icon">❓</span>
+                    <span class="nav-label">QCM</span>
+                </li>
+                <li class="nav-item" data-section="code">
+                    <span class="nav-icon">🐍</span>
+                    <span class="nav-label">Code Python </span>
+                </li>
+                <li class="nav-item" data-section="exam">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-label">Examen</span>
+                </li>
+            </ul>
+            <div class="progress-section">
+                <div class="progress-title">Progression</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="globalProgress"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="section-header">
+                    <h1>Bienvenue dans <span class="gradient-text">AI Expert</span></h1>
+                    <p class="subtitle">Maîtrisez l'Introduction à l'Intelligence Artificielle</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="feature-card" data-section="theory">
+                        <div class="card-icon">📚</div>
+                        <h3>Théorie & Concepts</h3>
+                        <p>Agents IA, Problèmes de recherche, Propriétés des algorithmes</p>
+                        <div class="card-progress">
+                            <span>0/4 modules</span>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-section="visualizer">
+                        <div class="card-icon">🎬</div>
+                        <h3>Visualiseur d'Algorithmes</h3>
+                        <p>BFS, DFS, A*, Hill Climbing animés et interactifs</p>
+                        <div class="card-progress">
+                            <span>Mode prédiction</span>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-section="exercises">
+                        <div class="card-icon">✏️</div>
+                        <h3>Exercices Papier-Crayon</h3>
+                        <p>Tracez les algorithmes à la main avant de voir la solution</p>
+                        <div class="card-progress">
+                            <span>0/10 exercices</span>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-section="quiz">
+                        <div class="card-icon">❓</div>
+                        <h3>QCM Interactifs</h3>
+                        <p>50+ questions avec explications détaillées</p>
+                        <div class="card-progress">
+                            <span>0/50 questions</span>
+                        </div>
+                    </div>
+                    <div class="feature-card" data-section="code">
+                        <div class="card-icon">🐍</div>
+                        <h3>Code Python Essentiel</h3>
+                        <p>LI SWLO LPROF GALIHOM LCODE MAKAYNCH, MAIS C PAS SUR</p>
+                        <div class="card-progress">
+                            <span>0/5 exercices</span>
+                        </div>
+                    </div>
+                    <div class="feature-card exam-card" data-section="exam">
+                        <div class="card-icon">📝</div>
+                        <h3>Simulation d'Examen</h3>
+                        <p>1 heure • Définitions → Calculs → Code</p>
+                        <div class="card-progress">
+                            <span>Format réel</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tips-section">
+                    <div class="tip-card">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Conseil :</strong> Utilisez un <strong>papier et un stylo</strong> pour résoudre les
+                            exercices avant de révéler les réponses!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Theory Section -->
+            <section id="theory" class="section">
+                <div class="section-header">
+                    <h1>📚 Théorie & Concepts</h1>
+                    <p class="subtitle">Maîtrisez les fondamentaux de l'IA</p>
+                </div>
+                <div class="theory-tabs">
+                    <button class="theory-tab active" data-topic="agents">Agents IA</button>
+                    <button class="theory-tab" data-topic="search">Problèmes de Recherche</button>
+                    <button class="theory-tab" data-topic="uninformed">Recherche Non-Informée</button>
+                    <button class="theory-tab" data-topic="informed">Recherche Informée</button>
+                    <button class="theory-tab" data-topic="adversarial">Recherche Adversariale</button>
+                </div>
+                <div id="theoryContent" class="theory-content"></div>
+            </section>
+
+            <!-- Visualizer Section -->
+            <section id="visualizer" class="section">
+                <div class="section-header">
+                    <h1>🎬 Visualiseur d'Algorithmes</h1>
+                    <p class="subtitle">Observez les algorithmes en action</p>
+                </div>
+                <div class="visualizer-controls">
+                    <select id="algorithmSelect" class="algo-select">
+                        <option value="bfs">BFS (Largeur d'abord)</option>
+                        <option value="dfs">DFS (Profondeur d'abord)</option>
+                        <option value="ucs">UCS (Coût Uniforme)</option>
+                        <option value="astar">A* (A-Star)</option>
+                        <option value="hillclimbing">Hill Climbing</option>
+                    </select>
+                    <div class="control-buttons">
+                        <button id="btnReset" class="btn btn-secondary">🔄 Réinitialiser</button>
+                        <button id="btnStep" class="btn btn-primary">▶️ Étape Suivante</button>
+                        <button id="btnPlay" class="btn btn-success">⏵ Animation</button>
+                    </div>
+                    <label class="predict-toggle">
+                        <input type="checkbox" id="predictMode">
+                        <span>Mode Prédiction 🤔</span>
+                    </label>
+                </div>
+                <div class="visualizer-container">
+                    <div class="graph-canvas" id="graphCanvas"></div>
+                    <div class="visualizer-info">
+                        <div class="info-panel">
+                            <h4>Structure de données</h4>
+                            <div id="dataStructure" class="data-structure"></div>
+                        </div>
+                        <div class="info-panel">
+                            <h4>Nœuds visités</h4>
+                            <div id="visitedNodes" class="visited-list"></div>
+                        </div>
+                        <div class="info-panel">
+                            <h4>Explication</h4>
+                            <p id="stepExplanation" class="step-explanation">Cliquez sur "Étape Suivante" pour commencer
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="predictionModal" class="prediction-modal hidden">
+                    <div class="modal-content">
+                        <h3>🤔 Quel nœud sera exploré ensuite?</h3>
+                        <div id="predictionOptions" class="prediction-options"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exercises Section -->
+            <section id="exercises" class="section">
+                <div class="section-header">
+                    <h1>✏️ Exercices Papier-Crayon</h1>
+                    <p class="subtitle">Travaillez sur papier, puis vérifiez vos réponses</p>
+                </div>
+                <div class="exercise-tabs">
+                    <button class="exercise-tab active" data-type="trace">Tables de Trace</button>
+                    <button class="exercise-tab" data-type="heuristic">Calculs Heuristiques</button>
+                    <button class="exercise-tab" data-type="puzzle">8-Puzzle</button>
+                    <button class="exercise-tab" data-type="adversarial">Adversarial</button>
+                </div>
+                <div id="exerciseContainer" class="exercise-container"></div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="section-header">
+                    <h1>❓ QCM Interactifs</h1>
+                    <p class="subtitle">Testez vos connaissances</p>
+                </div>
+                <div class="quiz-categories">
+                    <button class="category-btn active" data-category="all">Tous</button>
+                    <button class="category-btn" data-category="agents">Agents</button>
+                    <button class="category-btn" data-category="search">Recherche</button>
+                    <button class="category-btn" data-category="bfsdfs">BFS/DFS</button>
+                    <button class="category-btn" data-category="informed">Informée</button>
+                    <button class="category-btn" data-category="astar">A* & Heuristiques</button>
+                    <button class="category-btn" data-category="adversarial">Adversarial</button>
+                </div>
+                <div id="quizContainer" class="quiz-container"></div>
+                <div class="quiz-navigation">
+                    <button id="prevQuestion" class="btn btn-secondary">← Précédent</button>
+                    <span id="questionCounter" class="question-counter">1/50</span>
+                    <button id="nextQuestion" class="btn btn-primary">Suivant →</button>
+                </div>
+            </section>
+
+            <!-- Code Section -->
+            <section id="code" class="section">
+                <div class="section-header">
+                    <h1>🐍 Code Python Essentiel</h1>
+                    <p class="subtitle">Complétez les parties manquantes</p>
+                </div>
+                <div class="code-tabs">
+                    <button class="code-tab active" data-code="bfs">BFS</button>
+                    <button class="code-tab" data-code="dfs">DFS</button>
+                    <button class="code-tab" data-code="astar">A*</button>
+                    <button class="code-tab" data-code="puzzle">8-Puzzle</button>
+                    <button class="code-tab" data-code="heuristics">Heuristiques</button>
+                </div>
+                <div id="codeContainer" class="code-container"></div>
+            </section>
+
+            <!-- Exam Section -->
+            <section id="exam" class="section">
+                <div class="section-header">
+                    <h1>📝 Simulation d'Examen</h1>
+                    <p class="subtitle">Format réel : 1 heure</p>
+                </div>
+                <div id="examIntro" class="exam-intro">
+                    <div class="exam-selector"
+                        style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;">
+                        <div class="exam-info-card" data-exam="1" style="cursor: pointer;">
+                            <h3>📋 Examen 1</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 16px;">Questions générales sur l'IA</p>
+                            <ul class="exam-structure">
+                                <li><span class="part-badge">Partie 1</span> Définitions (5 questions)</li>
+                                <li><span class="part-badge">Partie 2</span> Calculs (5 questions)</li>
+                                <li><span class="part-badge">Partie 3</span> Code à compléter (3 questions)</li>
+                            </ul>
+                            <div class="exam-settings">
+                                <label>
+                                    <span>Durée :</span>
+                                    <select id="examDuration1" class="examDuration">
+                                        <option value="60">1 heure</option>
+                                        <option value="90">1h30</option>
+                                        <option value="45">45 minutes</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button class="btn btn-exam startExamBtn" data-exam="1">🚀 Examen 1</button>
+                        </div>
+                        <div class="exam-info-card" data-exam="2" style="cursor: pointer;">
+                            <h3>📋 Examen 2</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 16px;">Focus algorithmes de recherche</p>
+                            <ul class="exam-structure">
+                                <li><span class="part-badge">Partie 1</span> Définitions (5 questions)</li>
+                                <li><span class="part-badge">Partie 2</span> Calculs (5 questions)</li>
+                                <li><span class="part-badge">Partie 3</span> Code à compléter (3 questions)</li>
+                            </ul>
+                            <div class="exam-settings">
+                                <label>
+                                    <span>Durée :</span>
+                                    <select id="examDuration2" class="examDuration">
+                                        <option value="60">1 heure</option>
+                                        <option value="90">1h30</option>
+                                        <option value="45">45 minutes</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button class="btn btn-exam startExamBtn" data-exam="2">🚀 Examen 2</button>
+                        </div>
+                        <div class="exam-info-card" data-exam="3" style="cursor: pointer;">
+                            <h3>📋 Examen 3</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 16px;">8-Puzzle & Applications pratiques
+                            </p>
+                            <ul class="exam-structure">
+                                <li><span class="part-badge">Partie 1</span> Définitions (5 questions)</li>
+                                <li><span class="part-badge">Partie 2</span> Calculs (5 questions)</li>
+                                <li><span class="part-badge">Partie 3</span> Code à compléter (3 questions)</li>
+                            </ul>
+                            <div class="exam-settings">
+                                <label>
+                                    <span>Durée :</span>
+                                    <select id="examDuration3" class="examDuration">
+                                        <option value="60">1 heure</option>
+                                        <option value="90">1h30</option>
+                                        <option value="45">45 minutes</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <button class="btn btn-exam startExamBtn" data-exam="3">🚀 Examen 3</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="examContent" class="exam-content hidden">
+                    <div class="exam-header">
+                        <div class="exam-timer">
+                            <span class="timer-icon">⏱️</span>
+                            <span id="timerDisplay">60:00</span>
+                        </div>
+                        <div class="exam-progress">
+                            <span id="examProgress">Question 1/13</span>
+                        </div>
+                    </div>
+                    <div id="examQuestionContainer" class="exam-question-container"></div>
+                    <div class="exam-navigation">
+                        <button id="examPrev" class="btn btn-secondary">← Précédent</button>
+                        <button id="examNext" class="btn btn-primary">Suivant →</button>
+                        <button id="examSubmit" class="btn btn-success hidden">✓ Soumettre</button>
+                    </div>
+                </div>
+                <div id="examResults" class="exam-results hidden"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p class="footer-main"><span class="emoji">🧠</span> Basé sur le cours Introduction à l'IA
+            </p>
+            <p class="footer-credit">
+
+                <a href="https://instagram.com/itssamifz" target="_blank">🦸 @itssamifz</a>
+                <span>|</span>
+                <span class="footer-prayer"> 🤲 الله يسهّل عليا وعليكم</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="data/theory.js"></script>
+    <script src="data/exercises.js"></script>
+    <script src="data/questions.js"></script>
+    <script src="data/code.js"></script>
+    <script src="visualizer.js"></script>
+    <script src="exam.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

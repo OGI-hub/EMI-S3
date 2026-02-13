@@ -1,0 +1,13 @@
+POST http://localhost:8080/patient/add?dossier=9
+Content-Type: application/json
+
+{
+    "id": 1,
+    "nom": "EL BOUR",
+    "prenom": "Othmane",
+    "dateDeNaissance": "2003-04-03",
+    "sexe": "m",
+    "addresse": "Sale",
+    "numeroTelephone": 650794360,
+    "nss": "AE310134"
+  }

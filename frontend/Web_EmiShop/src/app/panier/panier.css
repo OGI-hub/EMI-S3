@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.panier-card {
+  border: 1px solid var(--gray-200);
+}
+
+.panier-thumb {
+  width: 54px;
+  height: 54px;
+  border: 1px dashed var(--gray-200);
+}

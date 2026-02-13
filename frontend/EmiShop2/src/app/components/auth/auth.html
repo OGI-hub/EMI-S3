@@ -1,0 +1,172 @@
+<!-- Authentication Component -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+
+                    <!-- Affichage si l'utilisateur est déjà connecté -->
+                    @if (authService.isAuthenticated()) {
+                    <div class="text-center py-4">
+                        <div class="mb-4">
+                            <i class="bi bi-person-circle display-1 text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">Vous êtes connecté</h4>
+                        <p class="text-muted mb-4">
+                            Connecté en tant que : <strong>{{ authService.currentUser()?.email }}</strong>
+                        </p>
+                        <button class="btn btn-outline-danger" (click)="onLogout()" [disabled]="isSubmitting()">
+                            <i class="bi bi-box-arrow-right me-2"></i>Se déconnecter
+                        </button>
+                    </div>
+                    } @else {
+                    <!-- Tabs Navigation -->
+                    <ul class="nav nav-pills nav-justified mb-4" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" [class.active]="activeTab() === 'login'"
+                                (click)="setActiveTab('login')" type="button">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Connexion
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" [class.active]="activeTab() === 'register'"
+                                (click)="setActiveTab('register')" type="button">
+                                <i class="bi bi-person-plus me-2"></i>Inscription
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Messages d'erreur et de succès -->
+                    @if (errorMessage()) {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle me-2"></i>{{ errorMessage() }}
+                        <button type="button" class="btn-close" (click)="clearMessages()"></button>
+                    </div>
+                    }
+
+                    @if (successMessage()) {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle me-2"></i>{{ successMessage() }}
+                        <button type="button" class="btn-close" (click)="clearMessages()"></button>
+                    </div>
+                    }
+
+                    <!-- Login Form -->
+                    @if (activeTab() === 'login') {
+                    <div class="login-form">
+                        <h4 class="text-center mb-4">Se connecter</h4>
+                        <form (ngSubmit)="onLogin()">
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">
+                                    <i class="bi bi-envelope me-2"></i>Adresse email
+                                </label>
+                                <input type="email" class="form-control form-control-lg" id="loginEmail"
+                                    placeholder="nom@exemple.com" [ngModel]="loginEmail()"
+                                    (ngModelChange)="loginEmail.set($event)" name="loginEmail"
+                                    [disabled]="isSubmitting()">
+                            </div>
+                            <div class="mb-4">
+                                <label for="loginPassword" class="form-label">
+                                    <i class="bi bi-lock me-2"></i>Mot de passe
+                                </label>
+                                <input type="password" class="form-control form-control-lg" id="loginPassword"
+                                    placeholder="••••••••" [ngModel]="loginPassword()"
+                                    (ngModelChange)="loginPassword.set($event)" name="loginPassword"
+                                    [disabled]="isSubmitting()">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="isSubmitting()">
+                                @if (isSubmitting()) {
+                                <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                Connexion en cours...
+                                } @else {
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+                                }
+                            </button>
+                        </form>
+                    </div>
+                    }
+
+                    <!-- Register Form -->
+                    @if (activeTab() === 'register') {
+                    <div class="register-form">
+                        <h4 class="text-center mb-4">Créer un compte</h4>
+                        <form (ngSubmit)="onRegister()">
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label for="firstName" class="form-label">Prénom</label>
+                                    <input type="text" class="form-control" id="firstName" [ngModel]="firstName()"
+                                        (ngModelChange)="firstName.set($event)" name="firstName"
+                                        [disabled]="isSubmitting()">
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label for="lastName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="lastName" [ngModel]="lastName()"
+                                        (ngModelChange)="lastName.set($event)" name="lastName"
+                                        [disabled]="isSubmitting()">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label">
+                                    <i class="bi bi-envelope me-2"></i>Adresse email <span class="text-danger">*</span>
+                                </label>
+                                <input type="email" class="form-control" id="registerEmail"
+                                    placeholder="nom@exemple.com" [ngModel]="registerEmail()"
+                                    (ngModelChange)="registerEmail.set($event)" name="registerEmail" required
+                                    [disabled]="isSubmitting()">
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label">
+                                    <i class="bi bi-lock me-2"></i>Mot de passe <span class="text-danger">*</span>
+                                </label>
+                                <input type="password" class="form-control" id="registerPassword"
+                                    placeholder="Minimum 6 caractères" [ngModel]="registerPassword()"
+                                    (ngModelChange)="registerPassword.set($event)" name="registerPassword" required
+                                    [disabled]="isSubmitting()">
+                                <div class="form-text">Le mot de passe doit contenir au moins 6 caractères.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">
+                                    <i class="bi bi-lock-fill me-2"></i>Confirmer le mot de passe <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    placeholder="Répétez le mot de passe" [ngModel]="confirmPassword()"
+                                    (ngModelChange)="confirmPassword.set($event)" name="confirmPassword" required
+                                    [disabled]="isSubmitting()">
+                            </div>
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="acceptTerms"
+                                    [ngModel]="acceptTerms()" (ngModelChange)="acceptTerms.set($event)"
+                                    name="acceptTerms" [disabled]="isSubmitting()">
+                                <label class="form-check-label" for="acceptTerms">
+                                    J'accepte les <a href="#">conditions générales</a> <span
+                                        class="text-danger">*</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg w-100" [disabled]="isSubmitting()">
+                                @if (isSubmitting()) {
+                                <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                Création en cours...
+                                } @else {
+                                <i class="bi bi-person-plus me-2"></i>Créer mon compte
+                                }
+                            </button>
+                        </form>
+                    </div>
+                    }
+                    }
+
+                </div>
+            </div>
+
+            <!-- Info Card -->
+            <div class="card mt-4 bg-light border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-shield-check text-success me-2"></i>
+                    <small class="text-muted">Authentification sécurisée par Firebase</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

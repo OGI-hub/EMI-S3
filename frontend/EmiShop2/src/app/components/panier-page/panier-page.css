@@ -1,0 +1,29 @@
+.cart-item-card {
+    transition: box-shadow 0.2s;
+}
+
+.cart-item-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 767px) {
+    .cart-item-img {
+        height: 200px;
+    }
+}
+
+.quantity-controls button {
+    width: 36px;
+    height: 36px;
+}
+
+.summary-card {
+    position: sticky;
+    top: 20px;
+}

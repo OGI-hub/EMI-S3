@@ -1,0 +1,1558 @@
+Réseaux locaux & interconnexion
+La technologie Ethernet
+Abderrahim HASBI
+Ginf/EMI
+
+Historique
+• Origine : Système ALOHA (Professeur MetCalf)
+• Ethernet V1 (1976) Conçus et mis en œuvre par
+XEROX
+– Débit : 3 Mb/s (Experimental Ethernet)
+– Médium : Coaxial de 1000 mètres
+– Nombre maximum de stations : 100
+
+• Ethernet V2 (1980) DIX (Digital - Intel - Xerox)
+– Débit : 10 Mb/s
+– Base de travail à la recommandation IEEE 802.3
+
+• En 2000 : 80% des LAN sont Ethernet et dérivées.
+
+Historique IEEE 802.3
+• 1985 :
+• 1988 :
+• 1990 :
+• 1993 :
+• 1995 :
+
+10 Base 5 (802.3)
+10 Base 2 (802.3b)
+10 Base T (802.3i)
+10 Base F (802.3j)
+100 Base X (802.3u) (2 paires blindées)
+100 Base VG (802.12)(Fast Ethernet
+compatible TokenRing)
+• 1998 :
+1000 Base LX,SX et CX (802.3z)
+• 1999 :
+1000 Base T (802.3ab)
+• 2002 :
+10000 Base F (802.3ae)
+• >2002 : On attend 40 et 100 Gbps
+
+Introduction (1)
+• Norme de 1985 (10Base5) : Câble coaxial
+(épais)
+• Ethernet = Réseau local
+• Basé sur la méthode d 'accès CSMA/CD
+– CSMA : Carrier Sense Multiple Access (Accès
+multiple avec écoute de la porteuse)
+– CD
+: Collision Detection (Détection de collision)
+
+Introduction (2)
+• Buts énoncés dans le document DIX (Digital,
+Intel et Xerox)
+– Simple - Faible coût
+– Peu de fonctions optionnelles
+– Pas de priorité
+– On ne peut pas faire taire son voisin
+– Débit : 10 Mb/s
+– Asynchrone (synchronisation avec le préambule)
+
+Introduction (3)
+• Non Prévus
+– Full duplex
+– Contrôle d'erreur (minimal, pas d'acquittement =>
+simplicité)
+– Sécurité et confidentialité
+– Vitesse variable (auto-négociation)
+– Priorité (Token Ring)
+– Protection contre un utilisateur malveillant
+– Déterminisme (capacité de borner en temps des
+transmissions de données)
+
+Principes (5)
+• Ethernet est un réseau
+– Probabiliste
+– Sans chef d'orchestre
+– Égalitaire
+
+• Comparaison avec une réunion sans
+animateur entre gens polis
+
+Modèle OSI et IEEE 802
+Couche ISO
+
+Liaison
+Bus de la Station
+
+MAC
+Media Access Control
+LLC
+Logical Link Control
+
+LLC
+MAC
+802.2
+
+Physique
+Câble
+réseau
+802.3
+
+Carte réseau
+Coupleur IEEE
+
+Transceiver
+
+Câble transceiver ou Drop
+MAU : Medium Attachment Unit
+AUI : Attachment Unit Interface MAU : PMA + MDI
+PMA : Physical Medium Attachment
+MDI : Medium Dependant Interface
+
+Format d'une trame IEEE 802.3
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+• Débit d'émission / réception : 10 Mb/s
+• 10 bits par µs
+
+• Longueur des trames (sans préambule et SFD) :
+• 18 octets réservés au protocole
+• Longueur minimale : 64 octets
+• Longueur maximale : 1518 octets
+
+4
+FCS
+
+Format d'une trame IEEE 802.3
+• Sens de circulation des octets
+– Premier: premier octet du préambule
+– Dernier : dernier octet de la séquence de
+contrôle
+
+• Sens de circulation des bits pour un octet
+– Premier: bit de poids faible (bit 0)
+– Dernier : bit de poids fort (bit 7)
+– Inverse pour Token Ring (IEEE 802.5)
+
+Trame IEEE 802.3 : Préambule
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+4
+FCS
+
+• Taille : 7 octets identiques (10101010) <=> Simple
+suite continue de bit à 0 et de bit à 1
+• Assez long pour servir à la synchronisation de
+l'horloge locale
+• Pas de fin de trame
+
+Trame IEEE 802.3 : SFD
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+• SFD : Start Frame Delimitor
+• Marque le début de la trame
+• Taille : 1 octet
+• SFD = 10101011
+
+DATA
+
+4
+FCS
+
+Trame IEEE 802.3 : Adresses
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+4
+FCS
+
+• L'adresse destinataire peut donc représenter :
+• L'adresse physique d'une machine locale
+• Toutes les machines du réseau local (broadcast)
+
+• L'adresse source représente seulement :
+• L'adresse physique de la station émettrice
+
+Trame IEEE 802.3 : Longueur
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+• Taille : 2 octets (valeur ≤ 1500)
+• Donne le nombre d'octets utilisé par les
+données dans l trame
+• Type de protocole (de niveau 3) dans la
+version Ethernet original
+
+4
+FCS
+
+Trame IEEE 802.3 : Données
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+4
+FCS
+
+• 46 <= Taille des données utiles <= 1500 octets
+• Padding : Ajout d'octet(s) (PAD) sans
+signification pour envoyer moins de 46 octets de
+données
+=> Longueur minimale de la trame : 64 octets
+
+Trame IEEE 802.3 : FCS
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+4
+FCS
+
+•
+
+FCS : Frame Check Sequence
+• Contrôle à la réception de la trame par calcul
+• Calcul = CRC (Cyclic Redundancy Check) (Division
+
+polynomiale)
+• CRC sur champs destination, source, longueur et données
+
+•
+
+Taille : 4 octets
+
+MAC : Transmission d'une trame
+• La sous-couche LLC a fait un appel "transmet-trame".
+• La couche MAC :
+– Ajoute préambule, SFD, padding si nécessaire
+– Assemble les champs : @source, @destinataire, taille,
+données et padding
+– Calcule le FCS et l'ajoute à la trame
+– Transmet la trame à la couche physique :
+• Si "écoute porteuse" faux depuis 9.6 µs au moins, la transmission
+s'effectue.
+• Sinon, elle attend que "écoute porteuse" devienne faux,
+• Attend 9.6 µs et commence la transmission (suite de bits).
+
+Créer la trame
+OUI
+
+MAC :
+Transmission d'une
+trame
+
+Transmission en cours ?
+NON
+
+Commencer la transmission
+OUI
+
+NON
+
+Détection Collision ?
+
+Transmission finie ?
+
+Brouillage
+
+Comptabiliser la tentative
+
+NON
+
+OUI
+OUI
+
+Transmission réussie
+Abandon
+Trop de tentatives
+
+Trop de tentatives ?
+NON
+
+Calcul de l'attente
+Attente
+
+MAC : Inter- trames
+• Espace inter-trames minimal de 9.6 µs
+– espace inter-trames 9.6 µs = 96 bits time soit 12
+octets
+• Utilisation du réseau dans un délai relativement faible.
+• Une machine ne peut émettre toutes ses trames en même
+temps : seulement les unes à la suite des autres.
+
+– Cet espace inter-trames permet :
+• Aux circuits électroniques de récupérer l’état de repos du
+média
+• Aux autres machines de reprendre la main à ce moment là
+
+MAC : Réception d'une trame (1)
+• La couche MAC est à l'écoute du signal "écoute
+porteuse",
+– Reçoit tous les trains de bits qui circulent sur le câble :
+– Les limites des trames sont indiquées par le signal "écoute
+porteuse"
+– Ôte le préambule et le SFD
+– Analyse l'adresse du destinataire dans la trame
+– Si l'adresse de destination de la trame est différente de
+l'adresse de la station => poubelle
+– ....
+
+MAC : Réception d'une trame (2)
+– Si l'adresse destination est l’@ de la station :
+• Elle découpe la suite de bits reçus en octet, puis en champs
+• Transmet à la sous-couche LLC les champs :
+– @destination, @source, taille et données
+
+• Calcule le FCS et indique une erreur à la couche LLC si :
+– FCS incorrect
+– Trame trop grande: >1518 octets (Sans préambule et SFD) (Trames Jabber)
+– Longueur de la trame n'est pas un nombre entier d'octets (erreur d'alignement)
+– Trame trop petite: < 64 octets (trame avec collision) (runts ou Beacon)
+
+Réception
+NON
+
+MAC :
+Réception
+d'une trame
+
+Fin de réception ?
+OUI
+OUI
+Trame trop courte ?
+NON
+Adresse OK ?
+OUI
+Calcul CRC
+
+Taille Correcte ?
+NON
+
+NON
+
+Multiple de 8 bits ?
+OUI
+
+Désassemblage de la
+Erreur trame
+Transmission LLC
+
+NON
+Erreur
+Alignement
+
+OUI
+Erreur
+CRC
+
+Collisions : Problématique
+• Une station regarde si le câble est libre avant d'émettre
+(écoute porteuse)
+• Mais le délai de propagation d'une trame sur le réseau
+n'est pas nul : une station peut émettre alors qu'une
+autre a déjà commencé à émettre
+• Quand ces 2 trames émises presque simultanément se
+"rencontrent", il y a collision
+• Avec un réseau très grand (et donc un temps de
+propagation d'une trame très long), ceci est inefficace
+=> LIMITES
+
+Collision : exemple
+A
+
+écoute porteuse faux
+A commence à émettre
+
+B
+
+A
+
+B
+
+A
+
+écoute porteuse faux
+B commence à émettre B
+
+Collision : exemple (2)
+A (1) Propagation du signal émis par A
+
+B
+
+(2) Émission de B
+(3) Collision
+
+A
+
+(4) Propagation du signal en collision
+
+(5) Réception du signal en collision par A
+(6) Arrêt d'émission de A
+
+B
+
+Collisions : Solutions
+• Minimiser le temps pendant lequel une collision peut se
+produire
+- Temps (Diffusion) = Round Trip Delay ≈ 50 µs ≈ 63 octets
+(collision window).
+– On fixe un Slot Time = 51.2 µs (-> 64 octets) : le temps
+d'acquisition du canal : une collision ne peut se produire que durant
+ce temps
+– La station émettrice ne peut se déconnecter avant la fin du slot time
+pour avoir la certitude que la transmission se soit passée sans
+collision
+
+• Pour tenir ce temps maximum, on impose des limitations :
+– Longueur, nombre de segments et de boîtiers traversés par une
+trame (Règle du 5-4-3)...
+
+Collisions : Détection
+• Réseau probabiliste
+• Émetteur :
+– Émet au minimum après 9.6µs
+– Écoute le signal "détection de collision" pendant
+51.2 µs (64 octets) à partir du début d'émission
+– S'arrête d'émettre quand il détecte une collision
+
+• Récepteur :
+– réception d'une trame < 64 octets => collision
+
+Collisions : En envoi de trame
+• Couche MAC transmet la suite de bits à la
+couche physique
+– Pendant le début de la transmission (Slot Time =
+512 bits= 64 Octets), elle teste le signal "détection
+de collision" que lui fournit la couche physique
+– S'il y a collision, la station commence par renforcer
+cette collision en envoyant un flot de 4 octets (jam)
+pour prévenir toutes les machines du réseau
+
+Collisions : Ré-émission
+• La station attend = R x 51,2 µs = R x "Slot Time«
+(algo. BEB = Binary Eponential Backoff)
+• R entier, 0 ≤ R < 2K avec K = min (n,10)
+– n = nombre de ré-émissions déjà faites (modulo 10)
+
+• Elle émet à nouveau, 15 ré-émissions maximum
+• Si la 15ième ré-émission échoue, la couche physique
+retourne le statut "Trop d'erreurs de collision" à la
+couche directement supérieure
+
+Paramètres d’Ethernet 10Mbps
+
+LAN de 2ème Génération
+Fast Ethernet
+
+LAN à 100 Mb/s
+• 1993 : 2 approches concurrentes
+– Fast Ethernet (CSMA/CD) => IEEE 802.3u
+• Alliance de 40 sociétés pour élaborer la norme
+
+– 100 VG Anylan => IEEE 802.12
+• Solution mise en place par HP,IBM …
+
+• Juin 1995 : IEEE 802.3u et IEEE 802.12 ratifiés
+
+• 1997 : 1 Vainqueur Fast Ethernet (IEEE 802.3u )
+
+Fast Ethernet
+• Principes, mécanismes
+• Les normes 100 Base TX, FX
+• Câblage
+– Types de répéteur
+– Contraintes et règles de topologie
+
+Paramètres d’Ethernet 100Mbps
+
+Fast Ethernet : Principes (1)
+• Fast Ethernet = Ethernet 10 Mb/s en 10 fois plus rapide avec
+le soucis principal de ménager l'existant
+– 802.3u <=> extension de 802.3
+– Câblage structuré existant pérennisé (pour fibres et paires
+torsadées)
+– Par contre disparition du coaxial (non liée aux performances)
+• Mais pour confidentialité et protection contre erreur utilisateur
+
+• Évolution du CSMA/CD à 100 Mb/s
+– Reste simple, efficace, mais non déterministe
+– Gestion des collisions, format et longueur de trames identiques
+– Slot Time à 5.12 µs et Inter-trames 0.96 µs (96 temps bit)
+– Full-Duplex : Plus de contrainte du CSMA/CD (Switch)
+
+Fast Ethernet : Auto-négociation (1)
+• Mécanisme de détection du mode de fonctionnement du
+matériel connecté (issu de National SemiConductor)
+– Optionnel, mais très répandu
+– Recommandé par la norme, les constructeurs conseillent le +
+possible de fixer les paramètres
+– Uniquement pour paires torsadées
+• Débit fixe (100 Mb/s) pour la fibre optique
+• Ne reconnaît pas le type de câble (catégorie)
+
+– Sélection vitesse/mode d'échange : 10/100Mb/s, full/half duplex
+
+Fast Ethernet : Auto-négociation (2)
+• Permet de détecter par ordre de priorité :
+1 : 100 Base TX Full Duplex,
+2 : 100 Base TX,
+3 : 10 Base T Full Duplex,
+4 : 10 Base T
+
+Sinon pas de connexion
+
+• Auto-négociation aux 2 extrémités : 2 Matériels 100
+• Auto-négociation à 1 extrémité : Matériel 100 avec
+Matériel 10
+• Avantages : Pas de connexion non négociable possible
+• Désavantages : Attention aux résultats (full/half)
+
+100 Base TX
+• Câble catégorie 5
+• Distance maximum : 100 mètres
+• Câblage RJ45 (comme 10 base T)
+– Droit (station) (1 TX+, 2 TX- , 3 RX+, 6 RX-)
+– Croisé (1 - 3, 2 - 6, 3 - 1, 6 - 2)
+
+100 Base FX
+• Multimode 62.5/125
+• Emission à : 1350 nm
+– Connecteurs SC,ST, ….
+– Longueur maximale : 400 m (Half Duplex)
+– Longueur maximale : 2000 m (Full Duplex)
+
+• Monomode 9/125
+– Distance maximale : 20 Kms (Full Duplex)
+
+Gestion de collisions
+ Deux grandes approches :
+ Approche optimiste
+• Envoyer
+
+• Détecter s ’il y a eu collision
+• Si oui appliquer une méthode de résolution de conflit
+Approche pessimiste
+• Donner à chaque machine le droit exclusif d’émettre
+
+• pendant une durée limitée du temps.
+• Il faut prévoir un mécanisme de négociation de droit
+d’émission entre les machines.
+
+Jeton sur anneau
+Définition
+Un jeton est une trame particulière et unique
+Principe
+• Les stations sont connectées sur un anneau
+logique unidirectionnel
+• Le jeton circule d’une station à une autre
+• Une station a le droit d’émettre une trame si elle
+possède le jeton.
+• Une trame envoyée par station est retirée de
+l’anneau par la station émettrice.
+Exemple :
+
+Jeton sur anneau
+• Problèmes
+– l’existence du jeton
+
+– l’unicité du jeton
+– absence de famine
+• Solution
+– Une station particulière (moniteur) dite station de
+surveillance se charge de vérifier l’existence et l’unicité du
+jeton
+– Des règles d’échange du jeton doivent être définies
+afin d’éviter la famine de certaines stations
+
+Exemple : le protocole 802.5
+
+• Réseau Token Ring d’IBM (1982). Débit 4Mb/s.
+• Normalisé en 1985 par la comité 802.5 de l’IEEE.
+• Taille trame <=4500 octets (selon version)
+• Chaque trame possède, entre autres champs, un
+champ de contrôle
+PPPTMRRR
+• PPP : Niveau de priorité
+• T(0/1) : jeton/trame
+• M : Bit de surveillance
+• RRR : Niveau de réservation
+
+Interconnexion des Réseaux Locaux
+
+Plan
+• Les différents matériels que l'on peut trouver
+sur un réseau LAN:
+• Selon la recommandation X.200 (UIT-T)
+– Répéteur, répéteur multi-ports (étoile, hub)
+– Pont, commutateur (Switch)
+– Routeur et passerelle
+
+Equipements d’interconnexion
+
+Routeur
+Pont/Switch
+Répéteur/Hub
+
+Répéteur (2 ports)
+• Fonctions principales :
+– Régénération
+– Duplication du signal
+• Augmente la distance entre 2 stations en reliant 2 segments Ethernet
+• Augmente le nombre de machines connectable au réseau
+
+– Partitionnement en cas de collisions excessives (30 à la suite)
+– Ne regarde pas le contenu de la trame
+– N'a pas d'adresse Ethernet
+
+• Avantages : sans aucune administration
+• Désavantages : ne diminue pas la charge et ne filtre pas
+les collisions (Domaine de Collision)
+
+Concentrateur ≈ répéteur Multiports
+• Souvent appelé étoile, hub, multi-répéteur :
+– Fonction de répéteur avec une structure en étoile
+– Les multi-répéteurs n'ont pas d'adresse Ethernet
+– Permet de changer de média (électrique-optique),
+• Avec éléments modulables ou non
+• Avec un type de carte par média
+
+– Fonction de partitionnement pour chacun des ports
+• Segment en faute automatiquement coupé
+
+Exemple multi-répéteur simple (1)
+• 16 ports 10/100BaseTX + 1 Port 10 base2 + 1
+AUI
+• Coût faible (en permanente diminution!)
+• Manière économique de conversion de média
+• Bouchon 50 Ω électronique sur port 10 base2
+• Utilisation AUI nécessite l'achat d'un
+transceiver
+
+Exemple multi-répéteur simple (2)
+• Cas d'une "dorsale" en 10 base 2 avec
+alimentation des machines en 10 base T
+
+Paire Torsadée droit
+
+R
+
+R
+
+M
+
+Connexion sans T
+Bouchon électronique activé
+
+M
+
+Connexion avec un T
+Bouchon électronique
+
+désactivé
+
+Exemple multi-répéteur simple (3)
+• Cas d'une "dorsale" en 10 base T avec
+alimentation des machines en 10 base 2
+R
+
+R
+
+R
+
+Connexion sans T
+M
+
+Bouchon
+électronique
+activé
+Bouchon 50 Ω
+
+M
+
+Paire torsadée croisée
+ou utilisation du
+croisement sur le
+répéteur
+
+Domaines de collision
+
+Interconnexion : Pont (1)
+• Aussi appelé pont filtrant ou "bridge"
+– Base : 2 ports comme un répéteur de base, avec CPU
+et mémoire
+
+• Buts :
+– Diminuer la charge des réseaux en coupant en 2
+segments le domaine de collision
+– Augmente aussi la distance maximale entre 2 stations
+
+• Niveau de la couche liaison de données
+– Adresse Ethernet
+– Transparent par rapport aux stations
+
+Interconnexion : Pont (2)
+A
+
+Réseau
+Physique N°1
+
+B
+
+PONT
+
+C
+
+D
+
+Réseau
+Physique N°2
+
+– Le pont par auto apprentissage des adresses des machines sait
+qui se trouve sur chacun des réseaux physiques
+– Fonctions de filtrage (sauf à l'initialisation) :
+• Les trames A <---> B ne vont pas sur Réseau Physique 2
+• Les trames C <---> D ne vont pas sur Réseau Physique 1
+
+Interconnexion : Pont (3)
+• Trois modes de fonctionnement
+– Par auto apprentissage (sans administration)
+– Par table figée avec les adresses des stations
+(administration sévère de bas niveau)
+– Ou mixte avec des filtres manuels
+
+• Il y a aussi le « Source Routing » de T.R.
+
+Interconnexion : Pont (4)
+• Avantages :
+– Assure un débit de pratiquement 10 Mb/s ou 100Mb/s
+– Filtrage des trames inutiles et les collisions
+– Pas de limite de distance sauf règle 5-4-3
+– Peu d'administration
+
+• Désavantages :
+– Ne filtre pas les broadcast ou multicast
+
+• Remplacé par les commutateurs (multi-ports)
+
+Exemple : accès à un serveur Web
+• Sans pont : 7 étapes
+• Avec pont : 7 étapes + table de pontage
+• Conclusion :
+– Les ponts transparents transmettent les trames de
+broadcast, multicast et unicast inconnues.
+– La trame est complètement reçue et traitée sur le
+pont ce qui entraine une augmentation du temps de
+latence par rapport à un seul segment.
+– 1seul domaine de broadcast  1 seul sous réseau
+
+Commutateurs
+• Très souvent appelé aussi switch
+• Plan :
+– Justification
+– Principes et architecture
+– Critères de choix
+– Algorithme de spanning tree
+
+Exemple : accès à un serveur Web
+• Sans pont : 7 étapes
+• Avec pont : 7 étapes + table de pontage
+• Avec un switch :
+– la même chose sauf qu’ici les équipements sont reliés chacun à un port,
+alors que dans le cas du pont, on a 2 ports seulement.
+
+• Conclusion :
+– L’emploi d’un switch permet de réduire les risques de collision.
+
+• Domaine de collision : un ensemble de cartes réseau qui ne
+peuvent émettre une trame en même temps sans rentrer en
+collision.
+• Domaine de broadcast : un ensemble de cartes réseau qui
+reçoivent toutes les trames émises en broadcast par l’une
+d’entre elles.
+
+Commutateurs : Justification
+• Accroissement important des besoins en débits
+– Augmentation du parc informatique (micro
+puissants)
+– Évolution des applications (bande passante),
+nouveaux serveurs internet
+
+• Problèmes à résoudre sur les LANs
+– Charge croissante (multimédia)
+– Collisions, broadcast et multicast
+
+Commutateurs : Justification
+
+Domaine de Broadcast
+
+Domaine de collision
+
+•Les répéteurs ne séparent pas les domaines de collision. Les Ponts, les
+commutateurs et les routeurs oui.
+•Les répéteurs, ponts et commutateurs ne séparent pas les domaines de
+broadcast. Les Routeurs OUI !
+
+Commutateurs : Justification
+J’ai besoin de
+connaitre
+l’adresse MAC
+du serveur A
+ARP
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+ARP
+ARP
+
+ARP
+
+ARP
+ARP
+ARP
+
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+ARP
+
+Serveur A
+
+• Multicast, broadcast, et destinations inconnues
+deviennent des évènements globaux !
+
+Commutateurs : Justification
+
+Server A
+
+• Les Broadcasts peuvent consommer toute la bande passante !
+• Tous les équipements doivent décoder les trames broadcast.
+
+Commutateurs : Principes
+– Fonctionnement type "multi-ponts"
+– Processeurs spécialisés : ASIC (Commutation
+niveau Circuits Intégrés)
+– Ports avec bande passante "dédiée" et non
+partagée
+
+Matrice
+de
+commutation
+
+Commutateurs : Algorithme
+Réception de
+la trame
+
+Multicast ?
+Broadcast?
+non
+Unicast inconnu?
+
+oui
+
+« flood
+packet »
+
+ports
+
+1/1
+
+1/2
+
+@MAC
+
+@A
+
+@B
+
+non
+
+Transmettre la
+trame unicast sur
+le bon port
+
+@source et
+@destination sur
+la même
+interface ?
+
+oui
+
+Filtrer le
+paquet
+
+Méthodes de commutation (1)
+• La commutation "On the fly" ou "Cut through"
+– Lecture des premiers octets de la trame ethernet
+• principalement de l'adresse de destination
+
+– Commute la trame vers le ou les port(s) de sortie
+– Les stations doivent avoir le même débit(symétrique)
+
+• Avantages : temps de latence très faible
+• Inférieur à 20µs, et indépendant de la longueur de la trame
+
+• Inconvénients : Retransmission des erreurs
+– Inutilisable avec commutateur de ≠ protocoles
+• Ethernet 10 avec ports haut débit (uplink) ATM ou FDDI ...
+
+Méthodes de commutation (2)
+• La commutation "Store & Forward"
+– Lecture complète de la trame et stockage
+– Commutation vers le port de sortie
+– Commutation asymétrique( stations avec débits différents)
+
+• Avantages
+– Adaptée aux commutateurs de ≠ protocoles
+– Traitement des erreurs
+
+• Inconvénients
+– Plus lent que la commutation "on the fly"
+– Temps de latence = fonction(longueur de trame)
+
+Méthodes de commutations (3)
+• Méthode "adaptative"
+– Démarrage en mode "cut through"
+– Passage en "store & forward" à partir d'un certain seuil du
+taux d'erreurs (paramétrable ou non)
+– Retour mode "cut through" en dessous du seuil
+– Fixé par commande de l'administrateur
+
+• Méthode "fragment-free"
+– "cut through", mais sans les "runts" (< 64 octets)
+« Dans un réseau qui fonctionne correctement, les fragments de
+collision doivent être d'une taille inférieure à 64 octets. »
+
+Commutation : Récapitulatif
+7
+
+1
+
+Préambule SFD
+
+Taille du Champs en octet
+6
+6
+2
+de 46 à 1500
+@ DEST
+
+Cut Through
+
+@ SRC
+
+Lg DATA
+
+DATA
+
+4
+FCS
+
+Commutation après
+le 64ième octet
+
+Fragment free
+
+Store & Forward
+
+Exemple Haut de gamme
+Cartes de
+commutation avec
+connecteur SC pour
+fibre
+
+Cartes de
+supervision
+redondante
+Alimentations
+électriques
+redondante
+
+Cartes de commutation
+avec connecteur RJ45
+
+Commutateurs
+
+: Critères de choix (1)
+
+• Performances
+– Débit : vitesse maximale à laquelle le commutateur peut
+transmettre des paquets sans perte - Fond de panier
+(Backplane) – Taux de perte : pourcentage de trames envoyées mais
+non retransmises par le commutateur dans une fenêtre
+de temps prédéterminée
+– Temps de latence : selon stratégie Cut through et/ou
+Store & Forward
+
+Commutateurs: Critères de choix (2)
+• Coût par port
+• Nombre d'adresses MAC gérées par port
+– Usage en commutateurs de segments ou de
+stations
+
+• Présence de ports haut débit (uplink)
+• Type d'administration par SNMP, telnet,
+spécifique ...
+
+Choix des switch
+
+Spanning Tree
+Qu’est ce qu’une boucle de niveau 2 ?
+Station A
+Segment A
+2/1
+
+1/1
+
+1/2
+
+Segment B
+
+2/2
+
+Station B
+
+• Les boucles apparaissent à chaque fois qu’il existe
+plusieurs chemins vers une même destination.
+• Les trames circulent indéfiniment !
+
+Spanning Tree (802.1D) : Pourquoi
+• Cas de 2 ponts en parallèle :
+– A envoie une trame à B
+
+Réseau 1, Machine A
+
+• 2 chemins possibles, chaque pont voit une trame de A
+• Chaque pont conclut que A est sur le réseau 1
+
+– B reçoit les trames en double (problème de
+Pont Pont
+charge)
+– Les 2 ponts écoutant toutes les trames sur le
+réseau B => les 2 ponts pensent alors que A est Réseau 2, Machine B
+sur le réseau 2
+– Les ponts changent leurs tables internes pour
+indiquer que A est sur le réseau 2
+– Et ainsi de suite en fonction de l'émetteur /
+récepteur ...
+
+Spanning Tree (802.1D) : Rôle
+• Protocole de communication Inter-Switches
+• But : Éliminer automatiquement les boucles dans
+le réseau Ethernet (erreur de branchement ou
+volonté délibérée de redondance)
+– 1 chemin unique possible entre 2 machines du réseau
+local
+– Ceci est réalisé en inhibant de(s) port(s) de Switch(s)
+– Le spanning tree permet une reconfiguration
+automatique en cas de changement de topologie
+
+Spanning Tree : Principes
+• Communication entre switches
+pour avoir une topologie sans
+boucle.
+• Echange Basé sur l'envoi BPDU
+(Bridge Protocol Data Unit) à une
+adresse réservée
+–
+
+BPDU ≈ [ID racine,ID Pont émetteur, N° de port]
+
+STP: Root Bridge
+Processus D’élection :
+Celui qui a le plus bas SwitchID
+(8=2+6 Octets) :
+•
+•
+
+Bridge Priority (2 bytes de 1 à 65535
+configurable, par défaut 32768.)
+MAC Address (6 bytes)
+
+STP: Root Bridge (Exemple)
+
+STP: Les Root Ports
+Une fois le Root Switch Élu :
+
+Chaque switch Désigne un Root Port : ( Le port vers le
+root)
+–
+–
+
+Chaque port des ponts a un coût (configurable ( fonction
+vitesse))
+Coût du port : alloue un coût à un port, pour privilégier un port
+par rapport à un autre et la transmission de trame (1 à 65535)
+•
+•
+
+–
+
+Transmis dans les BPDU
+Stratégie Cisco : 1000 / Vitesse LAN
+
+Le chemin ayant le coût le plus faible est celui qui est actif
+
+STP: Les Root Ports ( Exemple)
+
+STP: Les Designated Ports
+Une fois le Root Switch Élu et les Root ports
+identifiés:
+•
+
+Choix d’un port qui va transférer le trafic de et
+vers chaque segment : Designated port en
+se basant sur la priorité du port
+–
+–
+
+Priorité du port : associé au coût du chemin optimal
+pour atteindre le Root Bridge
+Critères si égalité
+– 1 : Le coût du chemin vers la racine est le + faible
+– 2 : L'identificateur de pont émetteur est le + petit
+– 3 : Le N° de port est le + petit
+
+STP: Les Designated Ports Exemple
+
+Spanning Tree : Paramètres
+• Paramètres configurables : les temps
+– Hello Time : intervalle entre chaque envoi de trames
+(hello) par le Root Bridge (1 à 10 s, 2 s
+recommandé) (test liaison)
+– Fréquence à laquelle le « designated port » envoie des
+BPDU, 2 s par défaut
+
+– Max Age : temps maximum d'attente pour qu'un
+pont considère la topologie caduque (re-calcul de la
+topologie) (6 à 40 s, 20 s recommandé)
+• Trop petit : re-calcul risque d'être trop fréquent
+• Trop grand : augmente les temps de convergence
+• Équivalent d'un TTL pour les BPDU
+
+Spanning Tree : état des ports (1)
+• Un port de pont peut connaître les 5 états suivants :
+– Bloqué (blocking) : à l’initialisation pour ne pas créer de boucle le
+port n’écoute que les BPDU.
+– Écoute (listening) : 2ème étape après l’initialisation, le port ne
+transmet et ne reçoit toujours pas des données, mais peut
+transmettre et recevoir des BPDU.
+– Apprentissage (learning) : après une période (Forward Delay) le
+port ne transmet toujours pas les trames, mais commence la mise à
+jour de sa table d'adresse. (BPDU : Transmission/Réception)
+– Transmission (forwarding) : fonctionnement normal du port du
+pont avec mise à jour continue des tables d'adresses
+– Etat Shutdown par l’administrateur ( Pas STP)
+
+Spanning Tree : état des ports (2)
+
+Spanning Tree : Log
+• Extrait de Log (pour un pont donné) :
+– passage d'un port du pont dans les ≠ états :
+Temps
+10:35:00
+10:35:18
+10:35:18
+10:35:33
+10:35:48
+
+Forward delay : 15 s
+
+Protocole/Gravité N°port
+Nom_Pont %DTP-7 2/40
+Nom_Pont %STP-6 2/40
+Nom_Pont %STP-6 2/40
+Nom_Pont %STP-6 2/40
+Nom_Pont %STP-6 2/40
+
+Commentaires
+Link up
+state changed to Blocking.
+state changed to Listening.
+state changed to Learning.
+state changed to Forwarding
+
+Spanning Tree : Exemples (1)
+1) Au départ, chaque pont se
+considère racine (coût à 0)
+
+[44,0,44,1]
+
+1
+
+1
+
+Pont 44
+
+Pont 66
+
+2
+
+2
+
+1
+
+1
+
+Pont 44
+
+Pont 66
+
+2
+
+2
+
+[44,0,44,2]
+2) Le pont 44 ne modifie pas sa
+configuration, car message
+reçu de 66 indiquent valeurs +
+grande
+[44,0,44,1]
+3)Le pont 66 modifie sa
+configuration et ses messages
+4) Le port de N° le + grand est
+désactivé sur le pont 66
+
+[44,0,44,2]
+
+[66,0,66,1]
+[66,0,66,2]
+
+[44,1,66,1]
+[44,1,66,2]
+
+Spanning Tree : Exemples (2)
+
+Pont 1
+
+Pont 2
+
+1) Négociation échange BPDU
+
+Pont 3
+
+2) Désactivation du port du pont 3
+
+3) Le pont 2 tombe en panne
+Pont 1
+
+Pont 2
+
+Pont 3
+
+4) Le port initialement désactivé du
+pont 3 se réactive
+
+Interconnexion : Routeur (1)
+• Fonction d'aiguillage (routage) des paquets des
+protocoles de la couche réseau (OSI 3)
+– IP, IPX, Appletalk, DECNET…
+
+• Fonction de pontage possible :
+– Pour les protocoles non routables: LAT, Token-ring
+
+• Beaucoup d'intelligence
+– CPU et mémoire jusqu'à 128 Mo (voire plus)
+– Matériel dédié ou non (station)
+– Matériels connus : Cisco, 3Com, Bay Networks, Cabletron,
+Huawei ...
+
+• Possède en général au moins 2 coupleurs réseau
+
+Interconnexion : Routeur (2)
+• But : connecter 2 réseaux (ou 2 sous
+réseaux) au niveau 3 de l'OSI
+• Exemple IP :
+Station B
+Station A
+
+Réseau IP N°1
+
+Routeur
+Réseau IP N°2
+
+Rq : Réseau physique
+quelconque
+
+Station C Station D
+
+Interconnexion : Routeur (3)
+• Avantages:
+– Filtrage : Ne laisse pas passer les trames inutiles, les collisions, les
+broadcasts et les multicasts de niveau 2
+– Sécurité : gestion possible de filtres au niveau 3,4 (IP,TCP,UDP…)
+– Sépare 2 administrations ou deux entités (dorsale, labo, DMZ)
+– Erreur au niveau d'Ethernet d'un côté n'affecte pas l'autre côté
+– Équipement connu par les protocoles de niveau 3
+
+• Désavantages
+– Performances : Switch when you can, route when you must
+– Coûts élevés et configuration pas toujours aisée
+
+Interconnexion : Passerelle (1)
+• Connue aussi sous le nom de Gateway
+• Traduction d'un protocole de niveau ≥ 3 dans
+un autre
+• Tout ce qui n'est pas un répéteur, un pont ou un
+routeur et qui permet l'interconnexion de
+réseaux
+• Permet à 2 mondes ≠ de communiquer
+– Souvent avec des légères pertes de fonctionnalités
+– On ne peut pas s'en passer
+
+Interconnexion : Passerelle (2)
+• Conversion de protocole de niveau 3 :
+• DECNET-IP
+• LocalTalk AppleTalk-Ethernet IP
+
+• D'applications :
+• FTP
+• SMTP
+
+COPY
+X400
+
+• Matériel dédié ou application sur une station
+• Demande beaucoup d'administration (tables ...)
+
+Équipements d'interconnexion récapitulatif
+Niveau OSI
+7
+
+Passerelle, Gateway
+
+Paquets
+3
+Datagrammes
+
+Routeur, Passerelle
+
+Trames
+
+2
+
+Trains de Bits 1
+
+Pont, bridge, commutateur, switch
+Répéteur, Hub, Concentrateur
+
+Commandes de base sur les VLAN
+•
+•
+
+vlan database : Passe en mode (VLAN) de configuration de l'interface.
+Vlan vlan [name nom_vlan][state {operational|suspended}] : définit un VLAN et son nom.
+–
+
+•
+
+Show vlan [vlan] : affiche les infos sur les VLAN configurés
+–
+
+•
+
+Exp > Vlan-membership static 2
+
+Show vlan-membership : affiche l’appartenance des ports aux VLAN
+Show spantree [groupe-pont | vlan] : affiche des informations d’arbre recouvrant pour un
+VLAN
+–
+
+•
+
+Exp > Show vlan 2
+
+Vlan-membership {static {vlan} | dynamic} : assigne un port à un VLAN
+–
+
+•
+•
+
+Exp > vlan 2 name vlan2
+
+Exp > show spantree 1
+
+Remove VLAN : (Supprimer le VLAN) — Supprime le VLAN de la table d'appartenance à
+un VLAN.
+
+

@@ -1,0 +1,60 @@
+"In the DevOps workshop, which tool was recommended for building Java / Spring Boot projects?",Maven (specifically version 3.9.x).
+What command is used to verify the installed version of the .NET SDK?,The command is `dotnet --version`.
+"Which file in a Node.js project defines dependencies and scripts, making it essential for a CI/CD pipeline?",The `package.json` file.
+"In a Spring Boot project using Maven, what file defines dependencies, plugins, and build phases?",The `pom.xml` file.
+"To unlock a new Jenkins installation, you need a key from which file?",The `initialAdminPassword` file.
+"What three Jenkins plugins were specified for installation to support a multi-technology (Java, Node.js, .NET) environment?","Maven Integration, NodeJS, and .NET SDK / MSBuild."
+What is the Maven command to compile a project?,The command is `mvn compile`.
+What is the `dotnet` command to create a new console application?,The command is `dotnet new console`.
+"In the context of the DevOps workshop, what was the primary purpose of the first practical work (TP no1)?","To set up a common technical environment for Java, Node.js, and .NET, and prepare for creating a CI pipeline with Jenkins."
+"In a GitLab CI/CD pipeline, what does the `image` keyword specify in a job definition?",It specifies the Docker container image in which the job will be executed.
+The main configuration file for a GitLab CI/CD pipeline is named _____.,.gitlab-ci.yml
+"In the multi-project GitLab pipeline, what were the two main stages defined for all three technologies?",The `build` stage and the `test` stage.
+What is the Maven command to run tests in a Spring Boot project?,The command is `mvn test`.
+"In Jenkins, what feature provides a graphical visualization of the stages (e.g., Build, Test) of a pipeline job?",The Stage View.
+"According to the comparison table, which CI/CD tool is generally simpler to start with for a new project due to its SaaS availability and pre-configured runners?",GitLab CI/CD.
+What is the scripting language used for writing Jenkins pipeline scripts (Jenkinsfiles)?,Groovy.
+"To deploy a Spring Boot application to an external Tomcat server, the packaging type in `pom.xml` must be changed from `jar` to _____.",war
+"When deploying a Spring Boot WAR to an external Tomcat, why is the `spring-boot-starter-tomcat` dependency given the scope `provided`?",Because the servlet container (Tomcat) will be provided by the external server at runtime.
+What Java class must be created in a Spring Boot application to ensure it initializes correctly within an external servlet container like Tomcat?,A class extending `SpringBootServletInitializer`.
+"In the GitLab deployment job for Tomcat, what was the purpose of the `artifacts` keyword?",It was used to make the `.war` file generated in the build stage available to the deploy stage.
+What type of GitLab runner was required for the job that deployed the application to a local Tomcat server?,"A shell executor runner, identified by the tag `local-shell`."
+What is the primary function of SonarCloud in a CI/CD pipeline?,"To automatically analyze the quality and security of the code, detecting bugs, vulnerabilities, and code smells."
+"To connect a SonarCloud organization to a GitLab group, what type of token with `api` scope needs to be created in GitLab?",A Personal Access Token (PAT).
+What are the three essential CI/CD variables that must be configured in GitLab for SonarCloud integration?,"`SONAR_TOKEN`, `SONAR_HOST_URL`, and `SONAR_ORGANIZATION`."
+What is the Maven command goal used to trigger a SonarCloud analysis?,`sonar:sonar`.
+"In Jenkins, what is the first step to integrate SonarCloud before configuring credentials or servers?",Install the 'SonarQube Scanner for Jenkins' plugin.
+"When configuring the SonarCloud server in Jenkins, what type of credential is created to store the SonarCloud token?",A 'Secret text' credential.
+"In a Jenkinsfile, what wrapper function is used to configure the environment for a SonarCloud analysis?",The `withSonarQubeEnv()` function.
+Concept: SAST (Static Application Security Testing),A security analysis methodology that examines source code for security vulnerabilities without executing the program.
+"In the DevSecOps workflow, what GitLab feature is used to enforce rules like requiring Merge Requests for changes to important branches?",Branch protection.
+Which security tool was used in the GitLab pipeline for SAST analysis?,Semgrep.
+"What type of high-severity vulnerability, related to dynamically constructed database queries, was detected by the SAST tool?",SQL Injection (CWE-89).
+Which security tool was used in the GitLab pipeline to find hardcoded credentials?,Gitleaks (for Secret Detection).
+What was the recommended practice for correcting a vulnerability found in the codebase?,To correct each vulnerability in its own dedicated branch and submit it through a separate Merge Request (1 vuln = 1 branch = 1 MR).
+What is the secure way to handle secrets like an `AWS_ACCESS_KEY_ID` instead of hardcoding them in files like `.env`?,Store them as masked and protected CI/CD variables in the GitLab project settings.
+What is the primary difference in the Git history between using `git merge` and `git rebase`?,"`git merge` preserves the original history and creates a merge commit, while `git rebase` rewrites history to create a linear sequence of commits."
+What is the `npm` command to install a project's dependencies as defined in `package.json`?,The command is `npm install`.
+"In the file `.gitlab-ci.yml`, the top-level _____ keyword is used to define the order of execution for different job groups.",stages
+Why are configuration files like `pom.xml` and `package.json` considered a 'source of truth' in a CI/CD pipeline?,Because they allow the pipeline to automatically and deterministically reproduce the build by defining all necessary dependencies and versions.
+What is the default port on which Jenkins is accessible after installation?,The default port is `8080`.
+"In a Jenkins pipeline script, what block contains the main steps of a particular stage, such as compilation or testing?",The `steps` block.
+The `dotnet` command `dotnet restore` is used for what purpose?,"It restores the dependencies and tools of a project as specified in the project file (e.g., .csproj)."
+"In the GitLab pipeline, which Docker image was used for the jobs related to the .NET project?",The image `mcr.microsoft.com/dotnet/sdk:8.0` was used.
+"In the comparison between GitLab CI and Jenkins, which tool was noted as offering more control and flexibility but requiring more administration?",Jenkins.
+What command is used to generate a `.war` file for a Spring Boot project configured with Maven?,The command `mvn package`.
+What command was used to restart the local Tomcat 10 service from the GitLab deploy job script?,The command `sudo systemctl restart tomcat10`.
+"In SonarCloud, an _____ is created to correspond with a GitLab group, allowing projects from that group to be imported for analysis.",organization
+What is a 'code smell' as detected by SonarCloud?,"It is a characteristic in the source code that indicates a deeper problem, such as code duplication or an unused variable, which affects maintainability."
+"In the DevSecOps TP, what was the purpose of creating a `develop` branch separate from the `main` branch?",To provide an integration branch where features and fixes are merged and tested before being incorporated into the stable `main` branch.
+"What is the primary risk of a 'Secret Detection' finding, such as an exposed AWS Access Key?","It could allow unauthorized access to cloud resources, leading to data compromise or significant financial costs."
+The Maven command `mvn archetype:generate` is used for what purpose?,It is used to create a new project from an existing template or 'archetype'.
+"In a Jenkins pipeline script, what is the purpose of the `agent any` directive?",It specifies that the pipeline can execute on any available Jenkins agent.
+What does the GitLab CI `needs` keyword in a job definition accomplish?,"It creates a directed acyclic graph (DAG) of jobs, allowing a job in a later stage to start as soon as its specified dependencies from an earlier stage are complete, without waiting for the whole stage."
+What does the `-DskipTests` flag do when running a Maven command like `mvn package`?,It instructs Maven to skip the execution of the test suite during the build process.
+What command is used to initialize a new local Git repository?,The command is `git init`.
+"In the `.gitlab-ci.yml` file for SonarCloud, what purpose do the `cache` and `paths` keywords serve?",They define files and directories (like `.sonar/cache`) to be saved between job runs to speed up subsequent pipeline executions.
+"When correcting the hardcoded secret, why is it important to add the `.env` file to `.gitignore`?",To ensure the file containing the secret is no longer tracked by Git and cannot be accidentally committed to the repository again.
+"In the GitLab CI pipeline for security, the results of SAST and Secret Detection scans were made available as downloadable JSON _____.",artifacts
+The `npm run build` command executes a script defined in which section of the `package.json` file?,It executes the command associated with the `build` key within the `scripts` section.
+"According to the analysis in TP1, what is the role of the `.csproj` file in a .NET project?","It defines the .NET project, its target framework, and its NuGet dependencies, which is essential for CI/CD automation."

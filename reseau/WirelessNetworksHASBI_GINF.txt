@@ -1,0 +1,2016 @@
+Wireless Networks
+Challenges and Opportunities
+
+© Abderrahim HASBI
+hasbi@emi.ac.ma
+EMI - Département Génie Informatique
+2013/2014
+
+1
+
+AGENDA
+CH 1 : Introduction
+1) History & Taxonomy
+2) Vocabulaire WN
+
+CH 2 : Généralités
+1) Définition et principe d’un WN
+2) Caractéristiques des ondes radio
+3) Problèmes spécifiques aux WN
+
+CH3 : Overview of WSN/WMN
+1) WSN
+2) WMN
+
+CH4 : Réseaux personnels sans fil : WPAN
+1) Définition : WPAN
+2) RFID (Radio Frequency Identification)
+3) BLUETOOTH
+4) UWB (Ultra WideBand)
+5) ZIGBEE/ La technologie infrarouge
+
+CH 5 : Réseaux Locaux sans fil : WLAN
+1) Définition : WLAN
+2) Normes WIFI
+3) Equipements
+4) modes de fonctionnement
+5) Installation
+
+CH 6 : Réseaux Métropolitains sans fil : WMAN
+1) Définition : WMAN
+2) normes WIMAX
+3) WIMAX fixe
+4) WIMAX mobile
+
+2
+
+History
+• Prehistory : Electricity, Telecom & Computer Sience.
+• Wireless history
+– Voice : 1G, analogic
+– Voice : 2G (GPRS/EDGE), digital …to DATA
+– Data : WLAN/WMAN
+– Voice/multimedia : 3G
+– Integration : 4G/WPAN
+
+3
+
+Taxonomy
+Wireless
+Networking
+
+Single
+Hop
+
+Cellular
+Networks
+
+Wireless PANs,
+LANs & MANs
+
+Ad Hoc
+Networks
+
+Wireless Sensor
+Networks
+
+Wireless Mesh
+Networks
+
+4
+
+Vocabulaire WN
+1. Définition et principe d’un WN
+2. Caractéristiques des ondes radio
+3. Problèmes spécifiques aux WN
+
+5
+
+Vocabulaire WN
+•
+•
+
+•
+•
+
+Un réseau sans fil (en anglais Wireless Network) est un réseau dans
+lequel au moins deux terminaux peuvent communiquer sans liaison filaire.
+Un réseau sans fil est un réseau informatique qui substitue aux habituels
+câbles des connexions aériennes via des ondes radios, infrarouges ou
+éventuellement des faisceaux laser.
+Les réseaux sans fil fonctionnent en cellules car une antenne ne peut
+couvrir qu’une partie du territoire.
+Le changement de cellule sans perte de communication s’appelle le
+handover.
+
+6
+
+Vocabulaire RSF: ondes radio
+• Les ondes radio sont des ondes électromagnétiques. Elles se
+propagent entre une antenne émettrice et une antenne réceptrice.
+
+• le spectre électromagnétique est l’ensemble des fréquences
+
+7
+
+Vocabulaire RSF : Fréquence
+• La fréquence de l'onde (en KHZ, MHz, GHz, ... ).
+– Elle mesure la quantité d’éléments d’un signal transmis pendant
+un temps donné, généralement une seconde.
+Fréquence
+30 - 300 GHz
+3 - 30 GHz
+300 MHz - 3 GHz
+30 - 300 MHz
+3 - 30 MHz
+300 KHz - 3 MHz
+30 kHz - 300 kHz
+3 - 30 kHz
+300 Hz - 3 kHz
+< 300 Hz
+
+Description
+extrêmement haute fréquence
+Super haute fréquence
+Ultra haute fréquence (UHF)
+Très haute fréquence (VHF)
+Haute fréquence (HF)
+Moyenne fréquence
+Basse fréquence (LF)
+Très basse fréquence (VLF)
+Fréquence vocale
+De fréquence extrêmement basse
+
+8
+
+Vocabulaire RSF : Puissance
+• La puissance d'émission de l'onde (mW ou dBm).
+• Puissance(mW) = 10 ^ (Puissance(dBm)/10)
+• La puissance autorisée est une limitation politique et non
+technologique. Elle varie selon les pays.
+– Puissance d’émission élevée  couverture plus
+grande, mais durée de vie des batteries plus faible…
+– Fréquences radio élevées  couverture plus faible
+• Rapport signal bruit (RSB ou SNR)
+– SNR = Pdusignalreçu (dBm) - Pdubruit(dBm)
+– SNR ⁄  Qualité du signal reçu ⁄
+
+9
+
+Vocabulaire RSF : Canal de transmission
+• Un canal de transmission est une bande
+étroite de fréquence utilisable pour une
+communication.
+• Dans chaque pays, le gouvernement est en
+général le régulateur de l'utilisation des bandes
+de fréquences, car il est souvent le principal
+consommateur pour des usages militaires.
+
+10
+
+Vocabulaire RSF : Débit
+• Le Débit mesure la quantité d'informations que peut
+transmettre un canal de transmission pendant un temps
+donné. Généralement en bits par seconde. Mesure de la
+vitesse de transmission.
+– Débit théorique (offre)
+– Débit réel (contexte, environnement)
+
+• La Bande passante
+– Largeur de la bande passante : elle est obtenue en calculant
+la différence entre la fréquence maximale et la
+
+fréquence minimale que peut laisser passer un canal
+de transmission.
+– Bande passante = nombre d’utilisateurs connectés
+simultanément X débit utile.
+– La bande passante : c'est le débit total. Cette bande passante se
+divise par le nombre d’utilisateurs.
+
+11
+
+Vocabulaire RSF : Portée
+• La portée des réseaux sans fil se mesure en mètres. La portée
+dépend de nombreux paramètres comme la puissance d’émission
+ou le type d’antenne utilisé.
+• Mais l’environnement dans lequel se propage l’onde ainsi que la
+fréquence utilisée jouent également un rôle crucial.
+
+• Plus la portée est grande, moins il faudra d’antennes pour
+couvrir une région ou pour atteindre une zone éloignée.
+
+12
+
+Vocabulaire RSF : Problèmes spécifiques aux RSF
+• Absence de guide d’ondes Problèmes spécifiques
+– L’allocation de fréquence
+– Les interférences et la fiabilité
+– La sécurité
+– La consommation électrique
+– Les dangers pour la santé
+– Le débit
+
+13
+
+Vocabulaire RSF : Allocation des fréquences d’émission
+• Dans la plupart des pays, il existe une réglementation
+pour l’utilisation de fréquences d’émission. (Au Maroc :
+ANRT)
+• Les fréquences choisies doivent être disponibles le plus
+largement possible.
+ Solution : Sélectionner les bandes libres ou déréglementées
+dans la plupart des pays.
+
+• Il faut également tenir compte de deux types de
+législation :
+– celles qui interdisent certaines plages de fréquences pour ne
+pas perturber d'autres types de transmission,
+
+notamment militaires.
+– celles qui visent à protéger l'individu des rayonnements
+électromagnétiques.
+14
+
+Vocabulaire RSF : Interférences et fiabilité
+
+• Lors d'une collision avec un obstacle, le
+signal s'atténue tout en continuant à se
+propager, une partie du signal est
+réfléchie.
+
+15
+
+Vocabulaire RSF : Interférences et fiabilité (suite)
+• Plus la fréquence est basse, moins le débit de
+données transmises est important.
+• Plus la fréquence est haute, plus les distorsions et
+les difficultés pour traverser les milieux sont
+importantes.
+
+16
+
+Vocabulaire RSF : Sécurité
+
+• Tout équipement compatible situé dans la
+zone de couverture reçoit le signal et peut
+« intercepter » le trafic, même s’y insérer.
+• Solutions
+– Contrôle d’accès (authentification)
+– Chiffrement des communications à l’aide de
+clefs (WEP, WPA ou WPA2).
+– Masquer le réseau SSID (connaître le nom pour
+accès)
+– Filtrage par adresse MAC ou IP
+17
+
+Vocabulaire RSF : Consommation électrique
+
+• Migration des réseaux câblés vers des réseaux
+sans fil
+– Les nœuds passent généralement d’une alimentation
+électrique filaire à un fonctionnement sur batterie
+• L’importance de la consommation électrique.
+
+• Les techniques de conception ultra-faible
+consommation jouent un rôle de premier plan
+lorsqu’il s’agit d’alimenter un nœud de capteur
+sans fil avec la même batterie pendant plusieurs
+années.
+18
+
+Vocabulaire RSF : Dangers pour la santé
+
+• Les effets sur la santé du rayonnement
+électromagnétique des technologies sans fil font
+débat. Dangereux ou pas ?
+• Comme pour les téléphones mobiles ou les
+antennes-relais
+– Manque de preuves scientifiques.
+
+• Hypothèse : et si ceux qui se plaignent de divers
+maux étaient allergiques ?
+19
+
+WMN/WSN
+
+20
+
+WSN : Applications
+
+21
+
+Domaine Médical
+
+22
+
+Introduction
+• Contexte
+• Situation d’Urgence
+• Environnement hasardeux et hostile
+• Utilisation des WSNs
+
+23
+
+Background, contd.
+
+DAWN Lab / UMBC
+
+24
+
+Overall Architecture of a sensor node
+
+DAWN Lab / UMBC
+
+25
+
+Applications, contd.
+
+DAWN Lab / UMBC
+
+26
+
+Les capteurs
+• Un capteur est constitué de trois parties
+principales:
+• la partie de sensation
+• le module de communication sans fil
+• la partie de traitement et de stockage
+27
+
+Architecture d’un capteur
+
+28
+
+Sensor Nodes
+
+DAWN Lab / UMBC
+
+29
+
+WSN
+• Les WSN sont constitués de plusieurs
+capteurs distribués dans la zone d’intérêt.
+• Les capteurs créent un réseau Ad-hoc
+d’une manière distribuée et automatique
+afin de délivrer les données détectées à
+une station de base.
+
+30
+
+31
+
+Architecture des WSN
+
+SINK
+Internet/
+Satellite
+
+TASK
+MANAGER
+
+32
+
+Caractéristiques des WSN
+• Multi-saut
+• Sans infrastructure
+• Support de communication hertzien
+• Topologie dynamique
+33
+
+Etat de l’Art
+• Plusieurs travaux traitent la QoS dans
+WSN
+• Dans [1] l’auteur présente une approche de priorité de
+routage des données, il propose un Framework de protocole
+de routage adaptatif pour définir deux routes pour acheminer
+les données suivant le degré de priorité  délai et énergie
+• Dans [2] l’auteur propose un framework de QoS. Ce dernier
+prend en charge l’agrégation avec minimum de
+consommation d’énergie et la gestion d’équilibrage de
+charge.
+34
+
+Etat de l’Art
+• Plusieurs travaux traitent la QoS dans WSN
+• Dans [3] l’auteur propose une architecture qui est proche de celle
+des clusters avec une différentiation des rôles des nœuds afin de
+minimiser la consommation d’énergie lors de la communication
+en temps réel et garantir un niveau de QoS donné.
+
+• Ces travaux :
+Traitent un ou deux paramètres de QoS
+Traitent la QoS dans une situation donnée.
+35
+
+Notre FrameWork
+«Gestion Adaptative de QoS dans
+Différentes Situations G-Ad-QoS-DS»
+• Permet de garantir QoS selon les
+paramètres suivants :
+• La situation
+• Le degré d’importance de l’information
+• Les paramètres de QoS (délai, énergie, mobilité,
+…).
+
+36
+
+Composants du Framework
+
+37
+
+Module de classification de messages
+
+TN, TI, TC : des seuils de température
+PN, PI, PC : des seuils de pression
+GN, GI, GC : des seuils de gaz
+BCN, BCI, BCC : des seuils de battement du cœur
+38
+
+Module de gestion d’agrégation
+
+http://nesl.ee.ucla.edu/tutorials/mobicom02/ by Deborah Estrin, Akbar Sayeed, and Mani Srivastava
+
+39
+
+Module de gestion d’agrégation
+Impact négatif sur le
+délai et la fiabilité
+Processus
+d’agrégation
+
+Impact positif sur
+l’énergie et la
+bande passante
+
+ Le type de paquet qui sera sujet du processus
+d’agrégation et avec quel degré.
+40
+
+Module de gestion d’énergie
+
+• Objectif : augmenter le TTL du WSN
+• Gestion d’Energie dans Différentes
+Situations
+• Normale, Importante et Critique
+
+41
+
+Module de gestion de charge
+• Contraintes
+• Communication many-to-one
+Surcharge des nœuds au voisinage de SB
+Coupure de flux vers la SB
+
+Supprimer ou transmettre un paquet selon :
+• La matrice définie dans le premier module
+• La capacité de nœud en termes d’énergie et de
+transmission.
+
+42
+
+Module de gestion de mobilité
+• Topologie très dynamique
+• Défaillance d’un nœud, perte de connexion,
+nouveau nœud
+
+• Assurer la couverture et l’optimisation de
+la consommation d’énergie.
+
+43
+
+MAC Filter Module
+• WSNs sont sensibles aux attaques DoS
+• Une attaque DoS peut épuiser un capteur
+ Energie, bandwidth, mémoire et CPU.
+
+• Filtre-MAC :
+– détecte et bloque les adesses inconnues
+ La BS contient une table statique des adresses
+fiables.
+44
+
+Routing Security Module
+• L’attaque : « the man-in-the-middle »
+• Seul un noeud légitime peut participer à la
+communication
+• Authentification & cryptographie
+
+45
+
+Overview (WMN)
+Node Types
+
+Link Types
+
+Wireless routers
+
+Intra-mesh wireless links
+
+Gateways
+
+Stationary client access
+
+Printers, servers
+
+Mobile client access
+
+Mobile clients
+
+Stationary clients
+
+Internet access links
+
+46
+
+Abstraction
+• Users + routers = nodes
+• Nodes have two functions:
+
+=
+
++
+
+– Generate/terminate traffic
+– Route traffic for other nodes
+
+1
+wa
+y
+
+2
+
+Ga
+te w
+ay
+
+2
+
+Ga
+te
+
+Ga
+te
+
+wa
+y
+
+1
+
+Ga
+te w
+ay
+
+Internet
+
+Internet
+
+47
+
+Mesh vs. Ad-Hoc Networks
+Ad-Hoc Networks
+• Multihop
+• Nodes are wireless,
+possibly mobile
+• May rely on
+infrastructure
+• Most traffic is user-touser
+
+Wireless Mesh Networks
+• Multihop
+• Nodes are wireless,
+some mobile, some fixed
+• It relies on infrastructure
+• Most traffic is user-togateway
+
+48
+
+Mesh vs. Sensor Networks
+Wireless Sensor Networks
+
+Wireless Mesh Networks
+
+• Bandwidth is limited (tens of
+kbps)
+• In most applications, fixed
+nodes
+• Energy efficiency is an issue
+• Resource constrained
+
+• Bandwidth is generous
+(>1Mbps)
+• Some nodes mobile, some
+fixed
+• Normally not energy limited
+• Resources are not an issue
+
+• Most traffic is user-to-gateway
+
+• Most traffic is user-to-gateway
+
+49
+
+WMN Works
+• User-Internet Data
+Flows
+– In most applications the
+main data flows
+
+• User-User Data Flows
+– In most applications a
+small percentage of
+data flows
+
+50
+
+Broadband Internet Access
+
+51
+
+Layer 2 Connectivity
+• The entire wireless mesh
+cloud becomes one (giant)
+Ethernet switch
+• Simple, fast installation
+– Short-term events (e.g.,
+conferences, conventions,
+shows)
+– Where wires are not desired
+(e.g., hotels, airports)
+– Where wires are impossible
+(e.g., historic buildings)
+Internet
+
+52
+
+Community Networks
+• Grass-roots
+broadband Internet
+Access
+• Several neighbors may
+share their broadband
+connections with many
+other neighbors
+• Not run by ISPs
+• Possibly in the
+disadvantage of the
+ISPs
+
+Source: research.microsoft.com/mesh/
+
+53
+
+Broadband Internet Access
+Cable
+DSL
+
+WMAN
+(802.16)
+
+Cellular
+(2.5-3G)
+
+WMN
+
+Bandwidth
+
+Very
+Good
+
+Very
+Good
+
+Limited
+
+Good
+
+Upfront
+Investments
+
+Very
+High
+
+High
+
+High
+
+Low
+
+Total
+Investments
+
+Very
+High
+
+High
+
+High
+
+Moderate
+
+Market Coverage
+
+Good
+
+Modest
+
+Good
+
+Good
+54
+
+Overview of Research Topics
+• Physical Layer
+– Smart Antennas
+– Transmission Power
+Control
+
+• MAC Layer
+
+• Security
+• Network Management
+• Geo-location
+
+– Multiple Channels
+
+• Network Layer
+– Routing
+– Fairness and QoS
+
+• Transport Layer
+55
+
+Physical Layer (PHY)
+Wish list
+• Performance
+– Bandwidth
+– Robust modulation
+– Sensitivity
+– Short preamble
+– Fast switch
+between channels
+– Fast switch from
+Tx/Rx and back
+
+• Extras
+– Mobility (potentially
+high-speed)
+– Link adaptation
+– Variable
+transmission power
+(details shortly)
+– Multiple channels
+– Link quality
+feedback
+56
+
+PHY – Transmission Power
+Control
+
+GW
+GW
+
+Too low
+
+Too high
+
+GW
+
+Just right
+
+57
+
+PHY – Transmission Power Control
+(cont)
+• Optimization Criteria
+– Network capacity
+– Delay
+– Error rates
+– Power consumption
+
+• The ideal solution will depend on
+– Network topology
+– Traffic load
+58
+
+MAC – Multichannel
+• Channels can be implemented by:
+
+c
+f
+
+– TDMA (difficult due to
+lack of synchronization)
+– FDMA
+– CDMA (code assignment
+is an issue)
+– SDMA (with directional
+antennas)
+
+c
+
+t
+
+f
+
+t
+
+c
+
+c
+
+f
+
+t
+
+c
+t
+
+s1
+
+f
+s2
+
+t
+
+f
+
+c
+t
+
+s3
+
+f
+
+c
+
+– Combinations of the
+above
+
+f
+
+t
+
+59
+
+MAC – Multichannel
+Why?
+• Increases network capacity
+1
+
+2
+
+Ch-1
+
+1
+
+Ch-1
+
+2
+
+3
+2
+
+3
+
+4
+Ch-1
+
+User bandwidth = B/2
+
+3
+
+4
+
+1
+
+Ch-2
+
+User bandwidth = B
+
+Chain bandwidth = B
+
+B = bandwidth of a channel
+60
+
+Routing
+• Finds and maintains
+routes for data flows
+• The entire performance
+of the WMN depends
+on the routing protocol
+• May be the main
+product of a mesh
+company
+• May be missing
+
+61
+
+Routing – Wish List
+• Scalability
+– Overhead is an issue
+in mobile WMNs.
+
+• Fast route discovery
+and rediscovery
+– Essential for reliability.
+
+• Mobile user support
+– Seamless and efficient
+handover
+
+• Flexibility
+– Work with/without
+gateways, different
+topologies
+
+• QoS Support
+– Consider routes
+satisfying specified
+criteria
+
+• Multicast
+– Important for some
+applications (e.g.,
+emergency response)62
+
+Existing Routing Protocols
+• Internet routing protocols
+(e.g., OSPF, BGP,
+RIPv2)
+
+• Ad-hoc routing protocols
+(e.g., DSR, AODV,
+OLSR, TBRPF)
+
+– Well known and trusted
+– Designed on the
+assumption of seldom link
+changes
+– Without significant
+modifications are
+unsuitable for WMNs in
+particular or for ad hoc
+networks in general.
+
+– Newcomers by comparison
+with the Internet protocols
+– Designed for high rates of
+link changes; hence
+perform well on WMNs
+– May be further optimized to
+account for WMNs’
+particularities
+
+Ad Hoc
+Networks
+
+Wireless Mesh
+Networks
+
+63
+
+Routing - Optimization Criteria
+• Minimum Hops
+• Minimum Delays
+• Maximum Data Rates
+• Minimum Error Rates
+• Maximum Route
+Stability
+• Power Consumption
+• Combinations of the
+above
+
+• Use of multiple
+routes to the same
+gateway
+• Use of multiple
+gateways
+64
+
+Routing – Cross-Layer Design
+• Routing – Physical
+– Link quality feedback is
+shown often to help in
+selecting stable, high
+bandwidth, low error rate
+routes.
+– Fading signal strength can
+signal a link about to fail →
+preemptive route requests.
+– Cross-layer design
+essential for systems with
+smart antennas.
+
+• Routing – MAC
+– Feedback on link loads can
+avoid congested links →
+enables load balancing.
+– Channel assignment and
+routing depend on each
+other.
+– MAC detection of new
+neighbors and failed routes
+may significantly improve
+performance at routing
+layer.
+
+65
+
+Network Layer - Fairness
+• Fairness
+– Equal share of resources to
+all participants.
+– Special case of priority
+based QoS.
+
+GW
+
+2
+
+1
+
+• Horizontal – nodes 1, 2
+– The MAC layer’s fairness
+ensures horizontal fairness.
+
+• Vertical – nodes 3, 4
+– MAC layer is no longer
+sufficient
+
+GW
+
+3
+
+4
+66
+
+Fairness Problem
+G
+
+G
+2
+S2
+
+1
+S1
+
+Ideal
+
+GW
+
+Real
+
+67
+
+Provisioning
+• Two related questions:
+– How much bandwidth for
+each user?
+– Where to place the next
+gateway?
+
+• Essential for QoS
+guarantees
+• Complicated by the
+shared medium and
+multi-hop routing
+68
+
+Security
+• Authentication
+– Prevent theft of
+service
+– Prevent intrusion by
+malicious users
+
+• Privacy - user data is
+at risk while on transit
+in the WMN due to:
+– Wireless medium
+– Multi-hop
+
+• Reliability – protect:
+– Routing data
+– Management data
+– Monitoring data
+– Prevent denials of
+service (very difficult at
+the physical layer)
+
+69
+
+Network Management
+• Monitor the “health” of the
+network
+• Determine when is time
+to upgrade
+– Either hardware
+– New gateway
+
+• Detect problems
+– Equipment failures (often
+hidden by the self-repair
+feature of the network)
+– Intruders
+
+Source: www.meshdynamics.com
+
+• Manage the system
+70
+
+Réseaux personnels sans fil : WPAN
+
+1. Définition : WPAN
+2. RFID
+3. BLUETOOTH
+4. UWB
+5. ZIGBEE
+71
+
+Réseaux personnels sans fil : WPAN
+
+• Définition
+– Un WPAN est un réseau sans fil de faible
+portée : de l’ordre de quelques dizaines de
+mètres. Il fournit généralement une
+connectivité sans infrastructure.
+
+72
+
+Technologies sans fil : RFID
+•
+
+•
+
+•
+•
+
+RFID (Radio Frequency Identification) : Technologie développée pour assurer avec
+plus de facilité le suivi des marchandises durant leur déplacement dans les
+processus logistiques.
+RFID : Ensemble composé de :
+– Tags (étiquettes RFID) placées sur des unités logistiques (conteneurs, …).
+Chaque étiquette RFID possède un code ePC (Electronic Product Code) qui
+contient de l’information propre et unique à l’unité logistique (numéro de série,
+destinataire, transporteur …). Cette information peut être mise à jour après
+chaque étape parcourue dans la chaîne logistique ;
+– De petits terminaux portables munis de capteurs qui détectent et lisent
+l’information enregistrée dans les étiquettes RFID ;
+Quelque soit leur forme, les étiquettes RFID révèlent un point commun qui est la
+faculté d'être lues à distance à l'aide d'un signal radio.
+On distingue les deux catégories suivantes :
+– Les étiquettes RFID passives : (les plus nombreuses) elles sont excitées par
+induction électromagnétique (par l'onde radio émise par le lecteur) et elles
+renvoient à courte distance un signal convenu. La rétention des données est
+estimée à 10 ans et 100 000 cycles d’écriture.
+– Les étiquettes RFID actives : (plus coûteuses) équipés d'une source
+
+d'énergie (pile ou capteur solaire) et d'une puce, elles peuvent se
+signaler seules et/ou établir des dialogues plus construits avec le
+lecteur. Leur autonomie va de quelques mois à plusieurs années.
+
+73
+
+Technologies sans fil : RFID
+• Différentes bandes de fréquences ont été retenues. Pour
+certaines d’entre elles, les fréquences disponibles
+varient selon les régions du monde.
+•
+•
+•
+•
+•
+
+BF : basse fréquence - 125 KHz,
+HF : haute fréquence - 13,56 MHz,
+UHF : ultra haute fréquence - 433 MHz ou 800-930 MHz
+Hyper RF : hyper fréquences ou micro-ondes - 2,45 et 5,8 GHz
+La distance de lecture d’une étiquette varie selon plusieurs
+paramètres :
+–
+–
+–
+–
+–
+
+la bande de fréquences utilisée
+puissance du lecteur
+les performances des composants silicium utilisés et la sensibilité du lecteur
+le recours éventuel à une batterie (peut porter cette distance à 100 m)
+de l’environnement d’utilisation et du déploiement effectué (niveau de bruit
+électromagnétique, présence d’humidité, matériaux de l’objet étiqueté, réflexions
+multiples, interférences entre lecteurs, géométrie…).
+74
+
+Technologies sans fil : RFID
+
+75
+
+Technologies sans fil : Avantages RFID
+• Identification ne nécessitant ni contact, ni visibilité
+– Lecture 40 fois plus rapide que les codes barres
+– Pas de manutention
+
+• Pénétration au travers de différents matériaux
+– Lecture des produits dans un colis
+
+• Possibilité d’écriture dans le tag d’information
+dynamiquement
+– Enrichissement au cours du cycle de vie
+– Echange de données avec des partenaires
+
+• Lecture simultanée de plusieurs tags
+– Système de lecture anti-collision
+
+• Couplage avec des capteurs
+– Température, choc, pression, …
+– GPS pour géolocalisation
+76
+
+Technologies sans fil : Avantages RFID
+• Résistance aux influences néfastes de l'environnement
+– Températures extrêmes, humidité, poussière, ..
+
+• Forme et dimension du transpondeur pouvant être adaptées à
+volonté
+– Tags RFID pour des applications telles que : identification bovins,
+marquage de billets de banque, échantillons ADN, passeports, ticket de
+transport, …
+
+• Tags complètement au produit
+– Lutte contre la contre-façon, le vol, …
+– Par mesure d’hygiène (agro-alimentaire, santé, …)
+
+• Sécurité élevée
+– Protection contre la copie
+– Protection des données par mot de passe
+– Transmission cryptée des données
+
+77
+
+Technologies sans fil : BLUETOOTH (WPAN)
+• Bluetooth est la principale technologie WPAN lancée
+par Ericsson en 1994.
+• Bluetooth définit 3 classes d'émetteurs proposant
+des portées différentes en fonction de leur puissance
+d'émission :
+Classe
+
+Puissance
+
+Portée
+
+I
+
+100 mW
+
+100 m
+
+II
+
+2,5 mW
+
+15 - 20 m
+
+III
+
+1 mW
+
+10 m
+
+• Bluetooth désigne 3 normes
+78
+
+Technologies sans fil : BLUETOOTH v1.x - IEEE 802.15.1
+(WPAN)
+• Caractéristiques
+– Fréquence : 2.4 GHz (ISM : Industriel, Scientifique, Médical)  Libre
+– Portée : 10-100 mètres
+– Débit : 1 Mbps
+
+• Avantages
+– Faible consommation d’énergie.
+– Bonne gestion de la communication de la voix.
+– Equipements de taille réduite.
+– Technologie adaptée à la mobilité.
+– Faible coût.
+
+• Inconvénients
+– Nombre de périphériques limité dans un réseau.
+– Faible portée.
+– Débit limité.
+79
+
+Technologies sans fil : BLUETOOTH v2.x - IEEE 802.15.2
+(WPAN)
+
+• Fréquence : 2.4 GHz
+• Débit : 3Mbps
+• Portée : 10-100 m
+• Adaptateur Bluetooth USB
+– Classe 1
+– Distance maximale de connexion Bluetooth : 100
+mètres
+– Bluetooth 2.0
+– Débit maximal : 3 Mbps.
+– Interface : USB 1.1
+80
+
+Technologies sans fil : MEDIEVAL BLUETOOTH NETWORK SCANNER
+• Ce programme peut scanner et analyser un réseau Bluetooth. Il
+donne des informations détaillées au sujet des dispositifs distants et
+locaux trouvés et les services supportés par chacun d'eux grâce à
+une interface claire.
+
+81
+
+Technologies sans fil : BLUETOOTH v3.x - IEEE 802.15.3
+(WPAN)
+
+• Caractéristiques
+–
+–
+–
+–
+–
+–
+–
+
+Fréquence : 3.1 - 10.6 GHz (UWB)
+Faible portée : 10 m
+Haut débit : >400 Mbps pour supporter les flux vidéo et/ou audio
+Faible consommation d'énergie
+Faible coût
+Qualité de Service permettant d'offrir un débit garanti
+Supporte un environnement dynamique. L'apparition ou la disparition
+d'équipement ne doit pas perturber le comportement du réseau.
+
+• Applications
+– connexions entre appareil photo numérique et imprimante
+– connexions entre ordinateurs portables et vidéoprojecteur
+– connexions entre un haut parleur et un appareil récepteur
+
+82
+
+Technologies sans fil : WUSB - IEEE 802.15.3a (WPAN)
+• WUSB a été proposé par la WiMedia Alliance et a pour
+vocation de remplacer les connexions avec des câbles
+USB par des connexions sans fil. WUSB s’appuie sur le
+standard IEEE 802.15.3 également connu sous le nom
+d’UWB (Ultra Wide Band), géré par la Wimedia
+Alliance.
+• L'objectif de WiMedia et de réaliser une intercompatibilité réelle entre tous les appareils
+transmettant de l'image et du son dans un rayon de 1 à
+50 mètres.
+• Fréquence : 3.1 - 10.6 GHz
+• Portée : 10 mètres
+• Débit : 480 Mbps
+83
+
+Technologies sans fil : ZIGBEE - IEEE 802.15.4 (WPAN)
+• La technologie ZigBee permet d'obtenir des liaisons
+sans fil à très bas prix et avec une très faible
+consommation d'énergie.
+• Zigbee est une technologie radio basée sur le
+standard IEEE 802.15.4 et destinée en premier lieu au
+contrôle, à la surveillance et à la gestion de commandes
+à distance. Des applications peuvent par exemple être
+trouvées dans le domaine de la domotique automatisée :
+activation d'un éclairage à distance, surveillance d'un
+bâtiment, relevé d'informations transmises par des
+capteurs, etc.
+• Fréquence : 2.4 GHz
+• Portée : 100 mètres
+• Débit : 0.25 Mbps
+84
+
+Technologies sans fil : ZIGBEE - IEEE 802.15.4 (WPAN)
+• Zigbee, un réseau pour transporter les commandes
+essentiellement et non les données :
+– Il permet de mettre en place des réseaux personnels sans fils à
+très bas coût.
+
+• Il existe deux versions de Zigbee :
+– IEEE 802.15.4 qui permet de communiquer à 250 Kb/s jusqu’à
+100 mètres pour relier au maximum 255 appareils ( bande de
+fréquence des 2,4 GHz).
+– IEEE 802.15.4a qui est limité à 20 Kb/s mais permet une portée
+de 75 mètres pour un maximum de 65 000 appareils (bande de
+fréquence des 900 KHz : USA).
+85
+
+Technologies sans fil : ZIGBEE - IEEE 802.15.4 (WPAN)
+
+• Adapté pour la communication d’objet à objet qui ne
+nécessite pas un grand débit.
+• Un très faible coût qui devrait permettre son intégration
+dans un grand nombre d’objets.
+• Une autonomie de deux ans avec de simples piles
+basiques.
+• Objectif : rendre une simple ampoule communicante.
+
+86
+
+Technologies sans fil : ZIGBEE - IEEE 802.15.4a (WPAN)
+• Le XBee Wall Router est un petit dispositif qui permet
+d’étendre un réseau ZigBee. Il se branche simplement
+sur une prise de courant et intègre des capteurs de
+température et de lumière…
+• Comme tous les périphériques ZigBee, ce routeur peut
+être relié à plus de 65 000 autres périphériques.
+
+87
+
+Réseaux locaux sans fil : WLAN
+
+1. Définition : WLAN
+2. Normes Wifi
+3. Equipements
+4. Modes de fonctionnement
+5. Installation d’un réseau WIFI
+
+88
+
+Réseaux locaux sans fil : WLAN
+• Définition
+– Un WLAN est un réseau qui permet de relier des ordinateurs
+portables, des machines de bureau, des PDA ou tout type de
+périphérique sur un rayon de plusieurs dizaines de mètres en
+intérieur (généralement entre 20 et 50 mètres) à plusieurs
+centaines de mètres en environnement ouvert.
+• Un WLAN est constitué de points d’accès (AP : Access Point)
+équipés d’une antenne (ou plusieurs) et d’une interface réseau
+Ethernet (ou plusieurs) standard. Chaque point d’accès forme une
+zone de couverture radio appelée cellule. L’ensemble des cellules
+constitue le WLAN.
+• Les WLAN sont les plus répandus et les plus médiatisés à l’heure
+actuelle.
+89
+
+Réseaux locaux sans fil : WLAN (suite)
+
+90
+
+Réseaux locaux sans fil : WLAN (suite)
+• WLAN privés ou d’entreprise : les terminaux mobiles
+servent à des employés dans l’enceinte de l’entreprise
+pour accéder au SI.
+– Exemple : Dans un hôpital, les médecins vont de chambre en
+chambre tout en accédant aux dossiers des patients en ligne et
+aux applications médicales depuis des PC portables.
+– Réseaux sans fil d’intérieur
+
+Liaisons extérieures
+
+91
+
+Réseaux locaux sans fil : WLAN (suite)
+• WLAN publics ou hot-spots : les terminaux mobiles
+appartiennent à des clients accédant à une ressource
+particulière (en général, accès Internet) proposée par le
+propriétaire du hot-spot.
+– Exemple : Des hôtels, des aéroports ou des cafés mettent à la
+disposition de leurs clients un accès Internet sans-fil.
+
+• WLAN domestiques : un particulier forme un réseau
+sans-fil pour connecter un ou plusieurs PC et son accès
+Internet.
+
+92
+
+Réseaux locaux sans fil : WIFI - IEEE 802.11
+
+• WiFi est soutenu par la WiFi Alliance,
+créée en 1999, (anciennement WECA,
+Wireless Ethernet Compatibility Alliance).
+• 802.11 désigne un ensemble de
+standards dans le domaine des LAN
+radio, et le groupe de travail de l'IEEE qui
+les développe.
+– Exemple : 802.11a, 802.11b, 802.11g etc
+93
+
+Réseaux locaux sans fil : WIFI - IEEE 802.11
+• 802.11b (1999)
+– bande de fréquence des 2.4GHz
+– jusqu'à 14 canaux avec recouvrement partiel
+(selon la règlementation)
+– débit théorique : 11 Mbps (~6Mbps en pratique)
+– portée : 10-100 m
+
+• 802.11g (2003)
+–
+–
+–
+–
+–
+–
+
+bande de fréquence des 2.4 Ghz
+jusqu'à 14 canaux avec recouvrement partiel (selon la règlementation)
+débit théorique : 54 Mbps (~25 Mbps en pratique)
+compatibilité ascendante avec 802.11b
+(impact sur la performance dans une cellule mixte)
+portée : 10-100m
+
+• 802.11a (1999)
+–
+–
+–
+–
+
+bande de fréquence des 5 Ghz
+jusqu'à 8 canaux sans recouvrement (selon la réglementation)
+débit théorique : 54 Mbps (~25Mbps en pratique)
+portée : 10-100 m
+94
+
+Réseaux locaux sans fil : WIFI - IEEE 802.11
+
+• 802.11n (2008)
+– bande de fréquence des 2.4 Ghz et des 5 GHz
+– utilisation de « MIMO : Multiple-Input Multiple-Output » (technologie à antennes
+multiples / Emetteur & Récepteur)
+– débit théorique : 540 Mbps
+– Portée : 10-100 m
+
+95
+
+Réseaux locaux sans fil : Equipements WIFI
+•
+
+•
+
+Wireless adapters ou network interface controller, noté NIC. Il s'agit d'une carte
+réseau à la norme 802.11 permettant à une machine de se connecter à un réseau
+sans fil. Les adaptateurs WiFi sont disponibles dans de nombreux formats (carte PCI,
+carte PCMCIA, adaptateur USB, carte compact flash, ...).
+AP pour Access point, parfois appelés bornes sans fil, permettant de donner un
+accès au réseau filaire (auquel il est raccordé) aux différentes stations avoisinantes
+équipées de cartes WiFi.
+
+96
+
+Réseaux locaux sans fil : Modes de fonctionnement de WIFI
+• Le mode ad-hoc (ou IBSS, Independant Basic Service
+Set)
+– Pas d’infrastructure fixe
+– Interconnexion directe entre les équipements
+
+97
+
+98
+
+99
+
+100
+
+STA : Station
+AP : Access Point
+BSS : Basic Service Set
+DS : Distribution System
+ESS : Extended Service Set
+IBSS : Independant BSS
+
+BSS : Basic Service Set. Zone au sein de laquelle un groupe
+de stations communique par voie Hertzienne
+IBSS : Independant BSS. Réseaux sans fil isolé du reste du réseau
+DS : Distribution System. Entité permettant de relier plusieurs BSS
+ESS : Extended Service Set. Ensemble des sous réseaux interconnectés
+AP : Access Point. Point d'interconnexion entre un BSS et le DS. Peut
+également permettre l'interconnexion avec des réseaux câblés traditionnels.
+Dans ce cas on parle de portail.
+
+101
+
+Réseaux locaux sans fil : Modes de fonctionnement de WIFI
+• Le mode infrastructure basic (BSS, Basic Service Set)
+– Présence d’un point d’accès qui peut aussi permettre
+l’interconnexion à l’Internet.
+– Pas de communication directe entre les équipements.
+
+102
+
+Réseaux locaux sans fil : Modes de fonctionnement de WIFI
+• Le mode infrastructure étendu (ESS, Extended Service
+Set)
+– Présence de plusieurs points d’accès qui peuvent aussi
+permettre l’interconnexion à l’Internet.
+– La mobilité est transparente aux couches supérieures !
+
+103
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+
+• Contraintes
+– La bande de fréquences
+– La zone de couverture
+– Le nombre d’utilisateurs
+– La configuration des canaux
+– Le débit
+– La sécurité
+
+104
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La bande de fréquences
+– La bande ISM (Industrial Scientific and Medical) située dans les
+2,4 GHz pour 802.11b et 802.11g
+– La bande U-NII (Unlicensed-National Information Infrastructure)
+située dans les 5 GHz pour 802.11a.
+
+• Ces deux bandes sont dites sans licence.
+• Ces deux bandes sont réglementées au Maroc par
+l’ANRT
+– Contraintes d’utilisation
+– Libération d’une partie pour les réseaux WiFi
+• Bandes étroites ou canaux de transmissions.
+
+105
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La bande de fréquences
+– Les fréquences autorisées (bande ISM) pour l’usage
+d’un réseau WLAN en interne sont 2400-2483,5 MHz.
+– Les fréquences autorisées (bande U-NII) pour l’usage
+d’un réseau WLAN en interne sont entre autres :
+5150-5350 MHz…
+– Bien que cette réglementation se soit peu à peu
+assouplie, elle reste assez contraignante lors d’une
+utilisation de WiFi à l’extérieur.
+• Les puissances autorisées sont limitées entre10 et 100 mW.
+– Trop faibles pour des déploiements suffisants en extérieur.
+
+106
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La zone de couverture
+– Puissance d’émission
+– Qualité du signal radio
+• Obstacles, interférences…
+
+107
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+
+• Le nombre d’utilisateurs
+– Pour des raisons évidentes d’efficacité il vaut mieux n’affecter à
+un point d’accès qu’un nombre limité d’utilisateurs.
+– Nombre d’utilisateurs par point d’accès dépend du débit souhaité
+(débit utile) par chaque utilisateur.
+– La zone à couvrir + le nombre d’utilisateurs du réseau
+ la topologie du réseau
+
+108
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Topologie à cellules disjointes
+– Pourquoi ?
+• Disposer d’un nombre faible de canaux.
+• Eviter toute interférence.
+
+– Inconvénient
+• La mobilité n’est pas possible.
+
+109
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Topologie à cellules partiellement recouvertes
+– Cette topologie est caractéristique des réseaux sans fil.
+• Pourquoi ?
+– Assurer une mobilité continue.
+– Disposer d’un espace important.
+• Contrainte
+– Une bonne affectation des canaux afin d’éviter les interférences
+dans les zones de recouvrement.
+
+110
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Topologie à cellules recouvertes
+– Pourquoi ?
+• Disposer d’un espace restreint
+• Offrir une connexion sans fil à un nombre important d’utilisateurs.
+
+• Contrainte
+– Une bonne configuration des canaux est nécessaire afin d’éviter
+les interférences
+
+• Exemple d’utilisation
+– Les salles de réunion ou lors des grandes conférences dans le
+but de fournir un accès sans fil fiable à tous les participants.
+
+111
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La configuration des canaux
+– Un point d’accès d’un réseau WiFi, qu’il soit en mode
+infrastructure ou ad-hoc, ne transmet que par l’intermédiaire d’un
+unique canal.
+– L’affectation d’un canal de transmission «ne pose pas de
+problème» lorsque :
+• La zone à couvrir est restreinte et le nombre d’utilisateurs n’est pas
+important.
+• Le réseau n’est équipé que d’un seul point d’accès
+• Le réseau est composé d’un nombre important de points d’accès dont les
+zones de couverture ne se recouvrent pas.
+
+– Couvrir un environnement assez vaste
+ Disposer de plusieurs points d’accès
+ Affecter à chaque point d’accès un canal de transmission
+différent.
+112
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La configuration des canaux
+– 802.11b et 802.11g n’utilisent qu’une partie du spectre de
+fréquences de la bande ISM pour les transmissions de données.
+Cette partie de la bande est divisée en canaux de 20 MHz.
+– Quatorze canaux sont disponibles dans la bande 2400-2483,5
+MHz mais seuls les canaux 1 à 13 peuvent être utilisés.
+
+113
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+
+• La configuration des canaux
+– 3 points d’accès (pas d’interférences)
+• Les canaux 1, 7 et 13
+• Les canaux 1, 6 et 11
+• …
+
+114
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La configuration des canaux
+– L’affectation de quatre canaux simultanément est possible dans
+un réseau WiFi (b/g).
+
+• Par exemple les canaux 1, 5, 9 et 13.
+– Légères interférences n’entraînant pas de forte dégradation des
+performances du réseau.
+
+115
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La configuration des canaux
+– La bande U-NII de 802.11a à huit canaux ne connaît pas les
+mêmes contraintes que la bande ISM.
+– Les canaux étant suffisamment espacés, il est possible d’avoir
+huit points d’accès 802.11a dans un même espace possédant
+chacun un canal différent, le tout sans risque d’interférence.
+
+116
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Le débit
+– Débit/Portée d’un réseau 802.11b en milieu fermé
+
+– Débit/Portée d’un réseau 802.11b en milieu ouvert
+
+117
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Le débit
+– Débit/Portée d’un réseau 802.11g en milieu fermé
+
+118
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• La sécurité
+– Modifier les SSID(Service Set Identifier) par défaut des points
+d’accès et éviter d’utiliser des SSID vides ou qui permettent la
+connexion automatique de toute station au réseau.
+– Fermer le réseau afin d’éviter que le SSID ne soit disponible en
+clair sur le réseau.
+– Ne pas utiliser le WEP (Wired Equivalent Privacy), ou au
+moins l’utiliser avec des clés de longueur maximale, c’est-à-dire
+sur 128 bits.
+– Utiliser l’ACL (Access Control List) afin d’interdire l’accès à toute
+personne dont la carte WiFi ne figure pas dans la liste.
+– WPA est une certification définissant des mécanismes de
+sécurité fiables et robustes dans les environnements WiFi.
+
+119
+
+Réseaux locaux sans fil : Installation d’un réseau WiFi
+• Interférences
+– Le support de transmission de 802.11b et 802.11g est la bande
+des 2,4 GHz. Cette bande sans licence peut être soumise à des
+interférences pour de multiples raisons :
+– Présence d’un (ou plusieurs) AP WiFi 802.11b ou 802.11g
+utilisant un canal proche ou le même canal.
+– Présence d’un réseau Bluetooth qui partage la même bande des
+2,4 GHz.
+– Proximité de fours micro-ondes en fonctionnement.
+– Présence de tout type d appareil utilisant la bande des 2,4 GHz,
+tels les systèmes de vidéo-surveillance.
+ Effectuer un audit de site  vérifier la présence d’autres
+réseaux WiFi dans l’environnement + configurer correctement
+les canaux.
+
+120
+
+Réseaux locaux sans fil : Audit de site
+• L’audit de site consiste précisément à savoir s’il existe
+d’autres réseaux WiFi dans la zone de couverture du réseau
+audité.
+• Netstumbler (http://www.netstumbler.com) est un logiciel
+gratuit, qui ne demande qu’une station, mobile ou fixe,
+possédant une carte WiFi pour faire un audit de
+l’environnement radio et détecter la présence d’autres
+réseaux WiFi tout en testant la sécurité du réseau audité.
+• Retina Network Security Scanner (http://eeye.com) permet
+de détecter des réseaux sans fils environnants. Le logiciel est
+également prévu pour déterminer les vulnérabilités d’un
+réseau d’entreprise. Un rapport détaillé est généré à la fin de
+l’examen.
+
+121
+
+Réseaux locaux sans fil : Audit de site
+
+122
+
+Réseaux locaux sans fil : Audit de site
+
+123
+
+Travail à faire par groupe : Un audit de site
+• Décrivez le site
+• Définissez l’objectif de l’audit : évaluer la performance
+des réseaux Wifi installés sur un site (voire plusieurs)
+• Décrivez le matériel utilisé (ordinateur, OS, nature de
+l’adaptateur Wifi…)
+• Décrivez le matériel wifi détecté (nature des AP…)
+• Comment le choix des canaux est-il effectué ?
+• A quel endroit du site, la portée du réseau est la moins
+grande, par exemple dans les pièces dont les murs sont
+épais? Quel est le niveau de sécurisation réel des
+réseaux sans fil ?
+124
+
+Réseaux métropolitains sans fil : WMAN
+
+1)
+2)
+3)
+4)
+
+Définition : WMAN
+Normes Wimax
+Wimax fixe
+Wimax mobile
+
+125
+
+Réseaux métropolitains sans fil : WMAN
+Définition
+– Un WMAN est un réseau sans fil qui se tisse sur une ville,
+permettant à tous les habitants d’être connectés entre eux. La
+portée peut dépasser les 50km.
+– Le réseau WMAN est connu aussi sous le nom de Boucle
+Locale Radio (BLR).
+– BLR consiste à établir un réseau de boucle locale en substituant
+aux fils de cuivre qui équipent aujourd'hui les réseaux, une
+technologie radio offrant l'avantage d’une plus grande souplesse
+pour le déploiement des infrastructures.
+– Boucle Locale : ensemble des liens filaires existant entre le
+poste de l'abonné et le commutateur d'abonnés auquel il est
+rattaché. La boucle locale est ainsi la partie du réseau d'un
+opérateur qui lui permet d'accéder directement à l'abonné.
+– Les technologies sans-fil WMAN sont destinées principalement
+aux opérateurs de télécommunication.
+126
+
+Réseaux métropolitains sans fil : WMAN
+
+127
+
+Technologies sans fil : WIMAX - IEEE 802.16
+• WiMAX : «Worldwide Interoperability for Microwave Access»
+• WiMAX désigne dans le langage courant un ensemble de
+standards et de techniques du monde des MAN radio.
+– objectif initial : accès radio « last mile » large bande.
+– alternative aux accès câble ou ADSL chez l'abonné.
+– utilisable aussi en dorsale (ex: derrière un hotspot WiFi; derrière
+un accès à un réseau cellulaire) et pour des clients mobiles.
+
+128
+
+Technologies sans fil : WIMAX - IEEE 802.16
+
+129
+
+Technologies sans fil : WIMAX - IEEE 802.16
+• Bande de Fréquences : 2 - 11 GHz
+• Portée : 50 km
+• Débit : 70 Mbps
+• Performances, ordre de grandeur (source WiMAX
+forum) :
+– WiMAX fixe : cellule de 3 à 10 km de rayon, débit global de ~40
+Mbps (débit théorique ~ 75 Mbps)
+– WiMAX mobile : cellule < 3 km de rayon, débit global de ~15
+
+Mbps (débit théorique ~ 30 Mbps)
+
+130
+
+Technologies sans fil : WIMAX - IEEE 802.16
+• Les fondations du WiMAX ont été standardisées par le
+groupe de travail 802.16 de l'IEEE (groupe « broadband
+wireless access ») :
+– « WirelessMAN® » est un trademarked name de l'IEEE pour
+désigner les standards IEEE 802.16.
+
+• Deux spécifications principales :
+– 10/2004 : le standard IEEE 802.16-2004 (appelé 802.16d) :
+support des clients fixes, remplace les spécifications antérieures
+802.16-2001(initiale); 802.16a (extension à la bande 2 à
+11GHz); 802.16c (définition de profils plus spécifiques)
+– 02/2006 : l'amendement IEEE 802.16e-2005 (appelé 802.16e) :
+support des clients mobiles et fixes.
+131
+
+Technologies sans fil : WIMAX Fixe - IEEE 802.16d
+
+• Le WIMAX fixe permet de recevoir une
+connexion Internet haut débit à domicile.
+• Une installation WIMAX fixe ressemble à une
+installation TV.
+– Le haut débit  une antenne située sur le toit.
+
+• Le WIMAX fixe est une alternative à l’ADSL ou
+au Câble  Zones non couvertes par l’ADSL ou
+le câble.
+
+132
+
+Technologies sans fil : WIMAX Fixe - IEEE 802.16d
+
+133
+
+Technologies sans fil : WIMAX Mobile - IEEE 802.16e
+• Le WIMAX mobile permet de se déplacer tout en restant
+connecté à Internet.
+– Un appareil mobile (ordinateur portable, assistant personnel ou
+téléphone mobile) équipé d’une carte WIMAX.
+
+• Le WIMAX mobile permet de se déplacer dans
+l’intégralité d’une zone couverte par l’intermédiaire d’une
+antenne centrale, le tout sans déconnexion.
+• Le WIMAX mobile permettra de passer d’une zone de
+couverture à une autre sans déconnexion.
+• Le WIMAX mobile permettra d’utiliser la téléphonie IP
+ainsi que tous les services de téléphonie haut débit.
+ Zones non couvertes par les réseaux de téléphonie mobile.
+134
+
+Technologies sans fil : WIMAX - IEEE 802.16
+
+135
+
+Wireless Networks
+Challenges and Opportunities
+
+Exercices d’application
+© Abderrahim HASBI
+hasbi@emi.ac.ma
+EMI - Département Génie Informatique
+2013/2014
+136
+
+Wireless Networks
+Challenges and Opportunities
+
+Sujets des Présentations
+© Abderrahim HASBI
+hasbi@emi.ac.ma
+EMI - Département Génie Informatique
+2013/2014
+137
+
+REFERENCES
+[1] S. Sharma and D. Kumar,“An approach to optimize adaptive Routing Framework to provide QOS in
+Wireless Sensor Networks’,International Journal of wireless Networks and Communication,Volume
+1,Number 1,2009. pp;55-69
+[2] Neeraj Kumar, and RB Patel ‘A QoS aware Framework to support Minimum Energy Data
+Aggregation and Routing in Wireless Sensor Networks’, International Journal of Advanced Pervasive
+and Ubiquitous Computing (2009) (pp. 91-106)
+[3] E. Toscano, O. Mirabella, L. Lo Bello, “An Energy-Efficient Real-Time Communication Framework
+for Wireless Sensor Networks”, the 6th International Workshop on Real-Time Networks (RTN’07) in
+conjunction with the 19th Euromicro International Conference on Real-Time Systems (ECRTS’07),
+Pisa, June 2007.
+[4] M. Günes, M. Kähmer, I. Bouazizi, Ant Routing Algorithm (ARA) for Mobile Multi-Hop Ad-Hoc
+Networks - New Features and Results, The Second Mediterranean Workshop on Ad-Hoc Networks,
+2003.
+[5] FD Giani Di Caro and LM Gambardella. ‘Anthocnet: An adaptive nature-inspired algorithm for
+routing in mobile ad hoc networks.’ Special Issue on Self-Organisation in Mobile Networking, 16:443
+455, 2005
+[6] Saleem K,. Fisal N, Hafizah S, Kamilah S, and Rashid RA ,Rashid, ,Ant based Self-organized
+Routing Protocol for Wireless Sensor Networks, International Journal ofCommunication Networks and
+Information Security , 1(2), 2009, 42-46
+
+138
+
+

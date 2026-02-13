@@ -1,0 +1,29 @@
+GET http://localhost:8080/fs
+
+###
+GET http://localhost:8080/fs/50
+
+###
+POST http://localhost:8080/fs/
+Content-Type: application/json
+
+{
+  "titre" : "Anas",
+  "annee" : "1q234",
+  "duree" : "200",
+  "image" : "Fajoui.jpg"
+}
+
+###
+PUT http://localhost:8080/fs/16
+Content-Type: application/json
+
+{
+  "titre" : "SOUHAIL",
+  "annee" : "123",
+  "duree" : "22",
+  "image" : "souhail.jpg"
+}
+
+###
+DELETE http://localhost:8080/fs/18

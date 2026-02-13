@@ -1,0 +1,258 @@
+EMI
+
+FEVRIER 2011
+
+EXAM TCP/IP
+Documents non autorisés
+
+Durée : 1H
+
+Exercice 1 (6pts)
+Répondre par Vrai ou Faux aux questions suivantes :
+1. Les couches OSI "Session/Présentation/Application" correspondent aux deux
+couches supérieures de TCP/IP.
+Faux / correspondent a une couche sup de TCP/IP qui est la couche application
+2. BGP et EGP sont des protocoles de routage externes entre systèmes
+autonomes.
+Vrai /
+3. IP est un protocole fiable, mais non connecté.
+faux
+4. A partir de l’@IP globale d’un réseau et du masque on peut déduire tous les
+sous-réseaux utilisés.
+vrai
+5. UDP est plus rapide que TCP.
+Vraix mais moins fiable
+6. Contrairement à IPv4, Ipv6 fragmente les datagrammes à la source pour alléger
+le cœur du réseau.
+Vrai / ipv 4 fragmentation etait dans le RZ
+7. Si on augmente la taille des fenêtres coulissantes, dans un réseau saturé, on
+va optimiser le trafic.
+Vrai
+8. RIP et OSPF sont des protocoles routables à l’intérieur d’un même système
+autonome.
+Faux appartiennent à des machines diff
+9. Le réassemblage du datagramme IP fragmenté se fait à l’arrivée.
+vrai
+10. Plus on fragmente un datagramme plus on diminue la probabilité de son arrivée
+à destination.
+Vrai
+
+A.HASBI/EMSI/EXAM/FEV08
+
+1
+
+11. Un serveur DHCP et un agent relais DHCP sont configurés avec des adresses
+IP dynamiques.
+faux
+12. Un routeur mémorise et retransmet les datagrammes.
+Vrai
+Exercice 2 (7pts)
+1. Expliquez brièvement le rôle du protocole ARP ?
+Fournir à une machine donnée l’adresse physique d’une autre situé sur le même
+Réseaux à partir de l’adresse IP de la machine destinatrice
+
+2. Ma machine a une carte réseau et 5 adresses IP : combien ai-je de caches ARP
+?
+5 (1 PAR ADRESSE IP).
+3. Donner 2 avantages de l’utilisation des sous-réseaux ?
+- LIMITER LA CONSOMMATION D’ADRESSES IP,
+- DIMINUER LA GESTION ADMINISTRATIVE DES IP, taille de tables de routage, des
+infos de routage,
+- Diminuer le traitement effectuer au niveau des passerelles.
+
+4. Qu’est-ce qu’un masque de sous réseau ?
+
+Un masque de sous-réseau est un masque distinguant les bits d'une
+adresse IPv4 utilisés pour identifier le sous-réseau de ceux utilisés pour
+identifier l'hôte.
+
+5. Quelle est la différence entre routage statique et dynamique et quand utilise-ton l’un ou l’autre ?
+Statique : chemin déterminer a l’avance par l’administrateur de réseau
+Dyna : chemin déterminer par le protocole de routage
+
+6. Combien de phases le processus de connexion TCP comporte-t-il ?
+3 phases : etablissement de la connexion ; échange ; fermeture de la conn
+
+A.HASBI/EMSI/EXAM/FEV08
+
+2
+
+7. Quelle est l'adresse IP d'un client DHCP qui n'a pas encore contacté un serveur
+?
+0.0.0.0 / 127.0.0.1
+
+8. Un seul serveur DHCP peut-il attribuer des adresses IP sur plusieurs sousréseaux ? Sinon, proposez une solution.
+NON . SOL : AGENT RELAIS DHCP
+
+9. Par quels types de paquets les données de RIP, ARP et ICMP sont-elles
+transportées ? Pourquoi ?
+PAQUETS IP CAR CE SONT DES PROTOCOLES DE NIVEAU RESEAU.
+
+10. C’est quoi la technique NAT ?
+
+La fonction NAT dans un routeur de service intégré (ISR) traduit une
+adresse IP source interne en adresse IP globale.
+
+11. Citez 1 avantage et 1 inconvénient de NAT.
+AV : ECONOMIE D’ADRESSES
+IC : RETARDER L’ARRIVEE DE IPv6
+12. C’est quoi la technique DHCP ?
+Distribuer des adresses IP a des clients pour une durée déterminée
+
+13. Citez 1 avantage et 1 inconvénient de DHCP.
+AV : CONFIGURATION SIMPLE ET DYNAMIQUE DU RESEAU
+IC : TRAMES DE BROADCAST DES CLIENTS POUR CONTACTER UN SERVEUR
+
+Exercice 3 (5pts)
+
+A.HASBI/EMSI/EXAM/FEV08
+
+3
+
+1) On a un réseau de classe A qui utilise un masque de valeur 255.255.255.192.
+a. (1pt) Déterminer le nombre de sous-réseaux possibles.
+Masque en binaire : 255.255.255.1100 0000
+➔ 218 – 2 Sous-réseaux
+b. (1pt) Déterminer le nombre d’hôtes par sous-réseau.
+26-2 hôtes par sous-réseaux
+c. (3pts) Déterminer les plages des adresses IP et les adresses de diffusion
+pour les 2 premiers sous-réseaux.
+1) Premier sous réseau : X.0.0.64
+➔ Plage : X.0.0.65 JQA X.0.0.126
+➔ Adresse de diffusion : X.0.0.127
+2) Deuxième sous réseau : X.0.0.192
+➔ Plage : X.0.0.193 JQA X.0.0.254
+➔ Adresse de diffusion : X.0.0.255
+Exercice 4 (2pts)
+Parmi ces adresses IP machines, lesquelles sont valides ?
+Adresse IP machine
+a)OK 110.95.18.75
+b)ko 110.95.18.75
+c)KO 210.95.18.15
+d)KO 180.137.7.10
+
+Masque
+255.128.0.0
+255.255.0.0
+255.255.255.252
+255.255.248.0
+
+Ce sont des adresses broadcast
+Addr ip and masque=addr reseau
+Masque=>nbr de bit pour représenter machine
+Mettre ces bits a 1 dans l’addr reseau=>addr broadcast
+Ou bien utiliser la technique du 255-
+
+A.HASBI/EMSI/EXAM/FEV08
+
+4
+
+Exercice 5 (2pts)
+On considère un réseau à 6 nœuds A, B, C, D, E, F dont les liens directs entre ses
+nœuds sont donnés dans le tableau suivant (0 veut dire qu’il n’y a pas de lien direct) :
+
+à
+De
+A
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+0
+
+7
+
+0
+
+0
+
+0
+
+4
+
+B
+
+7
+
+0
+
+3
+
+0
+
+2
+
+0
+
+C
+
+0
+
+3
+
+0
+
+5
+
+0
+
+0
+
+D
+
+0
+
+0
+
+5
+
+0
+
+7
+
+4
+
+E
+
+0
+
+2
+
+0
+
+7
+
+0
+
+3
+
+@F
+
+4
+
+0
+
+0
+
+4
+
+3
+
+0
+
+Donner la table de routage du nœud A :
+
+A.HASBI/EMSI/EXAM/FEV08
+
+5
+
+

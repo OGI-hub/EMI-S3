@@ -1,0 +1,925 @@
+Introduction à la Programmation Réseau
+Avec L’API
+L API SOCKET
+
+Pr A.
+Pr.
+A HASBI
+TP_SOCKET/A.HASBI/GINF/EMI
+
+1
+
+Les sockets
+• IPC : Fichier,
+Fichier Passage de messages(files d’attente)
+d attente), Pipe
+(tube nommé, tube anonyme), Sémaphore, Mémoire
+partagée, Signaux, Sockets (INET et UNIX).
+• Les sockets : interface client/serveur utilisée à l’origine dans
+le monde UNIX et TCP/IP
+TCP/IP.
+• Etendue aujourd’hui
+aujourd hui du micro (Winsock) au Mainframe
+Mainframe.
+• fournit les primitives pour le support des communications
+reposant sur toute suite de protocoles; les protocoles TCP/IP
+sont à l’origine des développements.
+• Les applications client/serveur ne voient les couches de
+communication qu’à travers l’API socket (abstraction)
+(abstraction).
+TP_SOCKET/A.HASBI/GINF/EMI
+
+2
+
+Les sockets
+Application
+pp
+cliente
+
+Protocole Applicatif
+
+Application
+pp
+: serveur
+
+API Socket
+S k t
+
+UDP
+
+API Socket
+S k t
+
+TCP
+
+UDP
+
+TCP
+
+IP
+
+IP
+
+Physique
+
+Physique
+
+TP_SOCKET/A.HASBI/GINF/EMI
+
+3
+
+Sockets : l’abstraction
+•
+•
+•
+•
+
+comme un descripteur de fichier dans le système UNIX
+UNIX,
+associe un descripteur à une socket;
+le concepteur
+p
+d’application
+pp
+utilise ce descripteur
+p
+p
+pour référencer la
+communication client/serveur sous-jacente.
+une structure de données «socket» est créée à l’ ouverture de socket;
+Family:
+table de
+descripteur
+de fichiers
+
+Service:
+Local IP:
+Remote IP:
+Local Port:
+Remote Port:
+
+Table de descripteurs
+p
+de processus
+Structure Socket
+La primitive socket permet l’ouverture de cette socket; initialement, après l’appel
+à cette fonction
+fonction, la structure de données associée à une socket est principalement
+vide, les appels à d’autres primitives de l’interface socket renseigneront ces champs vides.
+TP_SOCKET/A.HASBI/GINF/EMI
+
+4
+
+Les Sockets : primitives
+•
+•
+
+•
+•
+
+•
+
+•
+
+Elles permettent d’établir un lien de communication en mode connecté ou nonconnecté sur un réseau,
+Structurent une application
+– soit en mode client ,
+– soit en mode serveur,
+Permettent d’échanger des données entre ces applications.
+La primitive socket : socket(AF_INET,SOCK_STREAM,0)
+– point d’ancrage
+d ancrage qui permet à l’application
+l application d’obtenir
+d obtenir un lien de communication
+vers la suite de protocoles qui servira d’échange,
+– définit le mode de communication utilisé (connecté ou non-connecté).
+La primitive bind : bind(s,(struct
+bind(s (struct sockaddr*)&serveur
+sockaddr )&serveur,sizeof(serveur))
+sizeof(serveur))
+permet de spécifier le point de terminaison local (essentiellement le port TCP/UDP
+dans l’environnement TCP/IP).
+l primitive
+la
+i iti connectt : connect(s,(struct
+t( ( t t sockaddr
+k dd *)&serveur,sizeof(serveur))
+*)&
+i
+f(
+))
+– permet à un client d’établir une communication active avec un serveur,
+– le p
+point de terminaison distant ((adresse IP + p
+port TCP/UDP dans
+l’environnement TCP/IP) est spécifié lors de cet appel.
+5
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Les Sockets : primitives
+•
+
+•
+
+•
+
+•
+
+la primitive listen : listen(s,5)
+– permet à un serveur d’entrer dans un mode d’écoute de communication ,
+– dés lors le serveur est « connectable » par un client
+client,
+– le processus est bloqué jusqu’à l’arrivée d’une communication entrante.
+la primitive accept : newsc=accept(s,(struct sockaddr *)&client,&longueur))
+– permet à un serveur de recevoir la communication entrante (client),
+– crée une nouvelle socket et retourne le descripteur associé à l’application.
+– le serveur utilise ce descripteur
+p
+p
+pour g
+gérer la communication entrante
+– le serveur utilise le descripteur de socket précédent pour traiter la prochaine
+communication à venir.
+les primitives read et write:
+– Lorsque la communication est établie, client et serveur échangent des données
+afin d’obtenir (client) et transmettre (serveur) le service désiré.
+– En
+E mode
+d connecté,
+té clients
+li t ett serveurs utilisent
+tili
+t read
+d (recv)
+(
+) ett write
+it (send);
+(
+d) en
+mode non-connecté, ils utilisent les primitives recvfrom et sendto.
+la primitive close :
+termine la connexion et libère le socket associé.
+6
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Les Sockets : Mode connecté
+SERVEUR
+socket
+
+MODE CONNECTE
+
+CLIENT
+
+En mode connecté il y a établissement
+(listen,connect, accept) puis libération (close)
+d’une connexion entre le cleint et le serveur.
+
+bind
+listen
+accept
+read
+write
+close
+
+socket
+connexion
+requête
+réponse
+
+connect
+write
+read
+close
+7
+
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Les Sockets : Mode non connecté
+SERVEUR
+
+MODE NON CONNECTE
+
+socket
+bind
+
+CLIENT
+socket
+
+requête
+
+sendto
+
+recvfrom
+sendto
+dt
+
+réponse
+close
+8
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Socket : Mode non connecté
+En mode non-connecté:
+•
+•
+
+•
+
+•
+
+le client n’établit pas de connexion avec le serveur mais émet un
+d t
+datagramme
+(sendto)
+(
+dt ) vers le
+l serveur.
+Le serveur n’accepte pas de connexion, mais attend un
+datagramme
+g
+d’un client p
+par recvfrom q
+qui transmet le datagramme
+g
+à
+l’application ainsi que l’adresse client.
+Les sockets
+L
+k t en mode
+d non-connecté
+té peuventt utiliser
+tili
+la
+l primitive
+i iti
+connect pour associer une socket à une destination précise. ==>
+send peut être utilisée à la place de sendto.
+De même, si l’adresse de l’émetteur d’un datagramme n’intéresse
+pas un processus la primitive recv peut être utilisée à la place de la
+primitive recvfrom.
+recvfrom
+9
+
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Socket : exemple de serveur itératif
+int sockfd, newsockfd ;
+if ( ( sockfd = socket (.....)) < 0 ) err_sys(«erreur de socket«) ;
+if ( bind ( sockfd, ....) < 0 )
+err_sys («erreur de bind»)
+if ( listen ( sockfd , 5) < 0 ) ;
+err_sys (« erreur de listen» ) ;
+for ( ; ; ) {
+newsockfd = accept ( sockfd, .....) ;
+if ( newsockfd < 0))
+err_sys( «erreur de accept») ;
+execute_la_demande( newsockfd ) ;
+close ( newsockfd ) ;
+}
+10
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Socket : exemple de serveur parallèle
+int sockfd, newsockfd ;
+if ( ( sockfd = socket (.....))
+( )) < 0 )
+err sys(«erreur de socket«) ;
+err_sys(«erreur
+if ( bind ( sockfd, ....) < 0 ) err_sys («erreur de bind»)
+if ( listen ( sockfd , 5) < 0 ) ;
+err_sys (« erreur de listen» ) ;
+for ( ; ; ) {
+p ( sockfd,, .....)) ;
+newsockfd = accept
+if ( newsockfd < 0)
+err_sys( «erreur de accept») ;
+if ( fork() == 0 ) {
+close ( sockfd ) ;
+execute_la_demande( newsockfd ) ;
+exit (1) ;
+}
+close ( newsockfd ) ;
+}
+11
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Sockets : gestion de noms
+•
+
+•
+
+•
+
+•
+•
+•
+
+Lorsque ces fonctions sont exécutées sur des machines ayant accès à un
+serveur de noms de domaines, elles fonctionnent elles-mêmes en mode
+client/serveur en émettant une requête vers le serveur de nom de domaines
+et attendent la réponse.
+Lorsqu’elles sont utilisées sur des machines qui n’ont pas accès à un
+serveur de noms, elles obtiennent les informations à partir d’une base de
+données ( simple fichier) locale.
+gethostbyname spécifie un nom de domaine et retourne un pointeur vers
+une structure hostent qui contient les informations propres à ce nom de
+d
+domaine.
+i
+gethostbyaddr permet d’obtenir les mêmes informations à partir de
+l’adresse spécifiée.
+p
+getnetbyname spécifie un nom de réseau et retourne une structure netent
+renseignant les caractéristiques du réseau.
+getnetbyaddr
+t tb dd spécifie
+é ifi une adresse
+d
+réseau
+é
+ett renseigne
+i
+lla structure
+t t
+netent
+t t
+12
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Sockets : fonctions de service
+•
+
+Les fonctions getprotobyname et getprotobynumber
+– Dans la base de données des protocoles disponibles sur la machine
+machine,
+chaque protocole a un nom officiel, des alias officiels et un numéro de
+protocole officiel.
+– La fonction getprotobyname permet d’obtenir
+d obtenir des informations sur un
+protocole donné en spécifiant son nom; renseigne la structure protoent.
+– La fonction getprotobynumber permet d’obtenir les mêmes informations
+en spécifiant le n
+numéro
+méro de protocole
+protocole.
+
+•
+
+La fonction getservbyname
+– Certains numéros de ports sont réservés pour les services s’exécutant
+au-dessus des protocoles TCP et UDP.
+– ge
+getservbyname
+se by a e retourne
+e ou e les
+es informations
+o a o s relatives
+e a es à u
+un se
+service
+ce do
+donné
+é
+en spécifiant le numéro du port et le protocole utilisé; renseigne la
+structure servent.
+
+13
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Sockets : Byte ordering
+•
+
+•
+
+•
+
+TCP/IP spécifie une représentation normalisée pour les entiers utilisés dans les
+protocoles. Cette représentation, appelée network byte order, représente les entiers
+avec le MSB en premier.
+Une application doit renseigner certaines informations du protocole et par
+conséquent, doit respecter le network informations byte order; Exemple le numéro
+de port
+port.
+Pour que les applications fonctionnent correctement, elles doivent translater la
+représentation des données de la machine locale vers le network byte order :
+– htonl : host to network long : convertit une valeur sur 32 bits de la représentation
+machine vers la représentation réseau.
+– htons : host to network short : convertit une valeur sur 16 bits de la
+représentation
+é
+t ti machine
+hi vers lla représentation
+é
+t ti réseau.
+é
+– ntohl : network to host long : convertit une valeur sur 32 bits de la
+représentation réseau vers la représentation machine.
+– ntohs : network to host short : convertit une valeur sur 16 bits de la
+représentation réseau vers la représentation machine.
+
+14
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Sockets : gestion de noms
+•
+
+•
+
+•
+
+Les primitives gethostname et sethostname
+– Dans le monde UNIX
+UNIX, la primitive gethostname permet aux processus
+utilisateurs d’accéder au nom de la machine locale.
+– D’autre part, la primitive sethostname permet à des processus
+privilégiés de définir le nom de la machine locale
+locale.
+La primitive getpeername
+– Cette primitive est utilisée afin de connaître le point de terminaison du
+distant.
+– Habituellement, un client connaît le point de terminaison (couple
+port/adresse IP) puisqu’il se connecte à ce serveur distant; cependant,
+un serveur qui utilise la primitive accept pour obtenir une connexion, a
+la possibilité d’interroger la socket afin de déterminer l’adresse du
+distant.
+La primitive getsockname
+– Cette primitive rend le nom associé à la socket qui est spécifiée en
+paramètre.
+p
+15
+
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Bibliothèques & Structures
+•
+
+struct sockaddr {
+unsigned short sa_family; /* famille d'adresse, AF_xxx */
+cchar
+a sa_da
+sa data[14];
+a[ ]; /*
+/ 14 octets
+oc e s d'adresse
+d ad esse de p
+protocole
+o oco e *//
+};
+• struct sockaddr_in {
+short
+h t int
+i t sin_family;
+i f il /* Famille
+F ill d'
+d'adresse
+d
+*/
+unsigned short int sin_port; /* Numéro de Port */
+struct in_addr sin_addr; /* Adresse Internet */
+unsigned char sin_zero[8]; /* Même taille que struct sockaddr */
+};
+• //* Internet adresse (une structure pour des raisons historique) *//
+• struct in_addr {
+unsigned long s_addr;
+};
+• #include <netdb.h>
+g
+y
+(
+char *name);
+); struct hostent { char
+• struct hostent *gethostbyname(const
+*h_name; char **h_aliases; int h_addrtype; int h_length; char **h_addr_list;
+16
+};
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Bibliothèques & Structures
+• #include
+#i l d <netdb.h>
+db h
+• struct hostent *gethostbyname(const char
+*name);
+• struct hostent {
+char *h_name;
+char **h
+**h_aliases;
+aliases;
+int h_addrtype;
+int h_length;
+char **h_addr_list;;
+};
+• #include <sys/types
+<sys/types.h><netinet/in.h><sys/socket.h>
+h><netinet/in h><sys/socket h>
+17
+TP_SOCKET/A.HASBI/GINF/EMI
+
+Sockets : les options
+• Une application peut contrôler certains aspects du
+fonctionnement des sockets:
+– configurer les valeurs des temporisations,
+– l’allocation de la mémoire tampon,
+– vérifier si la socket autorise la diffusion ou la gestion des
+données hors bande.
+• La primitive getsockopt
+• Permet à une application d’obtenir les informations relatives
+au socket.
+socket Le système d
+d’exploitation
+exploitation exploite les structures de
+données internes relatives au socket et renseigne l’application
+appelante.
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+18
+
+Sockets : les options
+level
+optname
+p
+PPROTO_IP
+IP_OPTIONS
+PPROTO_TCP TCP_MAXSEG
+TCP_NODELAY
+
+g
+get
+set
+•
+•
+•
+•
+•
+
+OL_SOCKET
+
+SO_DEBUG
+SO_DONTROUTE
+
+•
+•
+
+SO_ERROR
+SO
+ERROR
+SO_LINGER
+
+•
+•
+
+•
+
+SO_OOBINLINE
+
+•
+
+•
+
+SO_RCVBUF
+SO_SNDBUF
+SO_RCVTIMEO
+SO SNDTIMEO
+SO_SNDTIMEO
+SO_REUSEADDR
+
+•
+•
+•
+•
+•
+
+•
+•
+•
+•
+•
+
+SO_TYPE
+
+•
+
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+•
+•
+
+Description
+p
+flagg
+option de l’entête IP
+donne la taille max d’un segmen •
+ne pas retarder l’envoi pour
+ggrouper
+oupe des p
+paquets
+que s
+permet des infos de debugging •
+utilise uniquement les adresses •
+d’interface
+rend le status de l’erreur
+l erreur
+•
+contrôle de l’envoi des données
+après close
+concerne la réception de donnée •
+hors bande
+taille du buffer de réception
+taille du buffer d’envoi
+timeout de réception
+timeout d
+d’emission
+emission
+autorise la réutilisabilité de
+•
+l’adresse locale
+fournit le type de socket
+
+type
+yp de données
+int
+int
+int
+int
+int
+struct
+linger
+int
+int
+int
+int
+int
+int
+int
+
+19
+
+Sockets : serveur multi-protocoles
+•
+
+•
+
+•
+
+Certains serveurs offrent leurs services sur plusieurs protocoles
+simultanément afin de satisfaire les clients qui nécessitent des transports,
+soit en mode connecté, soit en mode non-connecté.
+– Exemple
+E
+l : DAYTIME portt 13 sur UDP ett sur TCP
+TCP.
+Les services réalisés sur l’une ou l’autre interface fonctionnent
+différemment :
+– la version TCP utilise la connexion entrante du client pour déclencher la
+réponse (à une requête donc implicite): le client n’émet aucune
+requête.
+requête
+– la version UDP de DAYTIME requiert
+q
+une requête
+q
+du client. Cette
+requête consiste en un datagramme arbitraire nécessité pour
+déclencher l’émission de la donnée côté serveur. Ce datagramme est
+ensuite rejeté par le serveur.
+serveur
+Dans de nombreux cas, un serveur fournit un service pour un protocole
+donné; par exemple, le service DAYTIME est réalisé par deux serveurs
+diffé t l’l’un servantt lles requêtes
+différents,
+êt TCP
+TCP, l’l’autre
+t lles requêtes
+êt UDP
+UDP.
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+20
+
+Serveurs multi-protocoles
+•
+
+Avantage à utiliser des serveurs différents réside dans le contrôle des
+protocoles et des services qu’offrent un système
+y
+(certains
+(
+systèmes,
+y
+par
+exemple, ferment tout accès à UDP pour des raisons de sécurité).
+
+•
+
+L avantage à utiliser un serveur commun ou multi-protocoles
+L’avantage
+multi protocoles :
+– non duplication des ressources associées au service, (corps du
+serveur),
+– cohérence dans la gestion des versions
+versions.
+
+•
+
+Fonctionnement
+– Un seul processus utilisant des opérations d’entrée/sortie asynchrones
+de manière à g
+gérer les communications à la fois en mode connecté et
+en mode non-connecté.
+– Deux implémentations possibles : en mode itératif et en mode
+concurrent.
+
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+21
+
+Serveurs multi-protocoles
+•
+
+•
+
+En mode itératif
+– le serveur ouvre un socket UDP et un socket TCP,
+– Lorsqu’une requête TCP arrive, le serveur utilise accept provoquant la création
+d’un nouveau socket servant la communication avec le client,
+– Lorsque la communication avec le client est terminée, le serveur ferme le
+troisième socket et réitère son attente sur les deux sockets initiales.
+– Si une requête UDP arrive, le serveur reçoit et émet des messages avec le
+client ((il n’yy a pas
+p d’accept);
+p ); lorsque
+q les échanges
+g sont terminés,, le serveur
+réitère son attente sur les deux sockets initiales
+Le mode concurrent
+– Création d’
+d un nouveau processus pour toute nouvelle connexion TCP et
+traitement de manière itérative des requêtes UDP.
+– Automate gérant les événement asynchrones :optimisation maximale des
+ressources machines,
+machines puisque un seul processus traite toutes les variantes
+protocolaires des serveurs (TCP et UDP) et toutes les instances de services
+seront également traitées par le même processus.
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+22
+
+Sockets : les serveurs multi-services
+•
+
+•
+•
+
+Problème lié à la multiplication des serveurs : le nombre de
+processus nécessaires et les ressources consommées qui sont
+associées.
+ié
+La consolidation de plusieurs services en un seul serveur améliore le
+fonctionnement:
+La forme la plus rationnelle de serveur multi-services consiste à
+déclencher des programmes différents selon la requête entrante : le
+fonctionnement d’un
+d un tel serveur en mode connecté est le suivant:
+– le serveur ouvre un socket par service offert,
+– le serveur attend une connexion entrante sur l’ensemble des
+sockets ouverts,
+– lorsqu’une connexion arrive, le serveur crée un processus
+secondaire (fork sous système UNIX)
+UNIX), qui prend en compte la
+connexion,
+– le processus secondaire exécute (via exec sous système UNIX)
+un programme dédié réalisant le service demandé.
+
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+23
+
+Sockets : serveurs multi-services
+A
+p
+p
+l
+i
+c
+a
+t
+i
+o
+n
+O
+S
+
+fork
+processus
+primaire
+
+processus
+secondaire
+fork
+
+processus
+secondaire
+
+exec
+
+exec
+code
+dédié
+
+sockets : un
+par service
+
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+code
+dédié
+
+sockets : un par connexion
+
+24
+
+Sockets : Serveurs multi-services
+AVANTAGES
+•
+
+le code réalisant les services n’est présent que lorsqu’il est
+nécessaire,
+nécessaire
+
+•
+
+la maintenance se fait sur la base du service et non du serveur :
+l’administrateur peut gérer le serveur (modifie, archiver, ... ) par
+service au lieu de le gérer globalement.
+
+•
+
+Ce schéma est retenu en standard : le « super serveur » (inetd en
+BSD) consistant en un processus multi-services multi-protocoles
+offrant
+ff t une interface
+i t f
+de
+d configuration
+fi
+ti (fi
+(fichier
+hi systèmes)
+tè
+) permettant
+tt t à
+l’administrateur système d’ajouter de nouveaux services alors
+qu’aucun processus supplémentaire n’est nécessaire.
+TP_SOCKET/A.HASBI/
+GINF/EMI
+
+25
+
+

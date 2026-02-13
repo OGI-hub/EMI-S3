@@ -1,0 +1,1757 @@
+QCM : Fondamentaux des Réseaux Locaux (LAN)
+Partie 1 : Définitions et Modèle OSI
+1. Quelle est la portée typique d'un réseau local (LAN) ?
+o
+
+A) Quelques mètres (Bluetooth)
+
+o
+
+B) Quelques kilomètres au sein d'une même organisation
+
+o
+
+C) Une ville entière
+
+o
+
+D) Une distance illimitée via Internet
+
+2. Quelle caractéristique distingue un LAN d'un WAN ?
+o
+
+A) La transmission en bande de base (sans modulation)
+
+o
+
+B) Une gestion autonome (réseau privé)
+
+o
+
+C) Un support partagé entre les stations
+
+o
+
+D) Toutes les réponses ci-dessus
+
+3. Quelle sous-couche de la couche Liaison de données est commune à toutes les
+technologies LAN ?
+o
+
+A) MAC (Medium Access Control)
+
+o
+
+B) LLC (Logical Link Control - IEEE 802.2)
+
+o
+
+C) IP (Internet Protocol)
+
+o
+
+D) Physique
+
+4. Quel est le rôle principal de la sous-couche MAC ?
+o
+
+A) Gérer le contrôle de flux de bout en bout
+
+o
+
+B) Gérer l'accès au support partagé et résoudre les conflits
+
+o
+
+C) Assurer le routage des paquets
+
+o
+
+D) Crypter les données
+
+5. Quelle norme IEEE correspond au Wi-Fi ?
+o
+
+A) 802.3
+
+o
+
+B) 802.5
+
+o
+
+C) 802.11
+
+o
+
+D) 802.16
+
+Partie 2 : Topologies et Supports Physiques
+6. Dans quelle topologie physique la panne d'un point central paralyse-t-elle tout
+le réseau ?
+o
+
+A) Bus
+
+o
+
+B) Anneau
+
+o
+
+C) Étoile
+
+o
+
+D) Maillée
+
+7. Quel est l'avantage principal d'une topologie en bus ?
+o
+
+A) Facilité de maintenance
+
+o
+
+B) Câblage économique et simple
+
+o
+
+C) Performance stable sous forte charge
+
+o
+
+D) Immunité aux pannes de câbles
+
+8. Quelle catégorie de câble est conçue pour supporter le 10 Gbps ?
+o
+
+A) Catégorie 5
+
+o
+
+B) Catégorie 5e
+
+o
+
+C) Catégorie 7
+
+o
+
+D) Catégorie 3
+
+9. Quelle est la distance maximale théorique d'un segment en paire torsadée
+(UTP) ?
+o
+
+A) 10 mètres
+
+o
+
+B) 100 mètres
+
+o
+
+C) 500 mètres
+
+o
+
+D) 2 kilomètres
+
+10. Quelle fibre optique est la plus adaptée aux très longues distances (réseaux
+métropolitains) ?
+o
+
+A) Multimode
+
+o
+
+B) Monomode
+
+o
+
+C) Coaxiale
+
+o
+
+D) STP
+
+11. Quel type de câble utilise-t-on pour connecter un PC directement à un autre PC
+?
+o
+
+A) Câble droit (Straight-through)
+
+o
+
+B) Câble croisé (Crossover)
+
+o
+
+C) Câble console (Rollover)
+
+o
+
+D) Câble fibre optique
+
+12. Dans une topologie en bus, à quoi servent les terminaisons aux extrémités ?
+
+o
+
+A) À amplifier le signal
+
+o
+
+B) À absorber le signal pour éviter les échos (réflexions)
+
+o
+
+C) À connecter de nouvelles stations
+
+o
+
+D) À alimenter le câble en électricité
+
+Partie 3 : Topologie Logique et Accès au Support
+13. Qu'est-ce qu'une "collision" dans un réseau ?
+o
+
+A) Une panne logicielle du serveur
+
+o
+
+B) Deux signaux qui se mélangent et interfèrent sur un support partagé
+
+o
+
+C) Un câble coupé physiquement
+
+o
+
+D) Une erreur de mot de passe
+
+14. Quelle méthode d'accès est dite "déterministe" ?
+o
+
+A) CSMA/CD
+
+o
+
+B) ALOHA
+
+o
+
+C) Passage de jeton (Token Passing)
+
+o
+
+D) CSMA/CA
+
+15. Comment fonctionne le "Roll-Call Polling" ?
+o
+
+A) Les stations se passent un jeton
+
+o
+
+B) Un maître interroge chaque esclave un par un
+
+o
+
+C) Les stations émettent dès qu'elles ont des données
+
+o
+
+D) Les collisions sont gérées par un algorithme de backoff
+
+16. Dans un réseau Token Ring, que fait une station qui reçoit une trame qui ne lui
+est pas destinée ?
+o
+
+A) Elle la détruit
+
+o
+
+B) Elle la régénère et la transmet à son voisin
+
+o
+
+C) Elle la stocke sur son disque dur
+
+o
+
+D) Elle la renvoie à l'émetteur immédiatement
+
+17. Le protocole CSMA/CD signifie :
+o
+
+A) Control System Medium Access / Collision Discovery
+
+o
+
+B) Carrier Sense Multiple Access / Collision Detection
+
+o
+
+C) Computer Sense Main Access / Control Data
+
+o
+
+D) Cable Signal Multi Access / Collision Delay
+
+18. Quel est l'inconvénient majeur de l'accès aléatoire (CSMA/CD) ?
+o
+
+A) Très complexe à installer
+
+o
+
+B) Nécessite un serveur central puissant
+
+o
+
+C) Aucune garantie de temps d'accès (non déterministe)
+
+o
+
+D) Impossible d'utiliser la fibre optique
+
+Partie 4 : Adressage MAC
+19. Quelle est la longueur d'une adresse MAC ?
+o
+
+A) 32 bits
+
+o
+
+B) 48 bits
+
+o
+
+C) 64 bits
+
+o
+
+D) 128 bits
+
+20. Que représentent les 24 premiers bits d'une adresse MAC ?
+o
+
+A) Le numéro de série de la carte
+
+o
+
+B) L'adresse IP du réseau
+
+o
+
+C) L'identifiant du constructeur (OUI)
+
+o
+
+D) Le protocole utilisé
+
+21. Quelle est l'adresse MAC de Broadcast (diffusion à tous) ?
+o
+
+A) 00:00:00:00:00:00
+
+o
+
+B) 01:00:5E:00:00:00
+
+o
+
+C) FF:FF:FF:FF:FF:FF
+
+o
+
+D) 127.0.0.1
+
+22. Si le premier octet d'une adresse MAC est "08", de quel type d'adresse s'agit-il
+?
+o
+
+A) Unicast Universelle
+
+o
+
+B) Multicast
+
+o
+
+C) Broadcast
+
+o
+
+D) Locale
+
+23. À quelle couche du modèle OSI l'adresse MAC appartient-elle ?
+o
+
+A) Couche 1 (Physique)
+
+o
+
+B) Couche 2 (Liaison de données)
+
+o
+
+C) Couche 3 (Réseau)
+
+o
+
+D) Couche 4 (Transport)
+
+Partie 5 : Sous-couche LLC (802.2)
+24. Quel service LLC est le plus utilisé dans les réseaux IP modernes ?
+o
+
+A) Type 1 (Sans connexion, sans acquittement)
+
+o
+
+B) Type 2 (Avec connexion, avec acquittement)
+
+o
+
+C) Type 3 (Sans connexion, avec acquittement)
+
+o
+
+D) Aucun de ces services
+
+25. Quelle primitive LLC est utilisée pour indiquer la réception de données ?
+o
+
+A) L_DATA.request
+
+o
+
+B) L_DATA.indication
+
+o
+
+C) L_CONNECT
+
+o
+
+D) L_RESET
+
+Partie 6 : Ethernet (802.3) et Collisions
+26. Quelle est la taille minimale d'une trame Ethernet (de l'adresse dest. au FCS) ?
+o
+
+A) 46 octets
+
+o
+
+B) 64 octets
+
+o
+
+C) 512 octets
+
+o
+
+D) 1518 octets
+
+27. Pourquoi une taille minimale de trame est-elle nécessaire ?
+o
+
+A) Pour économiser de la bande passante
+
+o
+
+B) Pour garantir que l'émetteur détecte une collision avant d'avoir fini
+d'émettre
+
+o
+
+C) Pour permettre le cryptage
+
+o
+
+D) Pour satisfaire le protocole IP
+
+28. Qu'est-ce que le "Jam Signal" (signal de brouillage) ?
+o
+
+A) Un signal pour demander plus de débit
+
+o
+
+B) Un signal de 32 bits envoyé après une collision pour alerter toutes les
+stations
+
+o
+
+C) Une musique d'attente
+
+o
+
+D) Un signal de fin de transmission
+
+29. Quel algorithme est utilisé pour calculer le temps d'attente après une collision
+?
+
+o
+
+A) Algorithme de Dijkstra
+
+o
+
+B) Backoff Exponentiel Binaire (BEB)
+
+o
+
+C) Spanning Tree
+
+o
+
+D) Round Robin
+
+30. Après combien de tentatives infructueuses une station Ethernet abandonne-telle l'envoi ?
+o
+
+A) 1
+
+o
+
+B) 8
+
+o
+
+C) 16
+
+o
+
+D) Illimité
+
+31. En Fast Ethernet (100 Mbps), si le débit augmente par 10, que devient la portée
+maximale du réseau pour maintenir le CSMA/CD ?
+o
+
+A) Elle est multipliée par 10
+
+o
+
+B) Elle reste la même
+
+o
+
+C) Elle est divisée par 10
+
+o
+
+D) Elle tombe à 1 mètre
+
+32. Le champ FCS dans une trame Ethernet sert à :
+o
+
+A) Identifier la source
+
+o
+
+B) Détecter les erreurs de transmission via un CRC
+
+o
+
+C) Définir la priorité de la trame
+
+o
+
+D) Synchroniser les horloges
+
+Partie 7 : Équipements d'Interconnexion
+33. À quelle couche opère un Hub (Concentrateur) ?
+o
+
+A) Physique (L1)
+
+o
+
+B) Liaison (L2)
+
+o
+
+C) Réseau (L3)
+
+o
+
+D) Application (L7)
+
+34. Quelle est la différence majeure entre un Hub et un Switch ?
+o
+
+A) Le Hub est plus rapide
+
+o
+
+B) Le Switch offre une bande passante dédiée par port et segmente les
+collisions
+
+o
+
+C) Le Hub utilise des adresses IP
+
+o
+
+D) Il n'y a aucune différence
+
+35. Qu'est-ce qu'un "domaine de collision" ?
+o
+
+A) L'ensemble des machines qui reçoivent un broadcast
+
+o
+
+B) Une zone du réseau où les trames peuvent interférer entre elles
+
+o
+
+C) Un logiciel de piratage
+
+o
+
+D) La table MAC d'un switch
+
+36. Quel équipement permet de segmenter les domaines de broadcast ?
+o
+
+A) Hub
+
+o
+
+B) Switch (Commutateur)
+
+o
+
+C) Routeur
+
+o
+
+D) Répéteur
+
+37. Comment un switch apprend-il les adresses MAC ?
+o
+
+A) On doit les saisir manuellement
+
+o
+
+B) En lisant l'adresse source des trames reçues sur chaque port
+
+o
+
+C) Via un serveur DNS
+
+o
+
+D) En interrogeant le routeur
+
+38. La méthode de commutation "Cut-Through" consiste à :
+o
+
+A) Attendre la fin de la trame avant de transmettre
+
+o
+
+B) Commuter dès que l'adresse de destination est lue
+
+o
+
+C) Vérifier les erreurs avant l'envoi
+
+o
+
+D) Couper les câbles inutiles
+
+39. Quel est l'inconvénient du "Store-and-Forward" ?
+o
+
+A) Transmet des trames erronées
+
+o
+
+B) Augmente la latence proportionnellement à la taille de la trame
+
+o
+
+C) Est incompatible avec la fibre
+
+o
+
+D) Ne fonctionne qu'avec des Hubs
+
+Partie 8 : Spanning Tree Protocol (STP)
+40. Quel problème le protocole Spanning Tree résout-il ?
+o
+
+A) Le manque d'adresses IP
+
+o
+
+B) Les boucles de niveau 2 dans les réseaux redondants
+
+o
+
+C) Les pannes de courant
+
+o
+
+D) La lenteur d'Internet
+
+41. Qu'est-ce qu'une "tempête de broadcast" ?
+o
+
+A) Un orage qui perturbe le Wi-Fi
+
+o
+
+B) Une trame diffusée indéfiniment à cause d'une boucle, saturant le réseau
+
+o
+
+C) Une mise à jour Windows
+
+o
+
+D) Trop d'emails envoyés en même temps
+
+42. Comment est élu le "Root Bridge" (Pont Racine) ?
+o
+
+A) C'est le switch le plus cher
+
+o
+
+B) C'est celui qui a le plus faible Bridge ID (Priorité + MAC)
+
+o
+
+C) C'est celui qui est connecté au routeur
+
+o
+
+D) C'est fait au hasard à chaque démarrage
+
+43. Dans quel état un port STP se trouve-t-il pour briser une boucle ?
+o
+
+A) Transmission (Forwarding)
+
+o
+
+B) Écoute (Listening)
+
+o
+
+C) Bloqué (Blocking)
+
+o
+
+D) Apprentissage (Learning)
+
+44. Quel est le nom des messages échangés par les switches pour le STP ?
+o
+
+A) IP Packet
+
+o
+
+B) BPDU (Bridge Protocol Data Unit)
+
+o
+
+C) Hello World
+
+o
+
+D) ARP Request
+
+Partie 9 : Routage et Passerelles
+45. Le routeur base ses décisions d'acheminement sur :
+o
+
+A) L'adresse MAC
+
+o
+
+B) L'adresse logique de couche 3 (ex: IP)
+
+o
+
+C) Le numéro de port physique
+
+o
+
+D) Le nom de l'utilisateur
+
+46. Quel est l'adage concernant le choix entre switching et routing ?
+o
+
+A) "Route when you can, switch when you must"
+
+o
+
+B) "Switch when you can, route when you must"
+
+o
+
+C) "Always route everything"
+
+o
+
+D) "Hub when you can"
+
+47. Une "Passerelle" (Gateway) de niveau 7 sert à :
+o
+
+A) Amplifier le signal Wi-Fi
+
+o
+
+B) Convertir des protocoles d'applications différents (ex: SMTP vers X.400)
+
+o
+
+C) Connecter deux câbles Ethernet
+
+o
+
+D) Bloquer les virus
+
+48. Quel équipement offre la plus grande "intelligence" réseau ?
+o
+
+A) Hub
+
+o
+
+B) Pont
+
+o
+
+C) Routeur
+
+o
+
+D) Répéteur
+
+Partie 10 : Synthèse et Architectures
+49. Dans une architecture Client-Serveur, quel est l'inconvénient majeur du serveur
+?
+o
+
+A) Il est trop lent
+
+o
+
+B) C'est un point de défaillance unique (Single point of failure)
+
+o
+
+C) Il ne peut pas stocker de fichiers
+
+o
+
+D) Il nécessite du Wi-Fi obligatoirement
+
+50. Qu'est-ce que le "précâblage structuré" ?
+o
+
+A) Installer des câbles au fur et à mesure des besoins
+
+o
+
+B) Une installation normalisée visant la souplesse et l'évolution à long terme
+
+o
+
+C) Utiliser uniquement de la fibre optique
+
+o
+
+D) Supprimer tous les switchs
+
+Réponses (Vérification rapide)
+1.B, 2.D, 3.B, 4.B, 5.C, 6.C, 7.B, 8.C, 9.B, 10.B, 11.B, 12.B, 13.B, 14.C, 15.B, 16.B, 17.B,
+18.C, 19.B, 20.C, 21.C, 22.A, 23.B, 24.A, 25.B, 26.B, 27.B, 28.B, 29.B, 30.C, 31.C, 32.B,
+33.A, 34.B, 35.B, 36.C, 37.B, 38.B, 39.B, 40.B, 41.B, 42.B, 43.C, 44.B, 45.B, 46.B, 47.B,
+48.C, 49.B, 50.B.
+
+QCM : Réseaux Sans Fil et Mobilité
+Partie 1 : Principes Fondamentaux et Ondes Radio
+1. Comment appelle-t-on la zone de couverture limitée d'une antenne ?
+o
+
+A) Un canal
+
+o
+
+B) Une cellule
+
+o
+
+C) Un spectre
+
+o
+
+D) Un handover
+
+2. Quel mécanisme permet de changer de cellule sans couper la communication ?
+o
+
+A) Le SSID
+
+o
+
+B) L'atténuation
+
+o
+
+C) Le Handover
+
+o
+
+D) Le SNR
+
+3. Quelle est l'unité de mesure de la fréquence d'un signal ?
+o
+
+A) Le Watt (W)
+
+o
+
+B) Le Hertz (Hz)
+
+o
+
+C) Le Décibel (dB)
+
+o
+
+D) Le Bit par seconde (bps)
+
+4. Quel est l'impact d'une fréquence élevée sur la propagation du signal ?
+o
+
+A) Elle augmente la portée
+
+o
+
+B) Elle traverse mieux les obstacles
+
+o
+
+C) Elle entraîne plus de distorsions et de difficultés à traverser les milieux
+
+o
+
+D) Elle ne change rien par rapport aux basses fréquences
+
+5. Quel compromis est lié à une puissance d'émission élevée ?
+o
+
+A) Plus de portée, mais réduit l'autonomie de la batterie
+
+o
+
+B) Moins de bruit, mais plus d'interférences
+
+o
+
+C) Meilleur débit, mais fréquence plus basse
+
+o
+
+D) Sécurité accrue, mais coût plus élevé
+
+6. Qu'est-ce que le SNR (Signal-to-Noise Ratio) ?
+o
+
+A) Le débit maximal d'un canal
+
+o
+
+B) Le rapport entre la puissance du signal reçu et celle du bruit
+
+o
+
+C) La différence entre la fréquence haute et basse
+
+o
+
+D) Le type d'antenne utilisé
+
+7. Lequel de ces matériaux bloque presque totalement le signal radio ?
+o
+
+A) Le bois
+
+o
+
+B) Le verre
+
+o
+
+C) Le métal
+
+o
+
+D) Le plastique
+
+Partie 2 : Sécurité et Défis Spécifiques
+8. Pourquoi le chiffrement est-il considéré comme obligatoire en sans fil ?
+o
+
+A) Pour augmenter le débit
+
+o
+
+B) Parce que le medium est aérien et interceptable par tout équipement dans
+la zone
+
+o
+
+C) Pour économiser la batterie
+
+o
+
+D) Pour réduire le nombre d'utilisateurs
+
+9. Au Maroc, quel organisme régule l'allocation des fréquences ?
+o
+
+A) L'IEEE
+
+o
+
+B) La WiFi Alliance
+
+o
+
+C) L'ANRT
+
+o
+
+D) Le ministère de la santé
+
+10. Laquelle de ces méthodes n'est pas une solution de sécurité mentionnée ?
+o
+
+A) Le masquage du SSID
+
+o
+
+B) Le filtrage par adresse MAC
+
+o
+
+C) Le chiffrement WPA2
+
+o
+
+D) L'augmentation de la fréquence
+
+Partie 3 : Réseaux de Capteurs (WSN) et Maillés (WMN)
+11. Quelle est l'unité centrale de destination des données dans un WSN ?
+o
+
+A) Le routeur mesh
+
+o
+
+B) La station de base ou "Sink"
+
+o
+
+C) Le tag RFID
+
+o
+
+D) L'antenne MIMO
+
+12. Quel composant d'un nœud capteur transforme un signal physique en donnée
+numérique ?
+o
+
+A) Le processeur
+
+o
+
+B) L'unité de transmission
+
+o
+
+C) Le convertisseur Analogique-Numérique (ADC)
+
+o
+
+D) L'unité d'énergie
+
+13. Quelle activité consomme le plus d'énergie dans un réseau de capteurs ?
+o
+
+A) Le traitement de données
+
+o
+
+B) La mise en veille
+
+o
+
+C) L'unité radio (émission/réception)
+
+o
+
+D) L'unité de captage
+
+14. Qu'est-ce que "l'agrégation de données" dans un WSN ?
+o
+
+A) Séparer les messages pour plus de clarté
+
+o
+
+B) Combiner les données pour économiser l'énergie et la bande passante
+
+o
+
+C) Augmenter la puissance d'émission
+
+o
+
+D) Crypter chaque bit séparément
+
+15. Quelle est la principale différence de débit entre WSN et WMN ?
+o
+
+A) Le WSN est plus rapide
+
+o
+
+B) Le WSN est limité (kbps) alors que le WMN est plus généreux (> 1 Mbps)
+
+o
+
+C) Les deux ont le même débit
+
+o
+
+D) Le WMN ne supporte pas le haut débit
+
+16. Dans un WMN, quel est le rôle des nœuds (routeurs mesh) ?
+o
+
+A) Ils sont uniquement des terminaux
+
+o
+
+B) Ils agissent à la fois comme terminaux et comme relais
+
+o
+
+C) Ils servent uniquement à capter la température
+
+o
+
+D) Ils remplacent les satellites
+
+17. Qu'est-ce que "l'équité verticale" dans un réseau sans fil ?
+o
+
+A) La répartition égale du signal entre voisins
+
+o
+
+B) Le fait que les nœuds proches de la passerelle saturent le débit au
+détriment des éloignés
+
+o
+
+C) La hauteur des antennes
+
+o
+
+D) Le coût du réseau
+
+18. Quel protocole de routage est privilégié pour les réseaux ad-hoc/mesh ?
+o
+
+A) RIP ou OSPF
+
+o
+
+B) HTTP
+
+o
+
+C) AODV, DSR ou OLSR
+
+o
+
+D) FTP
+
+19. Le concept de "Multi-hop" (multi-saut) signifie que :
+o
+
+A) Le signal saute d'une fréquence à l'autre
+
+o
+
+B) Les données transitent par plusieurs nœuds avant d'atteindre la destination
+
+o
+
+C) L'utilisateur doit sauter pour capter le signal
+
+o
+
+D) Le réseau s'arrête toutes les 10 minutes
+
+Partie 4 : WPAN (Bluetooth, RFID, ZigBee)
+20. Quelle est la portée typique d'un WPAN ?
+o
+
+A) Quelques millimètres
+
+o
+
+B) Quelques dizaines de mètres
+
+o
+
+C) Plusieurs kilomètres
+
+o
+
+D) Une ville entière
+
+21. Quelle est la différence entre un tag RFID passif et actif ?
+o
+
+A) Le passif est plus rapide
+
+o
+
+B) L'actif possède sa propre source d'énergie (pile)
+
+o
+
+C) Le passif fonctionne à 100 mètres
+
+o
+
+D) Il n'y a aucune différence
+
+22. Quelle fréquence RFID est idéale pour la logistique avec une portée de 10-20m
+?
+o
+
+A) BF (125 KHz)
+
+o
+
+B) HF (13,56 MHz)
+
+o
+
+C) UHF (860-930 MHz)
+
+o
+
+D) Hyper RF (5,8 GHz)
+
+23. Quelle classe Bluetooth offre une portée de 100 mètres ?
+o
+
+A) Classe I
+
+o
+
+B) Classe II
+
+o
+
+C) Classe III
+
+o
+
+D) Classe IV
+
+24. Quel standard IEEE correspond au Bluetooth ?
+
+o
+
+A) 802.11
+
+o
+
+B) 802.15.1
+
+o
+
+C) 802.15.4
+
+o
+
+D) 802.3
+
+25. À quoi est principalement dédié le ZigBee ?
+o
+
+A) Au transfert de vidéos HD
+
+o
+
+B) Au contrôle et à la domotique (transport de commandes)
+
+o
+
+C) À remplacer la fibre optique
+
+o
+
+D) Uniquement à la téléphonie mobile
+
+26. Combien de périphériques peut supporter la version étendue du ZigBee
+(802.15.4a) ?
+o
+
+A) 10
+
+o
+
+B) 255
+
+o
+
+C) Plus de 65 000
+
+o
+
+D) Illimité
+
+27. Quelle technologie vise à remplacer les câbles USB avec un débit de 480 Mbps
+?
+o
+
+A) Bluetooth v1.x
+
+o
+
+B) ZigBee
+
+o
+
+C) WUSB (basé sur l'UWB)
+
+o
+
+D) RFID HF
+
+Partie 5 : WLAN / WiFi (Architecture et Normes)
+28. Quel est l'élément central reliant le réseau WiFi au réseau filaire ?
+o
+
+A) Le terminal
+
+o
+
+B) Le Point d'Accès (AP)
+
+o
+
+C) Le répartiteur
+
+o
+
+D) L'étiquette active
+
+29. Quel mode WiFi permet une interconnexion directe sans infrastructure fixe ?
+o
+
+A) Mode Infrastructure (BSS)
+
+o
+
+B) Mode Ad-hoc (IBSS)
+
+o
+
+C) Mode Infrastructure Étendu (ESS)
+
+o
+
+D) Mode MIMO
+
+30. Que signifie "ESS" dans un réseau WiFi ?
+o
+
+A) Une seule cellule isolée
+
+o
+
+B) Plusieurs points d'accès reliés par un système de distribution
+
+o
+
+C) Un réseau sans aucune sécurité
+
+o
+
+D) Une marque de routeur
+
+31. Quelle norme WiFi fonctionne à 54 Mbps sur la fréquence 5 GHz ?
+o
+
+A) 802.11b
+
+o
+
+B) 802.11g
+
+o
+
+C) 802.11a
+
+o
+
+D) 802.11n
+
+32. Quelle est la fréquence commune aux normes 802.11b et 802.11g ?
+o
+
+A) 2,4 GHz
+
+o
+
+B) 5 GHz
+
+o
+
+C) 900 MHz
+
+o
+
+D) 10 GHz
+
+33. Quel est le débit théorique maximal de la norme 802.11n selon le tableau ?
+o
+
+A) 11 Mbps
+
+o
+
+B) 54 Mbps
+
+o
+
+C) 540 Mbps
+
+o
+
+D) 1 Gbps
+
+34. La technologie MIMO permet de :
+o
+
+A) Réduire la puissance d'émission
+
+o
+
+B) Utiliser plusieurs antennes pour augmenter le débit
+
+o
+
+C) Changer le SSID automatiquement
+
+o
+
+D) Bloquer les micro-ondes
+
+Partie 6 : Installation, Canaux et Contraintes
+35. En 2,4 GHz, quels sont les trois canaux recommandés pour éviter les
+interférences ?
+o
+
+A) 1, 2 et 3
+
+o
+
+B) 1, 6 et 11
+
+o
+
+C) 10, 11 et 12
+
+o
+
+D) Tous les canaux sont identiques
+
+36. Pourquoi les canaux en 5 GHz (802.11a) sont-ils avantageux ?
+o
+
+A) Ils ont une plus grande portée
+
+o
+
+B) Ils ne présentent pas de risque d'interférence entre eux (espacés)
+
+o
+
+C) Ils consomment moins de batterie
+
+o
+
+D) Ils fonctionnent à travers le métal
+
+37. Lequel de ces appareils peut causer des interférences avec le WiFi 2,4 GHz ?
+o
+
+A) Un four micro-ondes
+
+o
+
+B) Un appareil Bluetooth
+
+o
+
+C) Un autre réseau WiFi
+
+o
+
+D) Toutes les réponses ci-dessus
+
+38. Quel logiciel est cité pour réaliser un audit de site et détecter les réseaux ?
+o
+
+A) Photoshop
+
+o
+
+B) Netstumbler
+
+o
+
+C) Excel
+
+o
+
+D) Word
+
+39. Que se passe-t-il pour le débit WiFi à mesure que l'on s'éloigne de l'AP ?
+o
+
+A) Il reste constant
+
+o
+
+B) Il augmente pour compenser la distance
+
+o
+
+C) Il diminue automatiquement (ex: de 11 Mbps à 1 Mbps)
+
+o
+
+D) Le signal se coupe instantanément à 10 mètres
+
+40. Pour une mobilité continue dans un bâtiment, comment doivent être les
+cellules ?
+o
+
+A) Disjointes
+
+o
+
+B) Partiellement recouvertes
+
+o
+
+C) Éloignées de 1 km
+
+o
+
+D) Inexistantes
+
+Partie 7 : Synthèse et Questions de Réflexion
+41. Un "Cross-Layer Design" est une approche où :
+o
+
+A) On supprime les couches OSI
+
+o
+
+B) Les couches interagissent entre elles (ex: routage informé par la couche
+physique)
+
+o
+
+C) On n'utilise que la couche 1
+
+o
+
+D) On change de câble
+
+42. La RFID est-elle plus lente ou plus rapide que le code-barres ?
+o
+
+A) Plus lente car sans fil
+
+o
+
+B) Environ 40 fois plus rapide et sans besoin de visibilité directe
+
+o
+
+C) Identique en termes de vitesse
+
+o
+
+D) Le code-barres est 40 fois plus rapide
+
+43. Quelle est l'autonomie typique d'un appareil ZigBee sur piles ?
+o
+
+A) 2 heures
+
+o
+
+B) 2 jours
+
+o
+
+C) Jusqu'à 2 ans
+
+o
+
+D) 20 ans
+
+44. Le WPA est-il plus ou moins robuste que le WEP ?
+o
+
+A) Moins robuste
+
+o
+
+B) Plus robuste
+
+o
+
+C) Identique
+
+o
+
+D) Le WPA n'existe pas
+
+45. Comment s'appelle l'unité de traitement dans un nœud capteur ?
+o
+
+A) Le Sink
+
+o
+
+B) Le Processeur
+
+o
+
+C) L'antenne
+
+o
+
+D) La batterie
+
+46. La bande passante d'un canal WiFi est :
+o
+
+A) Réservée à un seul utilisateur
+
+o
+
+B) Divisée par le nombre d'utilisateurs connectés simultanément
+
+o
+
+C) Illimitée
+
+o
+
+D) Fixée à 1 Hz
+
+47. Une antenne WiFi en intérieur a une portée de :
+o
+
+A) Quelques millimètres
+
+o
+
+B) Quelques dizaines de mètres
+
+o
+
+C) 10 kilomètres
+
+o
+
+D) 1000 kilomètres
+
+48. Quel est le principal défi de conception pour les réseaux de capteurs (WSN) ?
+o
+
+A) La couleur des nœuds
+
+o
+
+B) La consommation d'énergie
+
+o
+
+C) La taille des câbles
+
+o
+
+D) Le nombre de boutons
+
+49. Le mode "Infrastructure" utilise-t-il une communication directe entre PC ?
+o
+
+A) Oui, toujours
+
+o
+
+B) Non, tout passe par le Point d'Accès (AP)
+
+o
+
+C) Uniquement le week-end
+
+o
+
+D) Seulement si l'AP tombe en panne
+
+50. Qu'exprime le décibel-milliwatt (dBm) ?
+o
+
+A) La vitesse du son
+
+o
+
+B) La puissance du signal
+
+o
+
+C) La température de l'antenne
+
+o
+
+D) La fréquence
+
+Réponses (Vérification rapide)
+1.B, 2.C, 3.B, 4.C, 5.A, 6.B, 7.C, 8.B, 9.C, 10.D, 11.B, 12.C, 13.C, 14.B, 15.B, 16.B, 17.B,
+18.C, 19.B, 20.B, 21.B, 22.C, 23.A, 24.B, 25.B, 26.C, 27.C, 28.B, 29.B, 30.B, 31.C, 32.A,
+33.C, 34.B, 35.B, 36.B, 37.D, 38.B, 39.C, 40.B, 41.B, 42.B, 43.C, 44.B, 45.B, 46.B, 47.B,
+48.B, 49.B, 50.B.
+
+

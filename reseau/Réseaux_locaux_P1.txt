@@ -1,0 +1,1174 @@
+:
+Réseaux Locaux & Interconnexion
+A. HASBI
+GINF/EMI
+
+PLAN
+• Définition & caractéristiques
+• Couche physique & câblage
+• Couche 2: méthodes d’accès & adressage
+• Ethernet, Fast Ethernet, Gigabit Ethernet …
+• Token Ring
+• Interconnexion de LAN / Spanning Tree
+• Introduction aux RSF (Wifi, Wimax, …)
+• Introduction aux VLANs
+
+Chapitre I
+Définitions & caractéristiques
+
+Définition d’un LAN
+ Les réseaux locaux informatiques(LAN ou RLE) sont
+destinés principalement aux communications locales, au
+sein d’une même entité (entreprise, administration,
+école, etc.) sur de courtes distances(qq Km).
+
+ Les LAN offrent des débits élevés en général :
+10Mbps, 100Mbps et des Gigabits aujourd’hui.
+
+Appellations selon la taille
+Ethernet
+Token Ring
+
+Bluetooth,
+IR,
+ZigBee
+
+Réseau
+Personnel
+PAN
+
+WiMax,WiBro
+WRAN,
+
+Internet
+
+Réseau
+local
+
+Réseau
+Réseau
+étendu
+métropolitain
+Réseau
+
+LAN
+
+régional
+MAN RAN
+
+1 m 1 0 m 1 00 m
+
+1 km
+
+10 km
+
+WAN
+
+1 00 km
+
+PAN (Personal Area Network)
+
+MAN (Metropolitain Area Network)
+
+LAN (Local Area Network)
+
+RAN (Regional Area Network)
+
+WAN (Wide Area Network)
+
+5
+
+Applications des LAN(1)
+ On distingue 2 grands domaines d’utilisation
+d’application des LAN:
+ L’informatique (email, SOR, transfert de fichiers, partage
+de données, partage de périph.,terminaux virtuels, services
+d’infos (ex. web) …)
+ L’industrie
+
+ LAN informatique
+Dans un environnement informatique, un LAN sert à
+relier les équipements tels les terminaux, les PC, les
+imprimantes, les unités de stockage, …
+ Exigence en débit élevé
+ Des contraintes de temps souples
+
+Applications des LAN(2)
+ LAN industriels (RLI)
+Les LAN sont aussi l’élément clé dans des environnements
+industriels automatisés ou FAO(Fabrication assistée par
+ordinateur). Dans ce cas, ils sont utilisés surtout pour
+interconnecter divers équipements de contrôle et de
+mesure(capteurs, robots,…).
+ Exigence en temps réel: pour pouvoir transmettre les mesures et
+commandes à temps
+ Les débits sont plus réduits: information de petite taille
+ La fiabilité: un facteur important car il est difficile d’assurer la
+fiabilité dans un milieu très perturbé
+
+Objectifs des LAN
+Les réseaux locaux répondent donc à +rs besoins
+majeurs:
+ Les besoins liés à l’informatique : partage de ressources et
+accès à distance aux serveurs de données, partage de
+logiciels, etc…
+ Les besoins liés à l’automatique : la commande de
+machines(échange avec des capteurs et actionneurs),
+télésurveillance de machines, chaînes de production,…
+ Les besoins liés à la communication et productivité :
+messagerie interne, travail collaboratif, …
+
+Caractéristiques des LAN(1)
+Les LAN se distinguent des WAN par 3 caractéristiques:
+ Gestion autonome: ils sont privés
+ choix du matériel, installation et administration
+ plusieurs solutions sur le marché
+
+ Réseau à diffusion et support partagé
+ diffusion des informations sur le même support
+ conflit d’accès: si plusieurs stations émettent en même temps?
+
+ Transmission en bande de base
+ Le mode de transmission est en général en bande de base
+ Le codage utilisé est Manchester ou codes par blocs.
+
+Caractéristiques des LAN(2)
+Les conséquences des particularités techniques
+des LAN sont:
+ Les problèmes des accès concurrents
+ trouver une technique de partage du média(si possible
+équitable)
+ pris en charge par le protocole de niveau liaison
+
+ Les problèmes de confidentialité et de sécurité
+ interception des mots de passe des usagers,
+ pris en charge par les systèmes d’exploitation (cryptage)
+
+Caractéristiques des LAN(3)
+Les différentes solutions de LAN se distinguent
+par 3 choix techniques:
+1. Le type de topologie physique
+2. Le type de support physique
+3. La technique d’accès au support(topologie logique)
+1+2+3 = un LAN particulier
+Exemple: Ethernet, Token Ring, Token bus,…
+
+Caractéristiques des LAN(4)
+Ces 3 choix techniques vont définir d’autres
+propriétés techniques:
+1. La capacité binaire(débit): 1; 10; 100; 1000 Mbps
+2. La fiabilité: taux d’erreurs, temps réel, équité,…
+3. La configuration: insertion, retrait de stations,
+connectivité, distances maximales,…
+Exemple:
+Ethernet: 10BaseT; 100BaseT, 10Base2, 100BaseF,
+1000BaseT/F
+Token Ring: 1Mbps, 4 Mbps, 16 Mbps, FDDI à 100Mbps
+
+Normalisation des LAN
+Deux organismes s’intéressent aux normes des LAN:
+ IEEE
+
+
+
+
+création du comité 802 en 1980 pour la normalisation des LAN
+Normes: IEEE 802.x (x: 1 à 22)
+Quand ces normes sont approuvées par ISO: ISO 8802.x
+
+ ANSI
+
+
+définition ponctuelle de LAN. Par exemple: FDDI
+
+Architecture IEEE802(1)
+ IEEE ne s’intéresse qu’aux spécifications
+techniques des couches basses:
+ physique
+ Liaison de données
+
+ La couche liaison est subdivisée en 2 souscouches
+ MAC(Medium Access Control): assurer le partage
+équitable du support entre toutes les stations
+ LLC(Logical Link Control): gestion de la liaison entre
+2 stations et assurer l’interface avec la couche réseau.
+
+Architecture IEEE802(2)
+
+Architecture IEEE802(3)
+
+Architectures LAN(1)
+ Égal à égal ou poste à poste(peer to
+peer): les stations jouent le même rôle.
+Une station peut être client et serveur à
+la fois. Chaque utilisateur contrôle ses
+ressources (groupe de travail)
+Exp: windows 98, win95, Win for WS
+ Client serveur: les services sont sur un
+ordinateur dédié
+Gestion centralisée des ressources
+Exp: Windows NT/2000/XP
+
+Architectures LAN(2)
+Avantages d’un réseau d’égal à
+égal
+Implémentation moins coûteuse
+Ne demande pas d’autres
+logiciels spécialisés dans la
+gestion de réseau
+Ne demande pas
+d’administrateur réseau dédié
+
+Avantages d’un réseau client serveur
+Meilleure sécurité
+Plus facile à administrer lorsque
+le réseau est important car
+L’administration est centralisée
+Possibilité de sauvegarde de
+toutes les données dans un
+emplacement central
+Inconvénients d’un réseau
+Inconvénients d’un réseau
+d’égal à égal
+client -serveur
+Ne s’adapte pas bien aux réseaux Nécessite un logiciel coûteux,
+importants et complexité de
+spécialisé pour l’exploitation et
+l’administration
+l’administration du réseau
+Chaque utilisateur doit être
+Le serveur nécessite du matériel
+formé aux tâches
+plus puissant, donc coûteux
+d’administration
+Moins sécurisée
+Nécessite un professionnel en
+administration
+Toutes les machines partageant
+Présente un point de défaillance
+les ressources donc diminution
+unique. Indisponibilité des
+des performances
+données en cas d’arrêt du serveur
+
+Architecture LANs
+
+Niveau Trames
+
+Couche supérieures
+
+Niveau Physique
+
+LLC IEEE 802.2
+IEEE 802.3
+
+IEEE 802.4
+
+IEEE 802.5
+
+LLC
+
+IEEE 802.11 IEEE 802.16
+
+Ethernet Bus Ethernet jeton Jeton anneau WIFI
+
+Niveau physique
+
+WiMax
+
+IEEE 802.17
+RPR
+
+MAC
+
+MAU
+
+LLC=Logical Link Control
+MAC=Media Access Control
+MAU= Medium Access Unit
+
+Ethernet partagés normalisés
+IEEE 802.3 10 Base 5 (Câble coaxial blindé jaune)
+IEEE 802.3 10 Base 2 ( Cheaprnet, câble coaxial non blindé, thin Ethernet)
+IEEE 802.3 10 Base 36 (Ethernet large bande, câble coaxial )
+IEEE 802.3 1 Base 5 (Starlan 1 Mbits/s Câble coaxial blindé jaune)
+IEEE 802.3 10 Base T (10 Mbits/s , Twisted-Pair (paires de fils torsadées))
+IEEE 802.3 10Base F, Fiber Optic (Fibre Optique )
+ IEEE 802.3 10 Base FL, Fibre Link
+ IEEE 802.3 10 Base FB, Fibre Backbone
+ IEEE 802.3 10 Base FP, Fibre Passive
+IEEE 802.3 10 0 base T, Twised Pair ou encore FastEthern (100 Mbits/s, CSMA/CD)
+ 10 Base TX;, Fibre Link
+ 10 Base T4
+ 10 Base FX,
+---- 1000 Base CX, 1000 Base LX, 1000 Base T, 1000 Base SX
+
+20
+
+Chapitre II
+MEDIAS et topologies
+
+Architecture physique: Plan
+• Topologies physiques
+• Supports
+– Fils de cuivre
+• Câbles symétriques
+• Câbles asymétriques
+
+– Fibre optique
+• Monomode et multimode
+
+• Câblage, définitions, principes
+• Câblage « haut-débit »
+
+Les Topologies LAN(1)
+Il faut distinguer :
+• Topologie physique qui présente
+– Des facilités intrinsèques (gaines, passage de
+câble),
+– Des contraintes (distances maximales imposées par
+les Support de Trx, type bâtiment)
+
+• Topologie logique
+– Ce que le logiciel (protocole) laisse voir du réseau
+physique sous-jacent.
+– Possibilité de construire une architecture logique
+en anneau sur une topologie physique différente
+
+Les Topologies LAN(2)
+Trois topologies de base ont été normalisées:
+ Bus: stations reliées directement au câble:
+o Circuit ouvert: il faut des terminaisons ou bouchons
+o Sur les cartes mettre des connecteurs en T
+o Les stations émettent sur le bus, qui diffuse l’information
+o Câbles: le coaxial
+
+ Etoile: stations reliés par un concentrateurs(hub)
+o Chaque station est relié diretement au hub par un câble de lisiaon;
+o Hub possède plusieurs ports( 8, 16, 24, 32,…)
+o Les informations sont diffusées par le hub
+o Câbles: paire torsadée ou fibre optique
+
+ Anneau : Les stations sont reliées entre elles selon un sens
+unique de transmission
+o Entre chaque paire de stations un câble de liaison
+o Un seul sens de transmission
+o Câbles: paire torsadée ou fibre optique
+
+Les Topologies LAN(3)
+
+Les Topologies LAN(4)
+Topologie
+Avantages
+Inconvénients
+Bus
+Economise la longueur du Ralentissement du réseau
+câble
+lorsque le trafic est important
+Support peu coûteux
+Problèmes difficiles à isoler
+Simple et fiable
+La coupure du câble peut
+Facile à étendre
+affecter
+de
+nombreuses
+stations
+Etoile
+Administration centralisée
+Si le point central tombe en
+La panne d’une station panne, le réseau est mis hors
+n’affecte pas le réseau
+service
+La maintenance du réseau La reconfiguration du réseau
+est facile et ne dérange pas interrompt le fonctionnement
+le fonctionnement du réseau de celui-ci
+Anneau
+Accès égal pour toutes les La panne d’un seul ordinateur
+stations
+peut affecter le reste du
+Performances
+régulières réseau
+même si les utilisateurs sont Problème difficile à isoler
+nombreux
+
+Supports( média)
+• Il existe deux types de supports filaires:
+– Les supports à base de conducteur optiques : fibre
+optique
+– Les supports à base de conducteur électrique:
+câble en cu
+• Câble symétrique
+– Conducteurs de même nature
+– Paire torsadée
+
+• Câble asymétrique
+– Conducteurs de nature différentes
+– Câble coaxial et twinaxial.
+
+Câble asymétrique (1)
+• Câble coaxial
+– un conducteur central (âme) entouré d'une gaine isolante
+en PVC
+– un conducteur externe concentrique (tresse).
+– 2 types:
+• à 75Ω: le CATV, avec dist max= 3600m
+• À 50 Ω: le fin et l’épais
+• Exemples : Ethernet 10Base 2 et 10Base5
+
+• Câble twinaxial
+– deux conducteurs centraux entourés d'une gaine isolante
+en PVC
+– un conducteur externe concentrique (tresse).
+• Exemples : Raccordement périphériques IBM AS400, Localtalk
+...
+
+Câble asymétrique (2)
+
+Câble symétrique
+• La paire torsadée
+– Est constituée de deux conducteurs torsadés ensemble
+
+– Câble caractérisé par l'impédance en ohms (Ω)
+• Valeur caractéristique d'un milieu traversé par une
+onde electromagnetique (100 Ω, 120 Ω, 150 Ω)
+
+Câble symétrique :Types et protections
+• Écrantage
+– L'écrantage consiste à entourer l'ensemble des paires ou
+chacune des paires d'un même câble d'un film de polyester
+recouvert en aluminium.
+• Blindage
+– Le blindage consiste à entourer l'ensemble des paires,d'une
+tresse métallique pour renforcer l'effet de l'écran.
+
+Câble symétrique : Exemples
+
+écran
+
+Paire
+torsadée
+
+UTP
+
+FTP
+
+blindage
+
+S-FTP
+
+Câbles UTP : Catégories
+• Catégorie 1
+
+
+
+
+
+
+•
+
+Fil téléphonique UTP traditionnel pouvant transmettre la voix mais pas des
+données. Avant 1983, la plupart des fils téléphoniques appartenaient à la
+catégorie 1 (qq 100Khz).
+Catégorie 2
+Câble UTP. avec 1Mhz. . 4 paires torsadées.
+Catégorie 3
+Câble UTP. avec 16 Mhz. 4 paires torsadées
+Catégorie 4
+Câble UTP avec 20 Mhz. Mbps. 4 paires torsadées
+Catégorie 5/ 5E
+Câble UTP avec 100/125Mhz. . 4 paires torsadées
+Catégorie 6
+Câble UTP avec 250 Mhz. 4 paires torsadées.
+Catégorie 7
+Câble UTP avec 600 Mhz. 4 paires torsadées.
+
+Câbles UTP : Catégories
+ISO/IEC & Cenelec
+Catégorie 3
+Classe C
+Catégorie 5 et 5e
+Classe D 1995
+(D2000)
+Catégorie 6
+Classe E
+Catégorie 7
+Classe F
+150 Ohm
+STP
+
+Fréquence
+
+Description
+
+Jusqu'à 16 MHz
+
+100 Ohm
+UTP
+
+Jusqu'à 100 MHz
+
+100 Ohm
+UTP et FTP
+
+Jusqu'à 200 MHz
+Jusqu'à 600 MHz
+STP Type 1A
+Jusqu'à 300 MHZ
+
+100 Ohm
+UTP et FTP
+100 Ohm
+S-FTP
+150 Ohm
+STP
+
+Application Typique
+10BaseT, IBM 3270,
+3X, AS/400, ISDN,
+Téléphone Analogue
+10BaseT, 100BaseT
+155 Mbps ATM
+1000BaseT
+1000BaseTX acc.
+EIA 854
+10Gb
+Classe F
+16 Mpbs Token-Ring
+
+Câble UTP
+
+Types de câbles de liaison
+Câble droit: connecte les cartes
+de PC aux équipements réseau
+(ETTD vers ETCD)
+Câble croisé : connecte les
+équipements communs: switchswitch, pc-pc, hub-switch;
+routeur-routeur (ETTD- ETTD ou
+ETCD- ETCD)
+Câble console(complètement
+inversé): connecte les
+équipements switch, routeur au
+port console du PC
+
+Fibre optique : Constitution
+• Cœur : Milieu diélectrique intérieur (conducteur de
+lumière).
+• Gaine : Silice d'indice légèrement moins élevé que le cœur
+• Revêtement : Cœur + Gaine entouré d'un revêtement de
+plastique, pour fournir une protection mécanique. (évite
+principalement la cassure en cas de courbure).
+ La densité d'information qu'elle peut supporter est plus
+grande que le câble de cuivre.
+
+Schéma d'une fibre optique
+
+Fibre
+(Cœur + Gaine)
+
+tube
+
+renfort
+
+rayon
+Pour guider la lumière, la fibre incident
+optique comprend ainsi deux
+milieux : le cœur, dans lequel
+l'énergie lumineuse se trouve
+confinée, grâce à un second milieu,
+la gaine, dont l'indice de réfraction
+est plus faible.
+
+gaine extérieure
+
+rayon réfléchi
+i
+
+r
+
+rayon réfracté
+
+Types de fibre optique
+• Silice
+– La fibre optique à base de silice est actuellement la fibre la plus
+utilisée dans les réseaux locaux.
+– Deux types : Monomode - Multimode
+– Travaux importants sur le dopage et l'amplification optique
+
+• Plastique
+– Coût faible, pour courte distance essentiellement (jarretière).
+– Concurrent du cuivre sur distances courtes (≈ 100m)
+
+• Verre
+– Pas d'utilisation en réseau, atténuation très importante.
+
+Principe du câblage
+• Pré ou Post Câblage = Recherche d'économie financière
+(mélange téléphonie et informatique) et de facilité
+d'exploitation
+– Optimisation des coûts d'installation et d'exploitation
+• Á terme, le pré-câblage est + économique
+
+– Souplesse d'exploitation et sécurité
+• Pas d'intervention sur la partie fixe du câblage
+
+– Conformité aux normes internationales,
+• Offres supérieures aux normes dues à la forte évolution de la demande
+
+– Câbler pour l'avenir (10 à 15 ans).
+
+Principe du câblage
+• Respect des règles de conception et d'installation,
+• Répondre à l'ensemble des besoins des utilisateurs
+– Diversités des flux (numérique, analogique)
+– Diversités des protocoles (fréquences variables)
+– Évolutivité (clé de la durée de vie du câblage)
+– Performances (surdimensionnement des besoins en débit)
+– Mobilité (surdimensionnement des besoins en prise)
+
+Répartiteur : Exemples
+
+Ferme de brassage
+Informatique ou téléphonique
+
+Panneau de brassage
+Bandeau de RJ 45
+
+Paires utilisées Prise RJ45
+Protocoles
+Téléphone Analogique
+Téléphone numérique
+Liaison Spécialisée 2 fils
+Liaison Spécialisée 4 fils
+Numéris S0
+Numéris S2
+10 Base T
+100 Base TX
+100 Base T4
+Token Ring
+100 Base VG Anylan
+ATM 25
+ATM 155
+TP-PMD
+Vidéo Bande de base
+1000 Base TX (802.3z) (25m)
+1000 Base TX (802.3ab) (100 m)
+
+1
+
+2
+
+3
+
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+
+X
+
+X
+
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+X
+
+X
+X
+X
+
+4
+
+5
+
+X
+
+X
+
+X
+X
+X
+
+X
+X
+X
+X
+
+X
+X
+X
+
+X
+X
+X
+X
+
+6
+
+7
+X
+
+8
+X
+
+X
+X
+
+X
+X
+
+X
+X
+X
+
+X
+
+X
+X
+
+X
+X
+
+X
+
+X
+
+X
+X
+X
+X
+X
+X
+X
+
+X
+
+X
+X
+
+X
+
+X
+X
+
+Chapitre III
+Topologie logique
+
+La couche MAC
+• Le but du protocole de gestion d’accès au
+canal(MAC) est de régler les conflits qui
+peuvent se produire si on laisse les stations
+émettre sans aucune règle
+• 2 familles de techniques d’accès ont été
+proposées:
+– Allocation statique
+– Allocation dynamique:
+• avec accès aléatoire
+• avec accès déterministe
+
+Allocation statique
+La BP est partagée de manière statique entre les
+stations:
+TDMA(Time Division Multiple Access)
+Fréquence
+Capacité du canal
+1
+
+2
+
+3
+
+4
+
+1
+
+2
+
+3
+
+4
+
+1
+
+Temps
+
+FDMA(Frequency Division Multiple Access)
+Fréquence
+
+4
+3
+2
+1
+
+Temps
+
+Allocation dynamique
+•L’allocation de toute ou une partie de la BP à une
+station n’est effectuée qu’à la demande de celle-ci.
+ Une meilleure utilisation de la BP
+ Technique réellement utilisée dans les LAN
+•Suivant la façon dont la sollicitation d’accès est gérée,
+on distingue 2 approches:
+• Aléatoire: le délai d’accès n’est pas borné
+•Déterministe: une seule station qui émet à la fois, le
+délai d’accès peut être borné.
+
+Allocation dynamique aléatoire
+•L’intégralité de la BP est disponible pour toutes les stations
+
+• Libre accès à la transmission sur le support
+• Conflit d’accès: collisions
+• Il existe plusieurs méthodes:
+ Aloha
+CSMA/CD(Carrier Sense Multiple Access with Collision
+Detection)
+CSMA/CA(CSMA with Collision Avoidance)
+Utilisée dans 802.11 (WiFi) et localtalk (Apple)
+
+CSMA/CR(CSMA with Collision Resolution)
+Utilisée dans RNIS
+
+ALOHA [Abramson 70]
+• Utilisée dans le réseau Hertzien à Hawaï (entre les îles)
+•Principe:
+Emetteur
+-Station émet dès qu’elle a une information à envoyer
+- Déclenchement d’1 timer et attente d’1 ACK
+-Si aucune réponse:
+- Si nbre de tentatives de retransmission dépassé
+Alors arrêter la transmission
+-Sinon retransmission de l’information
+
+Récepteur
+- Traitement de l’information
+- Si trame correcte, envoi d’un ACK
+
+ALOHA par tranches
+•Inconvénient d’ALOHA: taux de collisions très élevé,
+trop de retransmission. Les stations peuvent émettre à tout
+moment.
+
+•Amélioration de la méthode ALOHA
+• Découpage de l’échelle de temps en tranches de temps
+
+• Emission autorisée uniquement au début de tranche.
+
+ALOHA : envoie des trames
+
+ALOHA : période de
+vulnérabilité
+
+CSMA(1)
+•Principe:
+• Le temps d’émission d’une trame > temps de propagation
+• Alors toute émission de trame peut être détectée par toutes les stations
+quasi instantanément.
+
+• D’où écoute préalable du canal
+Emetteur
+Ecoute du canal avant l’envoi
+Si canal libre
+Alors transmission de la trame
+Sinon reporter la transmission
+Récepteur
+- Traitement de l’information reçue
+- Si trame correcte, envoi d’un ACK
+
+CSMA(2)
+•Variantes lors du report de la transmission
+• CSMA non- persistant
+
+•Attente pdt un délai aléatoire avant de retransmettre
+•CSMA persistant
+• Prolongation de l’écoute du canal jusqu’à ce qu’il soit
+libre
+• Implémenté dans les LAN
+• Avec détection d’une collision par la station émettrice
+
+• Avec prévention de collision, gestion des priorités
+•CSMA p-persistant
+•Probabilité p (envoi) et (1-p) (attente)
+
+CSMA/CD
+•
+
+Principe:
+•
+
+Après émission, la station continue d’écouter le canal
+
+• Temps d’émission de la trame >= 2* temps de propagation(aller-retour)
+• Utilisée dans Ethernet et normalisée: IEEE 802.3
+Emetteur
+- Ecoute du canal avant l’envoi
+- Si canal libre
+
+Alors transmission de la trame et écoute simultanée du canal
+Si collision détectée Alors
+- arrêt immédiat de la transmission et alerte des autres stations
+- retransmission après un temps calculé
+
+- Sinon reporter la transmission
+Récepteur
+- Traitement de l’information reçue
+
+CSMA/CA
+• Même principe que CSMA/CD
+• A la fin d’une transmission, une station doit attendre un délai
+avant de transmettre à nouveau
+• Ce délai dépend de la position de la station dans une liste de file
+d’attente logique(priorité)
+
+• Non normalisée, utilisée dans AppleTalk, LAN sans fils
+
+Allocation dynamique
+déterministe
+• L’intégralité de la BP est disponible pour toutes les stations
+• Permission d’accès à la transmission sur le support
+• Une seule station transmet à la fois; complexité de gestion de la
+permission d’accès.
+• 2 méthodes:
+•
+
+Accès par polling (scrutation)
+•
+
+centralisée (Roll-call polling )
+
+• Répartie (Hub polling )
+
+• Accès par jeton.
+
+Roll-call polling
+• station primaire
+– interroge successivement chacune des stations
+secondaires
+– envoie d'une trame de poll.
+
+• station interrogée
+– répond par une trame
+• acquittement négatif si rien à envoyer
+• données dans le cas contraire
+
+Hub polling
+• Station primaire : démarre un cycle
+– trame de poll à la station secondaire la plus
+éloignée
+– Si données à envoyer au primaire
+• envoie des données à la station primaire
+• envoie une trame de poll à la station secondaire
+suivante
+
+– Dans le cas contraire
+• envoie la trame de poll à la station secondaire
+suivante
+• dernière station envoie une trame de poll au primaire
+– démarre un nouveau cycle.
+
+Allocation avec jeton
+• Permission d’accès au moyen d’une trame spéciale : le jeton
+• Seule la station qui détient le jeton peut émettre
+
+• Le jeton doit être passé à la station suivante selon 2 façons:
+•
+
+jeton non adressé sur anneau
+• Un seul sens de transmission, topologie anneau
+• Une station émet le jeton ou la trame à la station suivante
+• Gestion de l’anneau: centralisée ou distribuée
+
+• Jeton adressé sur bus
+• Pas de sens de transmission
+
+• Diffusion de l’information sur le support
+• Anneau logique
+
+Jeton non adressé sur anneau
+• Principe:
+– Le jeton circule librement sur l’anneau
+– Emetteur
+• Acquérir le jeton
+• Transmission de la trame
+
+• Attente du retour de la trame pour la retirer de l’anneau
+• Libérer le jeton
+
+– Récepteur
+• Vérifie si l’information lui est destinée
+• Si oui la copier et positionner les bits A et C
+• Retransmettre l’information sur l’anneau
+
+– Token Ring (802.5), FDDI(Fiber Distributed Data Interface 802.8)
+
+Jeton adressé sur bus
+• Principe:
+– Le jeton passe d’une station à l’autre selon un ordre bien défini(liste
+ordonnée des stations)
+– Emetteur
+• Gestion des @ des stations (prédécesseur, successeur)
+• Attente de la possession du jeton du prédecesseur
+• Transmission de la trame sur le bus
+• Envoyer le jeton au successeur
+
+– Récepteur
+• Vérifie si l’information lui est destinée
+• Si oui la copier
+
+– Token bus (IEEE 802.4)
+
+Adressage MAC(1)
+Comment reconnaître une station particulière sur le
+support?
+– Chaque station doit avoir une @, qui lui est propre
+– Cette @ doit être incluse dans la trame (champs: DA et
+SA de la trame)
+– Les stations examinent les @ dans les trames et copient
+la trame portant leur adresse
+– Les trames sont physiquement diffusées, ce qui permet
+d’avoir des destinations multiples
+
+Adressage MAC(2)
+• Le comité IEEE 802.1 a défini un format d’adressage
+commun à tous les protocoles LAN
+• Les adresses sont plates (pas de hiérarchie)
+I/G U/L
+24 bits
+
+OUI
+
+Numéro de série
+
+24 bits
+
+• 1(I/G)+1(U/L)+22(constructeur)+24(coupleur)
+• Le bit I/G indique:
+– 0: @ d’une station unique (unicast)
+– 1: @ de groupe (multicast ou broadcast)
+• multicast (01-00-5E-00-00-00  01-00-5E-7F-FF-FF )
+
+– Si tous les bits sont à 1, @ de diffusion à toutes les stations
+(broadcast)
+
+Adressage MAC(2)
+ Adresse Broadcast:
+
+FF:FF:FF:FF:FF:FF
+ Adresse Multicast: le premier bit d' adresse transmis
+est égal à 1 (le premier octet de l'adresse est impair) :
+• 09:00:2B:00:00:0F, 09:00:2B:01:00:00
+ Adresse individuelle : comprend le premier bit
+
+transmis à 0 (premier octet d'adresse pair) :
+• 08:00:20:09:E3:D8 ou 00:01:23:09:E3:D5
+ syntaxe : @ sur 48 bits ou 6 octets:
+
+• 08:00:20:09:E3:D8 (notation IEEE ou canonique)
+• ou 08-00-20-09-E3-D8 ou 08002009E3D8
+
+Adressage MAC(3)
+• Le bit U/L indique:
+– 1: @ administrée localement (@ relative)
+Gérée localement par l’administrateur réseau pour optimiser le plan
+d’adressage
+
+– 0: @ administrée globalement (@ absolue unique)
+
+• OUI(Organizationaly Unique Identifier): numéro
+affecté par l’IEEE aux constructeurs de cartes
+réseau
+• Numéro de série: identificateur complété par le
+constructeur pour distinguer ses cartes
+• EXP: 00 00 0C: cisco; 08 00 09: HP
+
+Adressage MAC(3)
+une adresse de station individuelle est
+administrée soit localement soit globalement :
+ localement : adresse significative pour le réseau sur
+lequel elle est connectée; le second bit d'adresse
+transmis est égal à 1 : le premier octet de l'adresse est
+égal à 02, 03, 06, 07, 0A, 0B, 0E, 0F ,12, etc.
+ globalement : cette adresse est dite universelle et est
+attribuée par l'organisme IEEE; le second bit d'adresse
+transmis est égal à 0 : le premier octet de l'addresse
+est égal à : 00, 01, 04, 05, 08, 09, 0C, 0D, 10, etc.
+
+Adresses MAC des constructeurs
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+
+00000C : CISCO
+00000F : NEXT
+00007D : CRAY RESEARCH SUPERSERVERS
+0000AC : APOLLO
+0000F4 : ALLIED TELESIS, Inc
+008024 : KALPANA
+00802D : XYLOGICS, Inc
+0080C7 : XIRCOM, Inc
+00AA00 : INTEL
+080007 : APPLE
+080020 : SUN
+08005A : IBM
+080079 : SILICON GRAPHICS
+1000D4 : DEC
+00001B : NOVELL
+
+La LLC IEEE 802.2(1)
+• Le but de la LLC est de fournir une garantie de livraison
+des trames, la détection et la reprise sur erreurs.
+• La Sous couche LLC est commune aux protocoles MAC
+(norme 802.2) et conforme à la couche 2 de l’OSI.
+< alors que la sous couche MAC est spécifique à un type de
+LAN>
+• Dérivée de HDLC
+• Propose 3 niveaux de service:
+– LLC1: service sans connexion et sans acquittement
+– LLC2: service avec connexion et avec acquittement
+– LLC3: service sans connexion et avec acquittement
+
+La LLC IEEE 802.2(2)
+• Offre l’interface d’accès à la couche liaison
+– Primitives sans connexion:
+• L. DATA.request()
+• L.DATA. Indication()
+
+– Primitives avec connexion:
+• L.connect.request/indication/response/confirm()
+• L. data.request/indication()
+• L.disconnect.request/indication()
+• L.reset.request/indication/response/confirm()
+• L. flow_control.request/indication()
+
+

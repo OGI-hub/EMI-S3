@@ -1,0 +1,271 @@
+DEVOIR LIBRE 1
+1ère partie :
+
+1. Un LAN est caractérisé par :
+□ Gestion autonome
+□ Un medium de transmission à base de fibre optique
+□ Une diffusion et un support partagé
+□ Des liaisons point-à-point
+2. Les différentes solutions de LAN se distinguent par 3 choix techniques :
+□ Le type de topologie physique
+□ Le type de support physique
+□ La technique de routage des paquets
+□ La technique d’accès au support (topologie logique)
+3. Ethernet 100BaseF est un :
+□ Fast-Ethernet à base de paire torsadée et des Tranceiver.
+□ Ethernet (DIX) à base de coaxial épais.
+□ Ethernet à 100 Mbit/s à base de fibre optique.
+4. IEEE ne s’intéresse pas aux spécifications techniques de la couche :
+□ Physique
+□ Liaison de données
+□ Réseau
+5. Les comités IEEE sont constitués de la façon suivante :
+□ 803.3 pour Ethernet
+□ 802.4 pour Token bus
+□ 802.5 pour Token Ring
+□ 802.11 pour WLAN (WiFi)
+6. Un répéteur :
+□ Régénère le signal
+□ Augmente le nombre de machines connectables au réseau
+□ Analyse le contenu de la trame
+□ Filtre les collisions
+7. L’équipement suivant ne sépare pas les domaines de collision :
+□ Hub
+□ Switch
+□ Routeur
+8. L’équipement suivant ne sépare pas les domaines de Braodcast :
+□ Hub
+□ Switch
+□ Routeur
+9. Le rôle de l’algorithme du Spanning Tree est :
+□ De trouver un chemin entre 2 stations du LAN
+□ De régler le problème de collision
+□ D’éliminer automatiquement les boucles dans un réseau Ethernet
+10. Un commutateur de niveau 2 permet :
+□ Augmenter la bande passante
+□ Interconnecter des stations sur un même LAN
+□ Router les paquets IP
+11. La(es) quelle(s) des techniques de commutation suivantes peuvent être utilisée dans le cadre d’une
+commutation symétrique ?
+□ La technique Cut-through
+□ La technique fragment free
+□ La technique store & Forward
+
+□ La technique Fast forward
+
+12. Les quels des problèmes suivants sont associés à des topologies Ethernet commutées redondantes
+□ Des tempêtes de broadcast
+
+□ Des boucles
+□ Des copies multiples de trames
+□ L’adressage incorrect des trames
+13. Quelle est la première étape du Protocole Spanning-tree (STP)?
+□ Choisir un commutateur désigné
+□ Déterminer le coût du chemin de chaque port actif sur le commutateur
+□ Choisir un pont racine
+□ Utiliser un routeur pour localiser la passerelle par défaut
+14. Sur le pont racine, tous les ports sont des …
+□ Ports non désignés
+□ Ports racines
+□ Ports bloqués
+15. Comment STP choisit le pont racine ?
+□ Celui qui a la plus faible priorité
+□ Celui qui a le plus petit bridge ID
+□ Celui qui a le plus grand bridge ID
+□ Celui qui a la plus grande adresse MAC.
+16. Les quels des problèmes suivants sont associés à des topologies Ethernet commutées redondantes
+□ Des tempêtes de broadcast
+□ Des boucles
+□ Des copies multiples de trames
+□ L’adressage incorrect des trames
+17. Quelle est la première étape du Protocole Spanning-tree (STP)?
+□ Choisir un commutateur désigné
+□ Déterminer le coût du chemin de chaque port actif sur le commutateur
+□ Choisir un pont racine
+□ Utiliser un routeur pour localiser la passerelle par défaut
+18. Sur le pont racine, tous les ports sont des …
+□ Ports racines
+□ Ports bloqués
+□ Ports désignés
+□ Ports non désignés
+19. Comment STP choisit le pont racine ?
+□ Celui qui a la plus faible priorité
+□ Celui qui a le plus petit bridge ID
+□ Celui qui a le plus grand bridge ID
+□ Celui qui a la plus grande adresse MAC.
+
+20.
+
+Faites correspondre chacun des éléments de la colonne A avec l'élément approprié de la colonne
+
+B.
+
+Colonne A
+
+Colonne B
+
+1. 10Base T
+
+A. est connu sous le nom de Fast Ethernet
+B. Utilise la topologie en bus en étoile avec un câble
+
+2. Token Ring
+
+UTP
+C. Utilise le passage de jeton dans la topologie bus
+
+3. 10Base5
+
+D. Utilise une méthode d’accès déterministe
+E. Utilise la topologie en bus local avec un câble
+
+4. 10Base2
+
+Ethernet fin
+
+5. 100BaseX
+
+F. Utilise la topologie en bus avec un câble Ethernet
+
+6. Token Bus
+
+épais
+
+2ère partie :
+
+1) Placez les protocoles suivants dans la pile de protocoles TCP/IP (ARP, http, DNS, FTP, TFTP, TCP, IP,
+UDP, DHCP).
+2) Définissez le concept de domaine de collision ?
+3) Définissez le concept de domaine de broadcast ?
+4) Que signifie l’acronyme MAC ? Citez un autre terme utilisé pour décrire ce concept.
+5) Lorsqu’une carte réseau Fast-Ethernet reçoit une trame, peut elle en même temps en envoyer une autre ?
+6) Citez les deux principales différences qui existent entre une carte réseau 10Mbit/s et une carte réseaux
+10/100 Mbit/s.
+7) Quelle est la limitation de distance d’un seul câble 10BaseT ? 100BaseTX ?
+8) Quel protocole de routage un pont transparent utilise-t-il pour découvrir les groupes d’adresses de
+couche 3 ?
+9) Citez des méthodes de commutation interne implémentées par les commutateurs actuels. Laquelle offre
+le temps de latence le plus court pour une trame ?
+10) Décrivez comment un pont transparent décide ou non de transmettre une trame et comment il choisit
+l’interface de sortie ?
+
+3ère partie :
+1)
+2)
+3)
+4)
+5)
+6)
+
+Quelle est la couche OSI qui, pour l’encapsulation, utilise à la fois un entête et un en-queue ?
+Décrivez les caractéristiques d’un protocole sans connexion.
+Décrivez les caractéristiques d’un protocole orienté connexion.
+Combien y a-t-il de bits dans une adresse MAC ?
+Décrivez l’organisation des adresses MAC.
+Imaginez un immeuble dans lequel 100 équipements sont reliés au même segment Ethernet. Ces
+équipements sont déplacés vers 2 segments Ethernet séparés par un pont transparent, avec 50 hôtes par
+segment. Citez 2 des avantages que présente cette segmentation.
+7) Quel organisme de normalisation est chargé de garantir l’unicité des adresses MAC à l’échelle
+mondiale ?
+8) Lorsqu’ils reçoivent une trame les ponts et les commutateurs examinent-ils l’adresse MAC source,
+l’adresse Mac de destination, ou bien les deux.
+9) Quelles sont les tailles minimale et maximale d’une trame Ethernet ?
+10) Combien y a-t-il de bits dans une adresse IP ?
+11) Quelle est la vitesse supportée par Fast-Ethernet ?
+12) Quelle est la limitation de distance d’un seul câble 10BaseT ? 100BaseTX ?
+13) Comparez les 3 méthodes de commutation interne implémentées par les commutateurs actuels.
+
+14) sur un réseau Ethernet, comment peut-on envoyer une trame à destination de toutes les
+machines du réseau ? Est-ce que cela charge plus le réseau que d’envoyer une trame à
+destination d’une seule machine ? (justifiez la réponse).
+15) Expliquer l’intérêt du protocole STP par un schéma commenté.
+16) Soit le réseau suivant :
+
+4 FA0
+0
+PC1
+
+Swich 1
+
+FA1 4
+
+R1(routeur)
+
+3
+
+1
+
+2
+
+PC2
+
+PC3
+
+0
+
+1
+
+0
+Hub 1
+
+1
+PC4
+
+Swich 2
+
+2
+
+PC11
+
+PC12
+
+3
+
+0
+
+2
+PC13
+
+Hub 2
+
+1
+PC5
+
+PC14
+
+2
+PC15
+
+a) Combien y a-t-il de domaine de collision sur ce réseau ?
+b) Combien y a-t-il de domaine de broadcast sur ce réseau ?
+c) En supposant que tous les équipements utilisent des cartes de 10/100, combien de ports
+pourraient opérer en mode duplex sur chaque commutateur ?
+d) En supposant que tous les équipements utilisent des cartes de 10/100, combien de ports
+pourraient opérer à une vitesse de 100 Mbits/s sur chaque commutateur ?
+e) Deux trames circulent sur ce réseau. PC5 envoie une requête ARP IP encapsulée dans une
+trame Ethernet à sa passerelle par défaut, c'est-à-dire à l’adresse IP de l’interface FA0 du
+routeur R1. La trame Ethernet contenant la réponse ARP constitue la deuxième trame.
+Dessinez le chemin de chacune des 2 trames sur le schéma.
+
+4ère partie :
+Exercice 1 Distinction IEEE 802.3 et Ethernet
+Comment peut-on distinguer un réseau Ethernet d’un réseau IEEE 802.3 ?
+Exercice 2 Adressage MAC, type d’adresse
+a) Quel est le format de l’adresse MAC et la signification de chacun des 4 champs ?
+b) Quels sont les types d’adresse MAC auxquels une station doit répondre ?
+c) A quel type d’adresse correspond l’adresse MAC 01-00-5E-AB-CD-EF, cette adresse peut-elle être
+présente dans le champ adresse source ?
+Déduisez-en un type d’application possible.
+Exercice 3 Notation canonique et non canonique
+Ecrivez l’adresse MAC de broadcast généralisé en notation canonique et non canonique.
+Exercice 4 comparaison des topologies et méthodes d’accès
+Etablissez un tableau comparatif (avantages, inconvénients) des différentes topologies et des différentes
+méthodes d’accès utilisés dans les réseaux locaux.
+Exercice 5 Synchronisation des réseaux
+Une séquence de synchronisation bit de 7 octets en 802.3 précède le délimiteur de début de trame, ce n’est
+pas le cas en 802.5. Justifiez ce choix.
+Exercice 6 Switch ou HUB ?
+Compléter le tableau de la figure ci-dessous en indiquant quel équipement est le mieux adapté en fonction
+des performances et des applications.
+
+

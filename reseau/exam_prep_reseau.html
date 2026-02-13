@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Exam Réseaux - Préparation Intensive</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --accent: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .nav {
+            background: linear-gradient(135deg, var(--primary), #0f172a);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .nav button {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav button:hover,
+        .nav button.active {
+            background: var(--accent);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent), #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h3 {
+            color: #60a5fa;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .reflex {
+            border-left-color: var(--success);
+        }
+
+        .trap {
+            background: linear-gradient(135deg, #3f1e1e, #1e293b);
+            border-left-color: var(--danger);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            padding: 0.5rem;
+            border: 1px solid #334155;
+            text-align: left;
+        }
+
+        th {
+            background: var(--primary);
+        }
+
+        .highlight {
+            color: var(--warning);
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin: 0.4rem 0;
+        }
+
+        .code-block {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border: 1px solid #334155;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+        }
+
+        /* Quiz One-Per-Page Style */
+        .quiz-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-progress {
+            background: #334155;
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            height: 100%;
+            transition: width 0.4s;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-header span {
+            background: var(--card);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .quiz-question {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-question h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            background: #0f172a;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent);
+            background: #1e3a5f;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: #064e3b;
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger);
+            background: #7f1d1d;
+        }
+
+        .quiz-option .letter {
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .quiz-explanation {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+            border-left: 4px solid var(--success);
+            display: none;
+        }
+
+        .quiz-explanation.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .quiz-explanation h4 {
+            color: var(--success);
+            margin-bottom: 0.75rem;
+        }
+
+        .quiz-explanation .trap-info {
+            color: var(--danger);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #334155;
+        }
+
+        .quiz-concept {
+            background: linear-gradient(135deg, #1e3a5f, #1e293b);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+            border-left: 4px solid var(--warning);
+            display: none;
+        }
+
+        .quiz-concept.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        .quiz-concept h4 {
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, var(--primary), var(--card));
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .score-card h2 {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+
+        .score-card p {
+            color: var(--muted);
+        }
+
+        /* Code exercises */
+        input.code-input {
+            background: #0f172a;
+            border: 2px solid var(--accent);
+            color: var(--text);
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            font-family: monospace;
+            width: 140px;
+        }
+
+        input.code-input.correct {
+            border-color: var(--success);
+            background: #064e3b;
+        }
+
+        input.code-input.incorrect {
+            border-color: var(--danger);
+            background: #7f1d1d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--muted);
+            border-top: 1px solid #334155;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <button class="active" onclick="showSection('synthese')">📖 Synthèse</button>
+        <button onclick="showSection('qcm-new')">🎯 QCM Complémentaire</button>
+        <button onclick="showSection('quiz-saidi')">📋 Quiz Saidi</button>
+        <button onclick="showSection('code')">💻 Sockets C</button>
+    </nav>
+
+    <div class="container">
+        <!-- SYNTHÈSE -->
+        <div id="synthese" class="section active">
+            <h1>📚 Synthèse Orientée Examen</h1>
+
+            <h2>🔑 Définitions Clés</h2>
+            <div class="card">
+                <h3>LAN vs WAN</h3>
+                <ul>
+                    <li><strong>LAN</strong>: Réseau Local - Gestion autonome, diffusion, support partagé</li>
+                    <li><strong>WAN</strong>: Liaisons point-à-point, longues distances</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>TCP vs UDP</h3>
+                <table>
+                    <tr>
+                        <th>TCP (SOCK_STREAM)</th>
+                        <th>UDP (SOCK_DGRAM)</th>
+                    </tr>
+                    <tr>
+                        <td>Connecté, fiable, ordonné</td>
+                        <td>Non connecté, rapide</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP, FTP, Telnet</td>
+                        <td>DNS, DHCP, TFTP</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3>Adresse MAC</h3>
+                <ul>
+                    <li>Taille: <span class="highlight">48 bits = 6 octets</span></li>
+                    <li>24 premiers bits = OUI (constructeur)</li>
+                    <li>Broadcast = <span class="highlight">FF:FF:FF:FF:FF:FF</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Classes IP</h3>
+                <table>
+                    <tr>
+                        <th>Classe</th>
+                        <th>1er octet</th>
+                        <th>Hôtes/réseau</th>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>1-126</td>
+                        <td>16 millions</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>128-191</td>
+                        <td>65 534</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>192-223</td>
+                        <td>254</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h2>⚡ Réflexes Essentiels</h2>
+            <div class="card reflex">
+                <ul>
+                    <li><strong>Hub</strong> → L1, ne sépare RIEN</li>
+                    <li><strong>Switch</strong> → L2, sépare collisions, PAS broadcast</li>
+                    <li><strong>Routeur</strong> → L3, sépare TOUT</li>
+                    <li><strong>accept()</strong> → Retourne NOUVEAU socket</li>
+                    <li><strong>htons()</strong> → Port en Network Byte Order</li>
+                    <li><strong>inet_addr()</strong> → Déjà en Network Order!</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Pièges Classiques</h2>
+            <div class="card trap">
+                <ul>
+                    <li><strong>IP non fiable!</strong> TCP assure la fiabilité</li>
+                    <li><strong>Switch ≠ sépare broadcast</strong> (seul routeur le fait)</li>
+                    <li><strong>Trame min Ethernet = 64 octets</strong></li>
+                    <li><strong>sin_family en Host Order</strong> (pas transmis)</li>
+                    <li><strong>Nb hôtes = 2ⁿ - 2</strong> (réseau + broadcast)</li>
+                </ul>
+            </div>
+
+            <h2>📊 Séquences Sockets</h2>
+            <div class="card">
+                <p><strong>Serveur TCP:</strong></p>
+                <div class="code-block">socket() → bind() → listen() → accept() → recv/send → close()</div>
+                <p><strong>Client TCP:</strong></p>
+                <div class="code-block">socket() → connect() → send/recv → close()</div>
+                <p><strong>UDP:</strong></p>
+                <div class="code-block">socket() → [bind()] → sendto/recvfrom → close()</div>
+            </div>
+        </div>
+
+        <!-- QCM COMPLÉMENTAIRE -->
+        <div id="qcm-new" class="section">
+            <h1>🎯 QCM Complémentaire</h1>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-new"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-new">Question 1/30</span></div>
+                <div id="quiz-content-new" class="quiz-question"></div>
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-new" onclick="prevQuestion('new')">← Précédent</button>
+                    <button class="btn" id="check-new" onclick="checkAnswer('new')">Vérifier</button>
+                    <button class="btn btn-success" id="next-new" onclick="nextQuestion('new')">Suivant →</button>
+                </div>
+            </div>
+            <div id="score-new" class="score-card" style="display:none;">
+                <p>🎉 Quiz terminé!</p>
+                <h2 id="final-score-new">0/30</h2>
+                <button class="btn" onclick="resetQuiz('new')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- QUIZ SAIDI -->
+        <div id="quiz-saidi" class="section">
+            <h1>📋 Quiz Saidi (LAN)</h1>
+            <p style="text-align:center;color:var(--muted);margin-bottom:1rem;">50 questions - Parties WMN/WiFi exclues
+                de l'examen</p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-saidi"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-saidi">Question 1/50</span></div>
+                <div id="quiz-content-saidi" class="quiz-question"></div>
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-saidi" onclick="prevQuestion('saidi')">← Précédent</button>
+                    <button class="btn" id="check-saidi" onclick="checkAnswer('saidi')">Vérifier</button>
+                    <button class="btn btn-success" id="next-saidi" onclick="nextQuestion('saidi')">Suivant →</button>
+                </div>
+            </div>
+            <div id="score-saidi" class="score-card" style="display:none;">
+                <p>🎉 Quiz terminé!</p>
+                <h2 id="final-score-saidi">0/50</h2>
+                <button class="btn" onclick="resetQuiz('saidi')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- CODE SOCKETS -->
+        <div id="code" class="section">
+            <h1>💻 Maîtrise Sockets C</h1>
+
+            <div class="card">
+                <h3>Structures essentielles</h3>
+                <div class="code-block">struct sockaddr_in {
+                    sin_family; // AF_INET
+                    sin_port; // htons(PORT)
+                    sin_addr; // INADDR_ANY ou inet_addr("IP")
+                    sin_zero[8]; // Padding
+                    };</div>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 1: Serveur TCP (port 8080)</h3>
+                <div class="code-block">server_fd = <input type="text" class="code-input" id="c1-1"
+                        placeholder="socket(...)">
+                    server_addr.sin_family = <input type="text" class="code-input" id="c1-2" placeholder="???">
+                    server_addr.sin_port = <input type="text" class="code-input" id="c1-3" placeholder="???">
+                    server_addr.sin_addr.s_addr = <input type="text" class="code-input" id="c1-4" placeholder="???">
+                    bind(server_fd, ...);
+                    <input type="text" class="code-input" id="c1-5" placeholder="???">(server_fd, 5);
+                    client_fd = <input type="text" class="code-input" id="c1-6" placeholder="???">(server_fd, ...);
+                </div>
+                <button class="btn" onclick="checkCode(1)">Vérifier</button>
+                <div id="code-result-1" class="quiz-explanation"></div>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 2: Client TCP (127.0.0.1:5000)</h3>
+                <div class="code-block">sock = socket(<input type="text" class="code-input" id="c2-1"
+                        placeholder="???">, SOCK_STREAM, 0);
+                    server_addr.sin_port = <input type="text" class="code-input" id="c2-2" placeholder="???">;
+                    server_addr.sin_addr.s_addr = <input type="text" class="code-input" id="c2-3" placeholder="???">;
+                    <input type="text" class="code-input" id="c2-4" placeholder="???">(sock, &server_addr, ...);
+                    n = <input type="text" class="code-input" id="c2-5" placeholder="???">(sock, buffer, ...);
+                </div>
+                <button class="btn" onclick="checkCode(2)">Vérifier</button>
+                <div id="code-result-2" class="quiz-explanation"></div>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 3: UDP</h3>
+                <div class="code-block">sock = socket(AF_INET, <input type="text" class="code-input" id="c3-1"
+                        placeholder="???">, 0);
+                    <input type="text" class="code-input" id="c3-2" placeholder="???">(sock, msg, len, 0, &dest,
+                    sizeof(dest));
+                </div>
+                <button class="btn" onclick="checkCode(3)">Vérifier</button>
+                <div id="code-result-3" class="quiz-explanation"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="https://instagram.com/itssamifz" target="_blank">🦸 @itssamifz</a> | 🤲 الله يسهّل عليا وعليكم</p>
+    </footer>
+
+    <script>
+        // Navigation
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // QCM Data
+        const qcmNew = [
+            { q: "Le protocole IP est:", o: ["Fiable et connecté", "Non fiable et non connecté", "Fiable et non connecté", "Non fiable et connecté"], c: 1, exp: "IP est 'best effort' - pas de garantie. TCP assure la fiabilité.", trap: "C est le piège! 'Non connecté' vrai mais 'fiable' FAUX.", concept: "IP = couche 3, routage uniquement. La fiabilité est gérée par TCP (couche 4)." },
+            { q: "Le protocole ARP permet de:", o: ["MAC → IP", "IP → MAC", "Router les paquets", "Attribuer des IP"], c: 1, exp: "ARP = Address Resolution Protocol. Connaissant l'IP, obtenir la MAC.", trap: "A est l'inverse (RARP).", concept: "ARP fonctionne en broadcast: 'Qui a 192.168.1.5?' → réponse avec la MAC." },
+            { q: "Client DHCP sans IP utilise:", o: ["127.0.0.1", "255.255.255.255", "0.0.0.0", "Son ancienne IP"], c: 2, exp: "0.0.0.0 = 'pas d'adresse' comme source.", trap: "127.0.0.1 est localhost!", concept: "DHCP: DISCOVER(0.0.0.0→255.255.255.255)→OFFER→REQUEST→ACK" },
+            { q: "Fragmentation IPv4 se fait:", o: ["À la source uniquement", "Dans le réseau, réassemblage à destination", "À destination", "Jamais"], c: 1, exp: "Routeurs IPv4 fragmentent si MTU petit. Réassemblage à destination.", trap: "A est vrai pour IPv6!", concept: "IPv6: fragmentation source only. IPv4: n'importe où, réassemblage destination." },
+            { q: "RIP et OSPF sont des protocoles:", o: ["IGP (routage interne)", "EGP (routage externe)", "Transport", "Application"], c: 0, exp: "IGP = Interior Gateway Protocol, utilisés DANS un système autonome.", trap: "BGP est un EGP.", concept: "IGP: RIP, OSPF, EIGRP. EGP: BGP pour inter-AS." },
+            { q: "NAT permet de:", o: ["Crypter", "Traduire IP privée → publique", "Distribuer IP", "Détecter erreurs"], c: 1, exp: "NAT = Network Address Translation. Économise les IPv4.", trap: "C = DHCP, A = IPSec.", concept: "Types NAT: statique, dynamique, PAT (plusieurs privées → 1 publique avec ports)." },
+            { q: "1 carte réseau + 5 IP = combien de caches ARP?", o: ["1", "5", "0", "Impossible"], c: 1, exp: "1 cache ARP par adresse IP configurée.", trap: "On pourrait penser 1 par carte!", concept: "Chaque IP peut résoudre des MAC différentes sur son réseau." },
+            { q: "Quelle fonction crée un NOUVEAU socket pour le client?", o: ["bind()", "listen()", "accept()", "connect()"], c: 2, exp: "accept() retourne NOUVEAU socket dédié à CE client.", trap: "listen() prépare mais ne crée pas.", concept: "Le socket original continue d'écouter, le nouveau gère ce client." },
+            { q: "sin_port doit être en:", o: ["Host Byte Order", "Network Byte Order", "Big Endian", "Little Endian"], c: 1, exp: "sin_port transmis sur réseau → Network Byte Order (htons()).", trap: "sin_family est en Host Order!", concept: "Tout ce qui traverse le réseau: Network Order. Local: Host Order." },
+            { q: "Séquence serveur UDP:", o: ["socket→bind→listen→accept", "socket→bind→recvfrom", "socket→connect→recv", "socket→sendto"], c: 1, exp: "UDP: pas de listen/accept! Directement recvfrom/sendto.", trap: "A = TCP serveur.", concept: "UDP connectionless: pas d'établissement de connexion." },
+            { q: "inet_addr() retourne:", o: ["Une chaîne", "Adresse en Network Order", "Adresse en Host Order", "Un socket"], c: 1, exp: "inet_addr() → uint32 DÉJÀ en Network Order.", trap: "Pas besoin de htonl() après!", concept: "inet_ntoa() fait l'inverse: struct in_addr → string." },
+            { q: "SOCK_STREAM correspond à:", o: ["UDP", "TCP", "ICMP", "IP brut"], c: 1, exp: "SOCK_STREAM = flux fiable = TCP. SOCK_DGRAM = UDP.", trap: "", concept: "Stream = flot continu et ordonné. Datagram = paquets indépendants." },
+            { q: "172.x.x.x appartient à classe:", o: ["A", "B", "C", "D"], c: 1, exp: "Classe B = 128-191. 172 dans cet intervalle.", trap: "172.16-31 sont PRIVÉES.", concept: "Privées: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16." },
+            { q: "Masque /26: combien d'hôtes?", o: ["64", "62", "30", "256"], c: 1, exp: "/26 = 6 bits hôtes. 2⁶-2 = 62.", trap: "64 oublie -2!", concept: "On retire: adresse réseau (tous 0) + broadcast (tous 1)." },
+            { q: "192.168.1.255/24 est:", o: ["Hôte valide", "Broadcast", "Adresse réseau", "Multicast"], c: 1, exp: "Bits hôte tous à 1 = broadcast.", trap: ".0 serait l'adresse réseau.", concept: "Broadcast: envoie à toutes les machines du réseau." },
+            { q: "Root Bridge STP = celui avec:", o: ["Plus grand Bridge ID", "Plus petit Bridge ID", "Plus de ports", "IP la plus basse"], c: 1, exp: "Bridge ID = Priorité + MAC. Le PLUS PETIT gagne.", trap: "Priorité comparée en premier.", concept: "Défaut priorité = 32768. Baisser = meilleure chance root." },
+            { q: "Port 'Blocking' STP:", o: ["Transmet", "Apprend MAC", "Écoute BPDU seulement", "En panne"], c: 2, exp: "Blocking = écoute BPDU, ni transmit ni apprend.", trap: "Learning apprend mais ne transmet pas.", concept: "États: Blocking→Listening→Learning→Forwarding." },
+            { q: "Tempête broadcast causée par:", o: ["Trop DHCP", "Boucle L2 sans STP", "Virus", "Panne routeur"], c: 1, exp: "Sans STP, broadcast tourne indéfiniment.", trap: "", concept: "STP élit root bridge et bloque ports redondants." },
+            { q: "FCS utilise:", o: ["Checksum simple", "CRC", "MD5", "Rien"], c: 1, exp: "FCS = CRC-32. Détecte erreurs, ne corrige pas.", trap: "Détection ≠ correction!", concept: "CRC = Cyclic Redundancy Check, polynomial math." },
+            { q: "Fast Ethernet (100Mbps) portée max CSMA/CD:", o: ["2000m", "200m", "100m ou moins", "Illimitée"], c: 1, exp: "Débit ×10 → temps ÷10 → distance ÷10.", trap: "Gigabit utilise full-duplex.", concept: "CSMA/CD nécessite détection collision avant fin émission." },
+            { q: "Cut-Through sur switch:", o: ["Vérifie CRC", "Transmet dès @ destination lue", "Plus lent que Store&Forward", "Filtre erreurs"], c: 1, exp: "Cut-through = rapide mais peut transmettre erreurs.", trap: "Store&Forward vérifie CRC.", concept: "Fragment-free: vérifie 64 premiers octets (détecte runts)." },
+            { q: "Backoff exponentiel après collision:", o: ["Temps fixe", "Temps aléatoire, plage double", "Abandon immédiat", "Jam signal"], c: 1, exp: "Plage = 0 à 2^k-1 slots, k = nb collisions.", trap: "Jam signal AVANT backoff.", concept: "Max k=10 pour calcul, abandon après 16 collisions." },
+            { q: "LLC Type 1:", o: ["Connexion + acquittement", "Sans connexion, sans acquittement", "Sans connexion, avec acquittement", "Obsolète"], c: 1, exp: "Type 1 le plus utilisé. Fiabilité gérée par TCP.", trap: "Type 2 = connexion.", concept: "LLC = interface vers couches supérieures, commune à tous LANs." },
+            { q: "192.168.1.0/28, broadcast 2ème sous-réseau:", o: ["192.168.1.15", "192.168.1.31", "192.168.1.16", "192.168.1.30"], c: 1, exp: "/28=16 addr. SR1:.0-.15, SR2:.16-.31. BC=.31", trap: ".30 = dernière hôte.", concept: "Broadcast = dernière adresse du sous-réseau." },
+            { q: "Max tentatives Ethernet:", o: ["8", "10", "16", "Illimité"], c: 2, exp: "16 collisions → abandon.", trap: "10 = max pour calcul backoff.", concept: "Après 16, signale erreur à couche supérieure." },
+            { q: "Transfert fichier TCP utilise:", o: ["sendto/recvfrom", "send/recv ou write/read", "fwrite/fread sur socket", "Impossible"], c: 1, exp: "TCP connecté: send/recv ou read/write.", trap: "fread/fwrite = fichiers locaux.", concept: "sendto/recvfrom pour UDP (spécifie destination)." },
+            { q: "gethostbyname():", o: ["Nom → IP", "IP → Nom", "Crée socket", "Configure DNS"], c: 0, exp: "DNS lookup: nom domaine → adresse IP.", trap: "gethostbyaddr() = inverse.", concept: "Retourne struct hostent avec liste d'adresses." },
+            { q: "Serveur concurrent fork(): le fils:", o: ["Garde 2 sockets", "Ferme écoute, garde client", "Garde 2 sockets", "Partage sockets"], c: 1, exp: "Fils traite client, parent continue écouter.", trap: "Descripteurs copiés au fork.", concept: "Chacun ferme ceux qu'il n'utilise pas." },
+            { q: "Trame Ethernet taille min:", o: ["46 octets", "64 octets", "512 octets", "1518 octets"], c: 1, exp: "64 octets min (avec padding si données < 46).", trap: "46 = données min.", concept: "Pour garantir détection collision sur 2000m à 10Mbps." },
+            { q: "select() permet de:", o: ["Bloquer indéfiniment", "Surveiller plusieurs sockets", "Créer socket", "Fermer connexion"], c: 1, exp: "Multiplexage I/O: attendre sur plusieurs fd.", trap: "", concept: "Évite threads multiples. Paramètre timeout optionnel." }
+        ];
+
+        const quizSaidi = [
+            { q: "Portée typique d'un LAN:", o: ["Quelques mètres (Bluetooth)", "Quelques km même organisation", "Une ville entière", "Distance illimitée via Internet"], c: 1, exp: "LAN = Local Area Network, limité géographiquement.", concept: "LAN: gestion autonome, haut débit, faible latence." },
+            { q: "Caractéristique distinguant LAN de WAN:", o: ["Transmission bande de base", "Gestion autonome", "Support partagé", "Toutes les réponses"], c: 3, exp: "LAN: bande de base, privé, diffusion.", concept: "WAN: point-à-point, géré par opérateur, modulation." },
+            { q: "Sous-couche commune à tous les LANs:", o: ["MAC", "LLC (802.2)", "IP", "Physique"], c: 1, exp: "LLC = interface commune vers couches supérieures.", concept: "MAC varie selon techno (Ethernet, Token Ring...)." },
+            { q: "Rôle principal sous-couche MAC:", o: ["Contrôle flux bout en bout", "Accès support et conflits", "Routage paquets", "Cryptage"], c: 1, exp: "MAC = Medium Access Control.", concept: "Gère qui parle quand sur le support partagé." },
+            { q: "Norme IEEE WiFi:", o: ["802.3", "802.5", "802.11", "802.16"], c: 2, exp: "802.11 = WiFi. 802.3 = Ethernet.", concept: "802.5 = Token Ring, 802.16 = WiMAX." },
+            { q: "Panne point central paralyse réseau:", o: ["Bus", "Anneau", "Étoile", "Maillée"], c: 2, exp: "Étoile: tout passe par le centre.", concept: "Bus: panne terminaison. Anneau: rupture câble." },
+            { q: "Avantage topologie bus:", o: ["Maintenance facile", "Câblage économique", "Performance sous charge", "Immunité pannes câbles"], c: 1, exp: "Bus = câble unique, simple.", concept: "Inconvénient: collision, diagnostic difficile." },
+            { q: "Câble 10 Gbps:", o: ["Cat 5", "Cat 5e", "Cat 7", "Cat 3"], c: 2, exp: "Cat 7 = 10Gbps. Cat 5e = Gigabit.", concept: "Cat 8 = 25/40 Gbps." },
+            { q: "Distance max segment UTP:", o: ["10m", "100m", "500m", "2km"], c: 1, exp: "100m pour toutes les vitesses UTP.", concept: "Au-delà: répéteur ou fibre." },
+            { q: "Fibre longues distances (métropolitain):", o: ["Multimode", "Monomode", "Coaxiale", "STP"], c: 1, exp: "Monomode = un seul mode de propagation, moins dispersion.", concept: "Multimode = courtes distances, moins cher." },
+            { q: "Câble PC à PC direct:", o: ["Droit", "Croisé", "Console", "Fibre"], c: 1, exp: "Croisé: TX↔RX inversé.", concept: "Droit: PC-Switch. Croisé: PC-PC, Switch-Switch." },
+            { q: "Terminaisons aux extrémités bus:", o: ["Amplifier signal", "Absorber signal (éviter échos)", "Connecter nouvelles stations", "Alimenter câble"], c: 1, exp: "Terminaison = impédance adaptée.", concept: "Sans terminaison: réflexions = erreurs." },
+            { q: "Collision dans un réseau:", o: ["Panne logicielle", "Deux signaux interfèrent", "Câble coupé", "Erreur mot de passe"], c: 1, exp: "Collision = superposition signaux.", concept: "Domaine de collision = zone où ça peut arriver." },
+            { q: "Méthode d'accès déterministe:", o: ["CSMA/CD", "ALOHA", "Passage jeton", "CSMA/CA"], c: 2, exp: "Jeton = temps accès garanti.", concept: "Déterministe = prédictible. CSMA = aléatoire." },
+            { q: "Roll-Call Polling:", o: ["Stations passent jeton", "Maître interroge chaque esclave", "Émission dès données", "Backoff collisions"], c: 1, exp: "Polling centralisé.", concept: "Efficace mais point central = SPOF." },
+            { q: "Token Ring: station reçoit trame non destinée:", o: ["Détruit", "Régénère et transmet", "Stocke", "Renvoie émetteur"], c: 1, exp: "Chaque station régénère le signal.", concept: "Anneau actif, pas passif." },
+            { q: "CSMA/CD signifie:", o: ["Control System Medium Access", "Carrier Sense Multiple Access/Collision Detection", "Computer Sense Main Access", "Cable Signal Multi Access"], c: 1, exp: "Écoute porteuse, accès multiple, détection collision.", concept: "CD = Detection. CA (WiFi) = Avoidance." },
+            { q: "Inconvénient CSMA/CD:", o: ["Complexe installer", "Serveur puissant requis", "Pas de garantie temps accès", "Impossible fibre"], c: 2, exp: "Non déterministe.", concept: "Collisions → délais imprévisibles." },
+            { q: "Longueur adresse MAC:", o: ["32 bits", "48 bits", "64 bits", "128 bits"], c: 1, exp: "48 bits = 6 octets.", concept: "IPv4 = 32 bits, IPv6 = 128 bits." },
+            { q: "24 premiers bits adresse MAC:", o: ["Numéro série carte", "Adresse IP réseau", "OUI (constructeur)", "Protocole utilisé"], c: 2, exp: "OUI = Organizationally Unique Identifier.", concept: "Attribué par IEEE." },
+            { q: "Adresse MAC Broadcast:", o: ["00:00:00:00:00:00", "01:00:5E:00:00:00", "FF:FF:FF:FF:FF:FF", "127.0.0.1"], c: 2, exp: "Tous les bits à 1.", concept: "01:00:5E = préfixe multicast." },
+            { q: "Premier octet 08 = type adresse:", o: ["Unicast Universelle", "Multicast", "Broadcast", "Locale"], c: 0, exp: "08 en binaire = ...0 (bit pair) = unicast.", concept: "Bit 0 du 1er octet: 0=unicast, 1=multicast." },
+            { q: "Adresse MAC appartient couche:", o: ["1 Physique", "2 Liaison", "3 Réseau", "4 Transport"], c: 1, exp: "MAC = sous-couche de Liaison.", concept: "IP = couche 3, port TCP/UDP = couche 4." },
+            { q: "Service LLC le plus utilisé (réseaux IP):", o: ["Type 1 (sans connexion, sans ACK)", "Type 2 (connexion, ACK)", "Type 3 (sans connexion, ACK)", "Aucun"], c: 0, exp: "Type 1: simple, fiabilité par TCP.", concept: "Type 2 peu utilisé, redondant avec TCP." },
+            { q: "Primitive LLC réception données:", o: ["L_DATA.request", "L_DATA.indication", "L_CONNECT", "L_RESET"], c: 1, exp: "indication = notification vers couche supérieure.", concept: "request = demande vers couche inférieure." },
+            { q: "Taille min trame Ethernet (@ dest au FCS):", o: ["46 octets", "64 octets", "512 octets", "1518 octets"], c: 1, exp: "64 octets minimum.", concept: "1518 max (sans VLAN tag)." },
+            { q: "Pourquoi taille min trame nécessaire:", o: ["Économiser bande passante", "Détecter collision avant fin émission", "Permettre cryptage", "Satisfaire IP"], c: 1, exp: "Temps propagation A/R.", concept: "Sur 2km à 10Mbps, besoin 64 octets." },
+            { q: "Jam Signal:", o: ["Signal demande débit", "32 bits après collision", "Musique attente", "Signal fin transmission"], c: 1, exp: "Jam = brouillage, alerter toutes stations.", concept: "Après jam, backoff aléatoire." },
+            { q: "Algorithme temps attente après collision:", o: ["Dijkstra", "Backoff Exponentiel Binaire", "Spanning Tree", "Round Robin"], c: 1, exp: "BEB: temps croît exponentiellement.", concept: "0 à 2^k-1 slots, k = nb collisions (max 10)." },
+            { q: "Tentatives max avant abandon Ethernet:", o: ["1", "8", "16", "Illimité"], c: 2, exp: "16 collisions = abandon.", concept: "Signale erreur à LLC." },
+            { q: "Fast Ethernet débit ×10, portée CSMA/CD:", o: ["×10", "Identique", "÷10", "1 mètre"], c: 2, exp: "Temps bit ÷10 → distance ÷10.", concept: "Pourquoi Gigabit = full-duplex." },
+            { q: "FCS sert à:", o: ["Identifier source", "Détecter erreurs (CRC)", "Priorité trame", "Synchroniser horloges"], c: 1, exp: "FCS = Frame Check Sequence.", concept: "CRC détecte, ne corrige pas." },
+            { q: "Hub opère couche:", o: ["1 Physique", "2 Liaison", "3 Réseau", "7 Application"], c: 0, exp: "Hub = répéteur multiport.", concept: "Répète bits, ne comprend pas trames." },
+            { q: "Différence Hub vs Switch:", o: ["Hub plus rapide", "Switch = bande passante dédiée par port", "Hub utilise IP", "Aucune"], c: 1, exp: "Switch: pas de collision entre ports.", concept: "Switch = pont multiport intelligent." },
+            { q: "Domaine de collision:", o: ["Machines recevant broadcast", "Zone où trames peuvent interférer", "Logiciel piratage", "Table MAC switch"], c: 1, exp: "Tout équipement sur même segment.", concept: "Hub = 1 domaine. Switch = 1 par port." },
+            { q: "Équipement segmente domaines broadcast:", o: ["Hub", "Switch", "Routeur", "Répéteur"], c: 2, exp: "Routeur = frontière réseau.", concept: "VLAN aussi, mais niveau logique." },
+            { q: "Switch apprend adresses MAC:", o: ["Saisie manuelle", "Lecture @ source trames reçues", "Serveur DNS", "Interroge routeur"], c: 1, exp: "Apprentissage automatique.", concept: "Table MAC-port, timeout ~5min." },
+            { q: "Cut-Through switching:", o: ["Attend fin trame", "Commute dès @ destination lue", "Vérifie erreurs avant envoi", "Coupe câbles inutiles"], c: 1, exp: "Très faible latence.", concept: "Inconvénient: peut transmettre erreurs." },
+            { q: "Inconvénient Store-and-Forward:", o: ["Transmet erreurs", "Latence prop. taille trame", "Incompatible fibre", "Fonctionne qu'avec Hubs"], c: 1, exp: "Attend trame complète + vérifie CRC.", concept: "Plus fiable, plus lent." },
+            { q: "STP résout:", o: ["Manque IP", "Boucles niveau 2", "Pannes courant", "Lenteur Internet"], c: 1, exp: "Spanning Tree Protocol.", concept: "Élit root bridge, bloque ports redondants." },
+            { q: "Tempête de broadcast:", o: ["Orage perturbe WiFi", "Trame diffusée indéfiniment par boucle", "Mise à jour Windows", "Trop emails"], c: 1, exp: "Boucle sans STP.", concept: "Sature réseau en secondes." },
+            { q: "Root Bridge élu:", o: ["Plus cher", "Plus faible Bridge ID", "Connecté routeur", "Hasard"], c: 1, exp: "Bridge ID = priorité + MAC.", concept: "Plus petit gagne." },
+            { q: "Port STP pour briser boucle:", o: ["Forwarding", "Listening", "Blocking", "Learning"], c: 2, exp: "Blocking = pas de transmission.", concept: "Écoute BPDU seulement." },
+            { q: "Messages STP:", o: ["IP Packet", "BPDU", "Hello World", "ARP Request"], c: 1, exp: "Bridge Protocol Data Unit.", concept: "Contient root ID, coût, port ID." },
+            { q: "Routeur base décisions sur:", o: ["Adresse MAC", "Adresse L3 (IP)", "Port physique", "Nom utilisateur"], c: 1, exp: "Routage = couche 3.", concept: "Examine en-tête IP, consulte table routage." },
+            { q: "Adage switching vs routing:", o: ["Route when can, switch when must", "Switch when can, route when must", "Always route", "Hub when can"], c: 1, exp: "Switch = rapide, route = nécessaire.", concept: "Switch local, route inter-réseaux." },
+            { q: "Passerelle niveau 7:", o: ["Amplifie WiFi", "Convertit protocoles applicatifs", "Connecte câbles Ethernet", "Bloque virus"], c: 1, exp: "Gateway applicative.", concept: "Ex: SMTP ↔ X.400." },
+            { q: "Équipement plus 'intelligent':", o: ["Hub", "Pont", "Routeur", "Répéteur"], c: 2, exp: "Routeur comprend L3.", concept: "Intelligence croissante: répéteur<hub<pont<switch<routeur<gateway." },
+            { q: "Architecture Client-Serveur, inconvénient serveur:", o: ["Trop lent", "Point de défaillance unique", "Pas stockage fichiers", "WiFi obligatoire"], c: 1, exp: "SPOF = Single Point Of Failure.", concept: "Solution: redondance, clustering." },
+            { q: "Précâblage structuré:", o: ["Câbles au fur et à mesure", "Installation normalisée, souple, évolutive", "Uniquement fibre", "Supprime switchs"], c: 1, exp: "Norme: topologie étoile, baies centrales.", concept: "Facilite changements, maintenance." }
+        ];
+
+        // Quiz state
+        const quizState = {
+            new: { current: 0, answers: [], checked: [], score: 0 },
+            saidi: { current: 0, answers: [], checked: [], score: 0 }
+        };
+
+        function getQuestions(type) { return type === 'new' ? qcmNew : quizSaidi; }
+
+        function renderQuestion(type) {
+            const state = quizState[type];
+            const questions = getQuestions(type);
+            const q = questions[state.current];
+            const total = questions.length;
+
+            document.getElementById(`progress-${type}`).style.width = ((state.current + 1) / total * 100) + '%';
+            document.getElementById(`quiz-counter-${type}`).textContent = `Question ${state.current + 1}/${total}`;
+
+            const checked = state.checked[state.current];
+            const selected = state.answers[state.current];
+
+            let optionsHTML = q.o.map((opt, i) => {
+                let cls = 'quiz-option';
+                if (selected === i) cls += ' selected';
+                if (checked && i === q.c) cls += ' correct';
+                if (checked && selected === i && i !== q.c) cls += ' incorrect';
+                return `<div class="${cls}" onclick="selectAnswer('${type}',${i})" data-i="${i}">
+            <span class="letter">${String.fromCharCode(65 + i)}</span>
+            <span>${opt}</span>
+        </div>`;
+            }).join('');
+
+            let expHTML = checked ? `<div class="quiz-explanation show">
+        <h4>✅ Réponse: ${String.fromCharCode(65 + q.c)}) ${q.o[q.c]}</h4>
+        <p>${q.exp}</p>
+        ${q.trap ? `<p class="trap-info">⚠️ Piège: ${q.trap}</p>` : ''}
+    </div>` : '';
+
+            let conceptHTML = checked && q.concept ? `<div class="quiz-concept show">
+        <h4>📚 Concept du cours</h4>
+        <p>${q.concept}</p>
+    </div>` : '';
+
+            document.getElementById(`quiz-content-${type}`).innerHTML = `
+        <h3>${state.current + 1}. ${q.q}</h3>
+        <div class="quiz-options">${optionsHTML}</div>
+        ${expHTML}${conceptHTML}
+    `;
+
+            document.getElementById(`prev-${type}`).disabled = state.current === 0;
+            document.getElementById(`check-${type}`).disabled = checked || selected === undefined;
+            document.getElementById(`next-${type}`).textContent = state.current === total - 1 ? 'Terminer' : 'Suivant →';
+        }
+
+        function selectAnswer(type, i) {
+            if (quizState[type].checked[quizState[type].current]) return;
+            quizState[type].answers[quizState[type].current] = i;
+            renderQuestion(type);
+        }
+
+        function checkAnswer(type) {
+            const state = quizState[type];
+            const q = getQuestions(type)[state.current];
+            state.checked[state.current] = true;
+            if (state.answers[state.current] === q.c) state.score++;
+            renderQuestion(type);
+        }
+
+        function nextQuestion(type) {
+            const state = quizState[type];
+            const total = getQuestions(type).length;
+            if (state.current < total - 1) {
+                state.current++;
+                renderQuestion(type);
+            } else {
+                document.querySelector(`#${type === 'new' ? 'qcm-new' : 'quiz-saidi'} .quiz-container`).style.display = 'none';
+                document.getElementById(`score-${type}`).style.display = 'block';
+                document.getElementById(`final-score-${type}`).textContent = `${state.score}/${total}`;
+            }
+        }
+
+        function prevQuestion(type) {
+            if (quizState[type].current > 0) {
+                quizState[type].current--;
+                renderQuestion(type);
+            }
+        }
+
+        function resetQuiz(type) {
+            const total = getQuestions(type).length;
+            quizState[type] = { current: 0, answers: [], checked: [], score: 0 };
+            document.querySelector(`#${type === 'new' ? 'qcm-new' : 'quiz-saidi'} .quiz-container`).style.display = 'flex';
+            document.getElementById(`score-${type}`).style.display = 'none';
+            renderQuestion(type);
+        }
+
+        // Code exercises
+        function checkCode(n) {
+            const answers = {
+                1: {
+                    'c1-1': ['socket(AF_INET,SOCK_STREAM,0)', 'socket(AF_INET, SOCK_STREAM, 0)'],
+                    'c1-2': ['AF_INET'],
+                    'c1-3': ['htons(8080)'],
+                    'c1-4': ['INADDR_ANY', 'htonl(INADDR_ANY)'],
+                    'c1-5': ['listen'],
+                    'c1-6': ['accept']
+                },
+                2: {
+                    'c2-1': ['AF_INET'],
+                    'c2-2': ['htons(5000)'],
+                    'c2-3': ['inet_addr("127.0.0.1")', 'inet_addr(\'127.0.0.1\')'],
+                    'c2-4': ['connect'],
+                    'c2-5': ['recv']
+                },
+                3: {
+                    'c3-1': ['SOCK_DGRAM'],
+                    'c3-2': ['sendto']
+                }
+            };
+
+            let allOk = true;
+            for (const [id, valid] of Object.entries(answers[n])) {
+                const el = document.getElementById(id);
+                const val = el.value.trim().replace(/\s+/g, '');
+                const ok = valid.some(v => val.toLowerCase() === v.toLowerCase().replace(/\s+/g, ''));
+                el.classList.remove('correct', 'incorrect');
+                el.classList.add(ok ? 'correct' : 'incorrect');
+                if (!ok) allOk = false;
+            }
+
+            const res = document.getElementById(`code-result-${n}`);
+            res.classList.add('show');
+            res.innerHTML = allOk
+                ? '<span style="color:var(--success)">✅ Parfait!</span>'
+                : '<span style="color:var(--warning)">📝 Vérifiez les champs en rouge</span>';
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestion('new');
+            renderQuestion('saidi');
+        });
+    </script>
+</body>
+
+</html>

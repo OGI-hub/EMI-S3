@@ -1,0 +1,1498 @@
+Corrigé du TP 2 Réseaux
+Adresses IP, routage et sous-réseaux
+C. Pain-Barre
+INFO - IUT Aix-en-Provence
+
+version du 24/12/2010
+
+1 Adressage IP
+1.1
+
+Limites du nombre d’adresses IP
+
+1.1.1
+
+Adresses de réseaux valides
+
+Corrigé de l’exercice 1 (Nombre d’adresses de réseau)
+[Consulter l’énoncé]
+On calcule leur nombre à partir du nombre de bits de la partie id. réseau et des contraintes énoncées, selon la
+classe.
+On obtient alors :
+• Classe A : la partie id. réseau tient sur 7 bits et 2 combinaisons sont interdites, donc 27 − 2 soit 126
+adresses de réseaux valides qui vont :
+de 00000001000000000000000000000000 (1.0.0.0)
+à 01111110000000000000000000000000 (126.0.0.0)
+• Classe B : la partie id. réseau tient sur 14 bits et une combinaison est interdite, donc 214 − 1 soit 16 383
+adresses de réseaux valides qui vont :
+de 10000000000000010000000000000000 (128.1.0.0)
+à 10111111111111110000000000000000 (191.255.0.0)
+• Classe C : la partie id. réseau tient sur 21 bits et une combinaison est interdite, donc 221 −1 soit 2 097 151
+adresses de réseaux valides qui vont :
+de 11000000000000000000000100000000 (192.0.1.0)
+à 11011111111111111111111100000000 (223.255.255.0)
+1.1.2
+
+Adresses de stations valides
+
+Corrigé de l’exercice 2 (Nombre d’adresses de station)
+[Consulter l’énoncé]
+On calcule leur nombre à partir du nombre de bits de la partie id. station et des contraintes énoncées (2 combinaisons sont réservées).
+On obtient alors :
+• Classe A : la partie id. station tient sur 24 bits, donc 224 − 2 soit 16 777 214 adresses de stations valides
+par réseau
+• Classe B : la partie id. station tient sur 16 bits, donc 216 − 2 soit 65 534 adresses de stations valides par
+réseau
+INFO - IUT Aix-en-Provence
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+2/16
+
+• Classe C : la partie id. station tient sur 8 bits, donc 28 − 2 soit 254 adresses de stations valides par réseau
+
+Corrigé de l’exercice 3 (Adresses IP sous forme binaire)
+[Consulter l’énoncé]
+1. 10010011 11011000 01100111 10111110 :
+a) 147.216.103.190
+b) Les deux premiers bits (10) indiquent que c’est une adresse de classe B
+c) La partie id. station (les 16 derniers bits) doivent être mis à 0.
+L’adresse de réseau est donc : 10010011 11011000 00000000 00000000
+d) 147.216.0.0
+2. 01101100 10100100 10010101 11000101 :
+a) 108.164.149.197
+b) Le premier bit (0) indique que c’est une adresse de classe A
+c) La partie id. station (les 24 derniers bits) doivent être mis à 0.
+L’adresse de réseau est donc : 01101100 00000000 00000000 00000000
+d) 108.0.0.0
+3. 11100000 10000001 10100010 01010001 :
+a) 224.129.162.81
+b) Les quatre premiers bits (1110) indiquent que c’est une adresse de classe D
+c) Il n’y a pas d’id. station pour une adresse de classe D, et pas non plus d’adresse de réseau
+d) Sans objet
+4. 11010110 01011100 10110100 11010001 :
+a) 214.92.180.209
+b) Les trois premiers bits (110) indiquent que c’est une adresse de classe C
+c) La partie id. station (les 8 derniers bits) doivent être mis à 0.
+L’adresse de réseau est donc : 11010110 01011100 10110100 00000000
+d) 214.92.180.0
+
+Corrigé de l’exercice 4 (Adresses IP en notation décimale pointée)
+[Consulter l’énoncé]
+1. 139.124.5.25 :
+a) 139 donne 10001011 en binaire
+b) Classe B
+c) Adresse de réseau : 139.124.0.0
+2. 194.199.116.255 :
+a) 194 donne 11000010 en binaire
+b) Classe C
+c) Adresse de réseau : 194.199.116.0
+C. Pain-Barre, 2000-2009
+
+INFO - IUT Aix-en-Provence
+
+3/16
+
+Version du 24/12/2010
+
+Corrigé du TP 2 Réseaux
+
+3. 12.34.56.78 :
+a) 12 donne 00001100 en binaire
+b) Classe A
+c) Adresse de réseau : 12.0.0.0
+4. 224.0.0.2 :
+a) 224 donne 11100000 en binaire
+b) Classe D
+c) Adresse de réseau : aucune
+
+Corrigé de l’exercice 5 (Classes et intervalles du premier octet)
+[Consulter l’énoncé]
+1. Il faut prendre les adresses extrêmes dans chaque classe et s’intéresser au premier octet :
+• Classe A : de 00000001 à 01111110 donc [1, 126]
+• Classe B : de 10000000 à 10111111 donc [128, 191]
+• Classe C : de 11000000 à 11011111 donc [192, 223]
+• Classe D : de 11100000 à 11101111 donc [224, 239]
+• Classe E : de 11110000 à 11111111 donc [240, 255]
+2. a) 10 : classe A
+b) 241 : classe E
+c) 192 : classe C
+d) 172 : classe B
+e) 230 : classe D
+
+1.2
+
+Adresses IP privées
+
+Corrigé de l’exercice 6 (Réajustement du nombre d’adresses réseau)
+[Consulter l’énoncé]
+L’exercice 1 concernait le nombre d’adresses de réseaux valides, pour les classes A, B et C. Il faut identifier
+les adresses de réseaux concernées et leurs classes, puis modifier les résultats obtenus en conséquence :
+• 10.0.0.0 à 10.255.255.255 :
+Ces adresses sont de classe A.
+Elles appartiennent au seul réseau 10.0.0.0.
+Il n’y a plus que 125 adresses de réseaux valides pour la classe A.
+• 172.16.0.0 à 172.31.255.255 :
+Ces adresses sont de classe B.
+Elles appartiennent aux réseaux 172.16.0.0 à 172.31.0.0 soit 16 adresses de réseaux réservées.
+Il n’y a plus que 16 367 adresses de réseaux valides pour la classe B.
+INFO - IUT Aix-en-Provence
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+4/16
+
+• 192.168.0.0 à 192.168.255.255 :
+Ces adresses sont de classe C.
+Elles appartiennent aux réseaux 192.168.0.0 à 192.168.255.0 soit 256 adresses de réseaux réservées.
+Il n’y a plus que 2 096 895 adresses de réseaux valides pour la classe C.
+• 169.254.0.0 à 169.254.255.255 :
+Ces adresses sont de classe B.
+Elles appartiennent au seul réseau 169.254.0.0.
+Il n’y a plus que 16 366 adresses de réseaux valides pour la classe B.
+
+2 Routage IP sans masque de sous-réseaux
+2.1
+
+Brefs rappels sur le routage IP
+
+2.2
+
+Test de l’appartenance à un même réseau
+
+Corrigé de l’exercice 7 (Test de la remise directe)
+[Consulter l’énoncé]
+Tout d’abord, il faut déduire les adresses IP des réseaux auxquels le routeur est connecté, à partir de ses
+adresses IP et de leur classe :
+• 194.199.110.250 : classe C donc réseau 194.199.110.0
+• 27.158.62.10 : classe A donc réseau 27.0.0.0
+• 139.124.5.250 : classe B donc réseau 139.124.0.0
+Ceci fait, pour chaque destination, il faut en extraire l’adresse de son réseau et comparer aux adresses des réseaux
+du routeur :
+1. 27.5.12.198 : appartient au réseau 27.0.0.0 directement accessible
+2. 194.199.115.5 : appartient au réseau 194.199.115.0 non accessible directement
+3. 194.199.110.5 : appartient au réseau 194.199.110.0 directement accessible.
+
+2.3
+
+Principe des tables de routage
+
+Corrigé de l’exercice 8 (Table de routage de R2)
+[Consulter l’énoncé]
+La table de R2 contient les informations sur l’accessibilité des 3 réseaux. Les réseaux 175.110.0.0 et
+215.192.18.0 sont directement accessibles alors que le réseau 112.0.0.0 ne peut être atteint qu’en passant par l’interface d’adresse 175.110.25.251 de R1.
+
+C. Pain-Barre, 2000-2009
+
+INFO - IUT Aix-en-Provence
+
+5/16
+
+Version du 24/12/2010
+
+Corrigé du TP 2 Réseaux
+
+Cela donne :
+Destination
+
+2.4
+
+Routeur
+
+175.110.0.0
+
+0.0.0.0
+
+215.192.18.0
+
+0.0.0.0
+
+112.0.0.0
+
+172.110.25.251
+
+Route par défaut
+
+Corrigé de l’exercice 9 (Tables avec route par défaut)
+[Consulter l’énoncé]
+1. La station 215.192.18.21 a juste besoin de savoir que son réseau (215.192.18.0) est directement
+accessible et que R2, le seul routeur de ce réseau, a pour adresse 215.192.18.250. Cela donne :
+Destination
+
+Routeur
+
+215.192.18.0
+
+0.0.0.0
+
+default
+
+215.192.18.250
+
+2. En revanche, à cause de la contrainte, 175.110.28.82 ne peut pas utiliser de route par défaut en direction de R2. En effet, si tel était le cas, tout datagramme à destination d’une station de 112.0.0.0
+emprunterait cette route et arriverait à R2 qui le renverrait à R1 qui le remettrait à sa destination ! Au passage R2, enverrait à 175.110.28.82 un message ICMP pour le prévenir qu’il aurait dû choisir R1 et
+non lui. On note que dans le réseau 175.110.0.0, cet envoi aurait conduit à la transmission de 3 datagrammes (ou plutôt trames) au lieu d’un seul. La table doit donc expliciter les réseaux pour lesquels il n’y
+a pas de contraintes :
+Destination
+
+2.5
+
+Routeur
+
+175.110.0.0
+
+0.0.0.0
+
+215.192.18.0
+
+175.110.3.250
+
+Route vers un ordinateur
+
+Corrigé de l’exercice 10 (Ajout d’une route vers un ordinateur)
+[Consulter l’énoncé]
+Il faut rajouter une route explicite vers la station d’adresse 112.3.45.67. Ceci est une configuration de IP
+sur la station 175.110.28.82 et pas une entrée réelle de sa table dans cette version du routage :
+Destination
+
+INFO - IUT Aix-en-Provence
+
+Routeur
+
+175.110.0.0
+
+0.0.0.0
+
+215.192.18.0
+
+175.110.3.250
+
+112.3.45.67
+
+175.110.25.251
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+2.6
+
+Version du 24/12/2010
+
+6/16
+
+Algorithme de routage
+
+Corrigé de l’exercice 11 (Adresses physiques et adresses IP)
+[Consulter l’énoncé]
+Les adresses IP source et destination du datagramme encapsulé ne doivent pas changer, et restent respectivement 112.3.45.67 et 215.192.18.21, car les routeurs ont besoin de l’adresse de destination pour
+acheminer le datagramme et 215.192.18.21 aura besoin de connaître la source pour lui répondre.
+En revanche les adresses physiques sources et destinations des trames changent pour chaque trame. Elles
+correspondent respectivement aux adresses de la carte émettant la trame et de celle devant la recevoir :
+• 1re trame :
+⋄ Adresses de la trame :
+◦ source : 08:00:57:f5:8d:01
+◦ destination : 08:00:57:f5:8d:02
+⋄ Adresses du datagramme :
+◦ source : 112.3.45.67
+◦ destination : 215.192.18.21
+•
+
+2e trame :
+⋄ Adresses de la trame :
+◦ source : 08:00:57:f5:8d:04
+◦ destination : 08:00:57:f5:8d:03
+⋄ Adresses du datagramme :
+◦ source : 112.3.45.67
+◦ destination : 215.192.18.21
+
+Corrigé de l’exercice 12 (Extension du réseau)
+[Consulter l’énoncé]
+1. La plus petite adresse de station disponible pour chaque nouveau réseau est donnée dans le tableau suivant :
+Réseau
+
+C. Pain-Barre, 2000-2009
+
+Plus petite adresse
+
+198.199.0.0
+
+198.199.0.1
+
+205.254.0.0
+
+205.254.0.1
+
+205.254.133.0
+
+205.254.133.1
+
+117.0.0.0
+
+117.0.0.1
+
+164.56.0.0
+
+164.56.0.1
+
+INFO - IUT Aix-en-Provence
+
+7/16
+
+Version du 24/12/2010
+
+Corrigé du TP 2 Réseaux
+
+2. Les adresses IP des interfaces des routeurs selon leurs réseaux sont :
+Routeur
+
+Réseau
+
+Adresse
+
+R1
+
+198.199.0.0
+
+198.199.0.254
+
+R3
+
+205.254.0.0
+
+205.254.0.254
+
+R3
+
+205.254.133.0
+
+205.254.133.254
+
+R3
+
+112.0.0.0
+
+112.255.255.253
+
+R4
+
+112.0.0.0
+
+112.255.255.254
+
+R4
+
+117.0.0.0
+
+117.255.255.253
+
+R5
+
+117.0.0.0
+
+117.255.255.254
+
+R5
+
+164.56.0.0
+
+164.56.255.254
+
+3. Les tables des stations sont les suivantes, où les routes par défaut sont utilisées autant que possible :
+• Table de S1 (205.254.0.1) :
+Destination
+
+Routeur
+
+205.254.0.0
+
+0.0.0.0
+
+default
+
+205.254.0.254
+
+• Table de S4 (198.199.0.1) :
+Destination
+
+Routeur
+
+198.199.0.0
+
+0.0.0.0
+
+default
+
+198.199.0.254
+
+• Table de S5 (164.56.0.1) :
+Destination
+
+Routeur
+
+164.56.0.0
+
+0.0.0.0
+
+default
+
+164.56.255.254
+
+• Table de 175.110.28.82 :
+Destination
+
+INFO - IUT Aix-en-Provence
+
+Routeur
+
+175.110.0.0
+
+0.0.0.0
+
+215.192.18.0
+
+175.110.3.250
+
+198.199.0.0
+
+175.110.25.251
+
+205.254.0.0
+
+175.110.25.251
+
+205.254.133.0
+
+175.110.25.251
+
+117.0.0.0
+
+175.110.25.251
+
+164.56.0.0
+
+175.110.25.251
+
+112.3.45.67
+
+175.110.25.251
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+8/16
+
+4. Les tables des routeurs sont les suivantes :
+• Table de R1 :
+Destination
+
+Routeur
+
+175.110.0.0
+
+0.0.0.0
+
+198.199.0.0
+
+0.0.0.0
+
+112.0.0.0
+
+0.0.0.0
+
+205.254.0.0
+
+112.255.255.253
+
+205.254.133.0
+
+112.255.255.253
+
+117.0.0.0
+
+112.255.255.254
+
+164.56.0.0
+
+112.255.255.254
+
+215.192.18.0
+
+175.110.3.250
+
+• Table de R3 :
+Destination
+
+Routeur
+
+205.254.0.0
+
+0.0.0.0
+
+205.254.133.0
+
+0.0.0.0
+
+112.0.0.0
+
+0.0.0.0
+
+175.110.0.0
+
+112.54.149.250
+
+198.199.0.0
+
+112.54.149.250
+
+215.192.18.0
+
+112.54.149.250
+
+default
+
+112.255.255.254
+
+• Table de R4 :
+Destination
+
+Routeur
+
+112.0.0.0
+
+0.0.0.0
+
+117.0.0.0
+
+0.0.0.0
+
+164.56.0.0
+
+117.255.255.254
+
+default
+
+112.54.149.250
+
+• Table de R5 :
+Destination
+
+C. Pain-Barre, 2000-2009
+
+Routeur
+
+117.0.0.0
+
+0.0.0.0
+
+164.56.0.0
+
+0.0.0.0
+
+default
+
+117.255.255.253
+
+INFO - IUT Aix-en-Provence
+
+9/16
+
+Version du 24/12/2010
+
+Corrigé du TP 2 Réseaux
+
+3 Routage et sous-réseaux
+3.1
+
+Rappels sur le subnetting
+
+3.2
+
+Adresses de sous-réseaux
+
+3.3
+
+Attribution des adresses de sous-réseaux
+
+3.3.1
+
+Identifiant de sous-réseau et partition
+
+3.3.2
+
+Recommandations du standard
+
+Corrigé de l’exercice 13 (Espace d’adressage pour le subnetting dans la classe
+C)
+[Consulter l’énoncé]
+Nb de bits de
+l’identifiant
+sous-réseau
+2
+3
+4
+5
+6
+7
+
+3.3.3
+
+Nb max
+de
+sous-réseaux
+2
+6
+14
+30
+62
+126
+
+Nb max de
+stations par
+sous-réseau
+62
+30
+14
+6
+2
+0
+
+Nb d’adresses
+de stations
+perdues
+130
+74
+58
+74
+130
+254
+
+Identifiant de sous-réseau "éclaté"
+
+Corrigé de l’exercice 14 (Partition d’adresses paires et impaires)
+[Consulter l’énoncé]
+1. Il nous faut encore 2 bits pour distinguer les sous-réseaux en respectant le standard. De plus, en binaire, ce
+qui distingue les nombres pairs de ceux impairs est le dernier bit (celui de poids faible) : s’il est à 0 c’est un
+nombre pair, et s’il est à 1 c’est un nombre impair. Le bit de poids faible (du dernier octet) de l’adresse fera
+donc partie de l’identifiant de sous réseau. Prenons aussi le bit de poids fort du dernier octet. Cela donne :
+• pour Ethernet :
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+01110100 0
+
+11000111
+
+station
+
+1
+
+station
+
+0
+
+identifiant de sous−réseau
+• pour Token Ring :
+
+194
+11000010
+
+INFO - IUT Aix-en-Provence
+
+.
+
+199
+11000111
+
+.
+
+116
+
+.
+
+01110100 1
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+10/16
+
+2. En mettant l’identifiant de station tout à 0 on obtient :
+• Ethernet : 194.199.116.1
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+1
+
+01110100 0 000000 1
+
+11000111
+
+• Token Ring : 194.199.116.128
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+128
+
+01110100 1 000000 0
+
+11000111
+
+3. En mettant l’identifiant de station tout à 1 on obtient :
+• Ethernet : 194.199.116.127
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+127
+
+01110100 0 111111 1
+
+11000111
+
+• Token Ring : 194.199.116.254
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+254
+
+01110100 1 111111 0
+
+11000111
+
+4. En mettant l’identifiant de station tout à 0 sauf le dernier (vers la droite) on obtient :
+• Ethernet : 194.199.116.3
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+3
+
+01110100 0 000001 1
+
+11000111
+
+• Token Ring : 194.199.116.130
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+130
+
+01110100 1 000001 0
+
+11000111
+
+5. En mettant l’identifiant de station tout à 1 sauf le dernier (vers la droite) on obtient :
+• Ethernet : 194.199.116.125
+
+194
+
+.
+
+11000010
+
+199
+
+.
+
+116
+
+.
+
+125
+
+01110100 0 111110 1
+
+11000111
+
+• Token Ring : 194.199.116.252
+
+194
+11000010
+
+C. Pain-Barre, 2000-2009
+
+.
+
+199
+11000111
+
+.
+
+116
+
+.
+
+252
+
+01110100 1 111110 0
+
+INFO - IUT Aix-en-Provence
+
+11/16
+
+Version du 24/12/2010
+
+3.4
+
+Test d’appartenance à un même sous-réseau
+
+3.4.1
+
+Masques de sous-réseaux
+
+Corrigé du TP 2 Réseaux
+
+Corrigé de l’exercice 15 (Détermination de masques de sous-réseau)
+[Consulter l’énoncé]
+1. Il faut mettre à 0 les bits restants pour la partie identifiant de station et à 1 les autres bits, ce qui donne
+255.255.255.129.
+2. L’optimum utilise l’identifiant de sous-réseaux sur un octet, ce qui donne le masque 255.255.255.0.
+
+3.4.2
+
+Utilisation des masques
+
+Corrigé de l’exercice 16 (Remise directe et masques de sous-réseaux)
+[Consulter l’énoncé]
+Une destination sera directement accessible si et seulement si le routeur possède une interface dont l’adresse
+de (sous-)réseau est l’adresse obtenue en appliquant son masque à la destination. En effet, le masque associé
+à une adresse de réseau indique les bits qui identifient le (sous-)réseau. Si la destination est une adresse dans
+ce sous-réseau alors l’application du masque mettra à 0 l’identifiant station ce qui correspond bien à l’adresse
+du sous-réseau. En revanche, si la destination n’est pas une adresse dans ce sous-réseau alors l’adresse obtenue
+en appliquant le masque est forcément différente (elles se distinguent par l’identifiant réseau ou par l’identifiant
+sous-réseau) (elle ne correspond même pas forcément à l’adresse réelle du (sous-)réseau de la destination).
+1. 139.124.20.210 : non directement accessible car n’est pas une adresse appartenant à un des réseaux
+du routeurs. On le vérifie en appliquant à la destination le masque de chaque interface :
+• pour 139.124.5.0 et 255.255.255.0, on obtient 139.124.20.0 donc 139.124.20.210
+n’est pas une adresse qui concerne le (sous-)réseau 139.124.5.0
+• pour 194.199.10.160 et 255.255.255.224, on obtient 139.124.20.192 donc rejeté
+• pour 194.199.10.64 et 255.255.255.224, on obtient 139.124.20.192 donc rejeté
+• pour 138.10.0.50 et 255.255.0.255, on obtient 139.124.0.210 donc rejeté
+2. 139.124.5.133 : directement accessible par l’interface 139.124.5.250 du réseau 139.124.5.0
+car l’application du masque 255.255.255.0 à 139.124.5.133 donne 139.124.5.0
+3. 194.199.10.2 : non directement accessible car :
+• pour 139.124.5.0 et 255.255.255.0, on obtient 194.199.10.0
+• pour 194.199.10.160 et 255.255.255.224, on obtient 194.199.10.0
+• pour 194.199.10.64 et 255.255.255.224, on obtient 194.199.10.0
+• pour 138.10.0.50 et 255.255.0.255, on obtient 194.199.0.2
+4. 194.199.10.90 : directement accessible par l’interface 194.199.10.82 du réseau 194.199.10.64
+de masque 255.255.255.224
+5. 194.199.10.103 : non directement accessible car :
+• pour 139.124.5.0 et 255.255.255.0, on obtient 194.199.10.0
+• pour 194.199.10.160 et 255.255.255.224, on obtient 194.199.10.96
+• pour 194.199.10.64 et 255.255.255.224, on obtient 194.199.10.96
+INFO - IUT Aix-en-Provence
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+12/16
+
+• pour 138.10.0.50 et 255.255.0.255, on obtient 194.199.0.103
+6. 138.10.5.51 : non directement accessible car :
+• pour 139.124.5.0 et 255.255.255.0, on obtient 138.10.5.0
+• pour 194.199.10.160 et 255.255.255.224, on obtient 138.10.5.32
+• pour 194.199.10.64 et 255.255.255.224, on obtient 138.10.5.32
+• pour 138.10.0.50 et 255.255.0.255, on obtient 138.10.0.51
+7. 138.10.6.50 : directement accessible par l’interface 138.10.5.50 du réseau 138.10.0.50 de
+masque 255.255.0.255
+
+Corrigé de l’exercice 17 (Déduction de l’adresse de (sous-)réseau)
+[Consulter l’énoncé]
+L’application du masque d’un sous-réseau à une adresse appartenant à ce sous-réseau donne l’adresse du sousréseau. Or les adresses des interfaces sont bien des adresses appartenant à leur sous-réseau respectif. Il suffit donc
+de leur appliquer leur masque associé pour en connaître l’adresse de sous-réseau :
+1. sous-réseau 194.199.116.64, obtenu en appliquant 255.255.255.192 à 194.199.116.98
+2. sous-réseau 194.199.116.1
+3. sous-réseau 194.199.116.128
+4. sous-réseau 194.199.116.0 : ce n’est pas valable car c’est une adresse de classe C et le 3 dans le
+dernier octet du masque nous indique que l’identifiant sous-réseau est codé sur les 2 derniers bits. Or, ils
+sont à 0 dans 194.199.116.0 ce qui ne suit pas les recommandations (l’adresse du sous-réseau est aussi
+l’adresse du réseau non subnetté)
+5. réseau non subnetté de classe B d’adresse 139.124.0.0
+
+3.4.3
+
+Masques par défaut
+
+3.5
+
+Tables de routage modifiées et nouvel algorithme de routage
+
+Corrigé de l’exercice 18 (Extension du réseau avec du subnetting)
+[Consulter l’énoncé]
+1. Puisqu’on dispose de 8 bits pour l’identifiant sous-réseau, on a une grande liberté d’attribution d’adresses.
+Le plus simple et le plus facilement gérable est d’affecter aux sous-réseaux des adresses croissantes à partir
+de la plus basse disponible, soit les adresses 164.56.1.0 à 164.56.5.0. Il sera aisé pour l’administrateur de faire évoluer le réseau.
+Une autre approche consiste à affecter les adresses d’une façon particulière, par exemple les adresses
+de 164.56.128.0 à 164.56.254.0 pour les sous-réseaux connectés à R6 et de 164.56.1.0 à
+164.56.127.0 à ceux connectés à R7. On peut comme ceci tenter de réduire les tables, mais la maintenance risque d’être difficile lorsque de nombreux sous-réseaux sont rajoutés.
+On choisit les adresses indiquées sur la figure ci-dessous, où les adresses des routeurs ont été aussi affectées :
+C. Pain-Barre, 2000-2009
+
+INFO - IUT Aix-en-Provence
+
+13/16
+
+Version du 24/12/2010
+
+Corrigé du TP 2 Réseaux
+
+164.56.192.0
+
+164.56.193.0
+164.56.128.0
+
+164.56.192.254
+164.56.193.254
+164.56.128.254
+
+164.56.128.253
+
+R6
+
+164.56.1.253
+
+R5
+
+164.56.2.0
+164.56.1.254
+164.56.1.0
+
+164.56.2.254
+
+R7
+2. Les adresses sont indiquées sur la figure précédente.
+3. Les tables sont construites en utilisant autant que possible les routes par défaut vers les routeurs du sousréseau. R5 joue un rôle central car R6 et R7 s’appuient aussi sur lui :
+• Table de la station 164.56.192.1 de 164.56.192.0 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.192.0
+
+255.255.255.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.192.254
+
+• Table de la station 164.56.193.1 de 164.56.193.0 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.193.0
+
+255.255.255.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.193.254
+
+• Table de la station 164.56.128.1 de 164.56.128.0 : on remarque que les routes vers les sousréseaux 164.56.192.0 et 164.56.193.0 sont regroupées sur une seule ligne, avec la destination
+164.56.192.0. L’astuce consiste à ignorer le bit de poids faible du 3ème octet de l’adresse (masque
+255.255.254.0), car qu’il vaille 0 ou 1, le routeur à utiliser est R6 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.128.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.192.0
+
+255.255.254.0
+
+164.56.128.254
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.128.253
+
+• Table de R6 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.192.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.193.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.128.0
+
+255.255.255.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.128.253
+
+INFO - IUT Aix-en-Provence
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+14/16
+
+• Table de R7 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.1.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.2.0
+
+255.255.255.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.1.253
+
+• Table de R5 (avec 164.56.192.0 et 164.56.193.0 regroupées) :
+Destination
+
+Masque
+
+Routeur
+
+117.0.0.0
+
+255.0.0.0
+
+0.0.0.0
+
+164.56.1.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.128.0
+
+255.255.255.0
+
+0.0.0.0
+
+164.56.2.0
+
+255.255.255.0
+
+164.56.1.254
+
+164.56.192.0
+
+255.255.254.0
+
+164.56.128.254
+
+0.0.0.0
+
+0.0.0.0
+
+117.255.255.253
+
+R5 est le seul à posséder une route par défaut vers l’Internet (ici R4).
+
+✍
+
+On remarque qu’il serait souhaitable de disposer au moins sur R5 (le point d’accès à l’Internet
+pour l’organisation) de routes "négatives", qui indiqueraient les destinations inconnues et
+inaccessibles. En effet, si un datagramme arrive avec une adresse dans le réseau logique mais
+ne correspondant à aucun sous-réseau (comme 164.56.3.12), le routeur devrait savoir
+qu’il ne correspond à aucun sous-réseau et qu’il doit être rejeté. Sans ça, le datagramme se
+verra renvoyé vers l’Internet puis revenir, etc, jusqu’à ce que son TTL (Time To Live) expire,
+ce qui totalement inefficace.
+
+i
+
+Dans la réalité, le routeur sait qu’il y a subnetting et quels sous-réseaux existent. Il ne routera
+donc pas un datagramme à destination d’un sous-réseau inexistant.
+
+4. Aucune modification n’est à faire car le subnetting concerne uniquement l’organisation qui le pratique.
+Pour l’Internet, seule compte la destination vers le réseau logique de l’organisation. Ce sont les routeurs de
+cette dernière qui doivent ensuite router les datagrammes vers les bons sous-réseaux.
+
+3.6
+
+Sous-adressage variable
+
+Corrigé de l’exercice 19 (réseau avec sous-adressage variable)
+[Consulter l’énoncé]
+1. L’abre binaire est le suivant :
+C. Pain-Barre, 2000-2009
+
+INFO - IUT Aix-en-Provence
+
+15/16
+
+Version du 24/12/2010
+
+0
+
+0
+
+1
+
+1
+
+0
+
+A
+0
+
+Corrigé du TP 2 Réseaux
+
+1
+
+E
+
+1
+
+0
+
+non
+affectée
+
+non
+affectée
+
+C
+
+B
+0
+
+1
+
+1
+
+D
+
+Ce qui donne les affectations suivantes :
+Sous-réseau
+
+Adresse
+
+Masque de sous-réseau
+
+A
+
+164.56.64.0
+
+255.255.192.0
+
+B
+
+164.56.32.0
+
+255.255.224.0
+
+C
+
+164.56.192.0
+
+255.255.224.0
+
+D
+
+164.56.16.0
+
+255.255.240.0
+
+E
+
+164.56.128.0
+
+255.255.192.0
+
+2. Les adresses des routeurs figurent sur la figure suivante :
+164.56.32.0
+
+164.56.192.0
+164.56.63.254
+
+164.56.64.0
+
+164.56.223.254
+164.56.127.254
+164.56.127.253
+
+R6
+
+164.56.31.253
+
+R5
+
+164.56.128.0
+164.56.31.254
+164.56.191.254
+
+164.56.16.0
+
+R7
+3. On utilise toujours autant que possible les routes par défaut :
+• Table de R6 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.64.0
+
+255.255.192.0
+
+0.0.0.0
+
+164.56.32.0
+
+255.255.224.0
+
+0.0.0.0
+
+164.56.192.0
+
+255.255.224.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.127.253
+
+INFO - IUT Aix-en-Provence
+
+C. Pain-Barre, 2000-2009
+
+Corrigé du TP 2 Réseaux
+
+Version du 24/12/2010
+
+16/16
+
+• Table de R7 :
+Destination
+
+Masque
+
+Routeur
+
+164.56.16.0
+
+255.255.240.0
+
+0.0.0.0
+
+164.56.128.0
+
+255.255.192.0
+
+0.0.0.0
+
+0.0.0.0
+
+0.0.0.0
+
+164.56.31.253
+
+• Table de R5 :
+Destination
+
+C. Pain-Barre, 2000-2009
+
+Masque
+
+Routeur
+
+117.0.0.0
+
+255.0.0.0
+
+0.0.0.0
+
+164.56.64.0
+
+255.255.192.0
+
+0.0.0.0
+
+164.56.16.0
+
+255.255.240.0
+
+0.0.0.0
+
+164.56.32.0
+
+255.255.224.0
+
+164.56.127.254
+
+164.56.128.0
+
+255.255.192.0
+
+164.56.31.254
+
+164.56.192.0
+
+255.255.224.0
+
+164.56.127.254
+
+0.0.0.0
+
+0.0.0.0
+
+117.255.255.253
+
+INFO - IUT Aix-en-Provence
+
+

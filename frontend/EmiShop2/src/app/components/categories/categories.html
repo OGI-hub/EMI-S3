@@ -1,0 +1,25 @@
+<!-- Categories Sidebar -->
+<aside class="categories-sidebar">
+    <h5><i class="bi bi-grid-3x3-gap-fill"></i> Catégories</h5>
+    <ul class="list-group list-group-flush">
+        <!-- All Categories Option -->
+        <li class="list-group-item" [class.active]="selectedCategory === null" (click)="selectCategory(null)"
+            role="button" tabindex="0" (keyup.enter)="selectCategory(null)">
+            <a class="text-decoration-none">
+                <i class="bi bi-collection"></i>
+                <span>Toutes les catégories</span>
+            </a>
+        </li>
+
+        <!-- Dynamic Categories from API -->
+        <ng-container *ngIf="categories$ | async as categories">
+            <li class="list-group-item" *ngFor="let cat of categories" [class.active]="selectedCategory === cat.slug"
+                (click)="selectCategory(cat.slug)" role="button" tabindex="0" (keyup.enter)="selectCategory(cat.slug)">
+                <a class="text-decoration-none">
+                    <i class="bi bi-tag-fill"></i>
+                    <span>{{ cat.name }}</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</aside>

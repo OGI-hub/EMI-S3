@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+.footer {
+  background: #0e0e0e;
+}
+
+.footer h6 {
+  letter-spacing: 0.08em;
+}

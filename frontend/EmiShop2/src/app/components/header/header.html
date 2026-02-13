@@ -1,0 +1,62 @@
+<!-- Header with Premium Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid px-4">
+    <!-- Logo -->
+    <a class="navbar-brand" routerLink="/">
+      <i class="bi bi-shop"></i>
+      <span>EmiShop</span>
+    </a>
+
+    <!-- Hamburger menu for mobile -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto gap-1">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="bi bi-house-door me-1"></i>Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+            <i class="bi bi-percent me-1"></i>Promotions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+            <i class="bi bi-stars me-1"></i>Nouveautés
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+            <i class="bi bi-trophy me-1"></i>Meilleures ventes
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right side icons -->
+      <ul class="navbar-nav gap-1">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth">
+            <i class="bi bi-person-circle me-1"></i>Mon compte
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+            <i class="bi bi-heart me-1"></i>Favoris
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/panier">
+            <i class="bi bi-cart3 me-1"></i>Panier
+            <span class="badge bg-danger rounded-pill" *ngIf="cartCount() > 0">{{ cartCount() }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
