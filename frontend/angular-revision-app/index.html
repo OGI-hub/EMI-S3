@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Angular Exam Prep</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Animated Background -->
+        <div class="bg-gradient"></div>
+        <div class="bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🅰️</span>
+                <h1>Angular Exam Prep</h1>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="globalProgress"></div>
+                </div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-section="home">
+                <span class="tab-icon">🏠</span>
+                <span class="tab-text">Accueil</span>
+            </button>
+            <button class="nav-tab" data-section="reflexes">
+                <span class="tab-icon">🧠</span>
+                <span class="tab-text">Réflexes</span>
+            </button>
+            <button class="nav-tab" data-section="quiz">
+                <span class="tab-icon">📝</span>
+                <span class="tab-text">Quiz</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Home Section -->
+            <section class="section active" id="home">
+                <div class="hero-card glass-card">
+                    <h2>🎯 Prêt pour l'examen Angular ?</h2>
+                    <p>Révise efficacement avec des réflexes intuitifs et des quiz difficiles.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number" id="totalReflexes">44</span>
+                            <span class="stat-label">Réflexes</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="totalDistinctions">6</span>
+                            <span class="stat-label">Distinctions</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="totalQuestions">200</span>
+                            <span class="stat-label">Questions QCM</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="totalTraps">8</span>
+                            <span class="stat-label">Pièges à éviter</span>
+                        </div>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="startQuickRevision()">
+                            ⚡ Révision rapide
+                        </button>
+                        <button class="btn btn-secondary" onclick="startFullQuiz()">
+                            📝 Quiz complet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Important Notice Card -->
+                <div class="warning-card glass-card">
+                    <h3>⚠️ Ce qui manque pour un examen COMPLET</h3>
+                    <div class="warning-content">
+                        <div class="warning-item">
+                            <h4>💻 Écriture de code</h4>
+                            <p>L'app ne vous fait pas <strong>écrire</strong> du code Angular. Si l'examen comporte une
+                                partie où vous devez :</p>
+                            <ul>
+                                <li>Créer un composant</li>
+                                <li>Implémenter un service/interceptor</li>
+                                <li>Corriger du code bugué</li>
+                                <li>Écrire des templates avec directives</li>
+                            </ul>
+                            <p class="warning-action">→ <strong>Vous devez pratiquer séparément</strong> avec un projet
+                                Angular réel.</p>
+                        </div>
+                        <div class="warning-item">
+                            <h4>🛠️ Exercices pratiques</h4>
+                            <p>Emishop</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF Holy Grail Card -->
+                <div class="pdf-card glass-card">
+                    <h3>📄 Holy Grail - Code Angular Essentiel</h3>
+                    <p class="pdf-subtitle">Le minimum vital de code à connaître par cœur</p>
+                    <div class="pdf-container">
+                        <iframe src="https://www.pdffiller.com/s/VFIM8EaFeT" width="100%" height="600" frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <a href="https://www.pdffiller.com/s/VFIM8EaFeT" target="_blank" class="btn btn-secondary pdf-link">
+                        🔗 Ouvrir en plein écran
+                    </a>
+                </div>
+
+                <!-- PDF Résumé Examen Card -->
+                <div class="pdf-card glass-card">
+                    <h3>🎯 Résumé Examen & QCM</h3>
+                    <p class="pdf-subtitle">L'essentiel pour valider l'examen</p>
+                    <div class="pdf-container">
+                        <iframe src="https://www.pdffiller.com/s/qSReSoUzSQ" width="100%" height="600" frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <a href="https://www.pdffiller.com/s/qSReSoUzSQ" target="_blank" class="btn btn-secondary pdf-link">
+                        🔗 Ouvrir en plein écran
+                    </a>
+                </div>
+
+            </section>
+
+            <!-- Réflexes Section -->
+            <section class="section" id="reflexes">
+                <div class="section-header">
+                    <h2>🧠 Réflexes "Si tu vois X → Pense Y"</h2>
+                    <p class="section-subtitle">Associations rapides pour l'examen</p>
+                </div>
+
+                <div class="reflexes-grid" id="reflexesGrid">
+                    <!-- Filled by JS -->
+                </div>
+            </section>
+
+            <!-- Distinctions Section -->
+            <section class="section" id="distinctions">
+                <div class="section-header">
+                    <h2>⚖️ Distinctions Critiques</h2>
+                    <p class="section-subtitle">Les concepts qui se ressemblent mais sont différents</p>
+                </div>
+
+                <div class="distinctions-grid" id="distinctionsGrid">
+                    <!-- Filled by JS -->
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="section" id="quiz">
+                <div class="section-header">
+                    <h2>📝 Quiz QCM</h2>
+                    <p class="section-subtitle">Choisis ta section d'entraînement</p>
+                </div>
+
+                <!-- Quiz Section Selector -->
+                <div class="quiz-sections glass-card" id="quizSections">
+                    <div class="section-cards">
+                        <div class="section-card" onclick="selectQuizSection(1)">
+                            <div class="section-icon">📚</div>
+                            <h3>Section 1: Cours</h3>
+                            <p>Questions du cours Angular Part 1 & 2</p>
+                            <span class="question-count">40 Q</span>
+                        </div>
+                        <div class="section-card" onclick="selectQuizSection(2)">
+                            <div class="section-icon">📝</div>
+                            <h3>Section 2: Examens</h3>
+                            <p>Questions d'anciens examens + pièges</p>
+                            <span class="question-count">60 Q</span>
+                        </div>
+                        <div class="section-card" onclick="selectQuizSection(3)">
+                            <div class="section-icon">📸</div>
+                            <h3>Section 3: Screenshots</h3>
+                            <p>Questions des captures d'écran</p>
+                            <span class="question-count">12 Q</span>
+                        </div>
+                        <div class="section-card section-card-deep" onclick="selectQuizSection(6)">
+                            <div class="section-badge">🔥 NOUVEAU</div>
+                            <div class="section-icon">⚡</div>
+                            <h3>Section 6: Code Approfondi</h3>
+                            <p>5 Piliers : Routing, Binding, RxJS, Forms, DI</p>
+                            <span class="question-count">50 Q</span>
+                        </div>
+                        <div class="section-card" onclick="selectQuizSection(7)">
+                            <div class="section-badge">🎯 FOCUS</div>
+                            <div class="section-icon">🧩</div>
+                            <h3>Section 7: Focus Examens</h3>
+                            <p>Navigation, HTTP, Pipes, Dynamique, Directives</p>
+                            <span class="question-count">26 Q</span>
+                        </div>
+                    </div>
+                    <div class="section-all">
+                        <button class="btn btn-primary btn-lg" onclick="selectQuizSection(0)">
+                            🚀 TOUT RÉVISER (200 questions)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Start Screen -->
+                <div class="quiz-start glass-card" id="quizStart" style="display: none;">
+                    <h3 id="quizSectionTitle">🎯 Prêt pour le Quiz ?</h3>
+                    <p id="quizSectionDesc">Questions difficiles niveau examen</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="checkbox" id="shuffleQuestions" checked>
+                            <span>🔀 Mélanger les questions</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="checkbox" id="showExplanations" checked>
+                            <span>💡 Afficher explications</span>
+                        </label>
+                        <label class="quiz-option exam-mode-option">
+                            <input type="checkbox" id="examMode">
+                            <span>⏱️ Mode Examen (10s/question)</span>
+                        </label>
+                    </div>
+                    <div class="quiz-start-buttons">
+                        <button class="btn btn-secondary" onclick="backToSections()">
+                            ← Retour
+                        </button>
+                        <button class="btn btn-primary btn-lg" onclick="startQuiz()">
+                            Commencer le Quiz
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Active -->
+                <div class="quiz-active" id="quizActive" style="display: none;">
+                    <div class="quiz-progress glass-card">
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                        </div>
+                        <span class="quiz-progress-text">
+                            Question <span id="currentQuestion">1</span>/<span id="totalQuizQuestions">30</span>
+                        </span>
+                        <span class="quiz-score">
+                            Score: <span id="quizScore">0</span>
+                        </span>
+                        <span class="quiz-timer" id="quizTimer" style="display: none;">
+                            ⏱️ <span id="timerCount">10</span>s
+                        </span>
+                    </div>
+
+                    <div class="question-card glass-card" id="questionCard">
+                        <div class="question-category" id="questionCategory">Définitions</div>
+                        <h3 class="question-text" id="questionText"></h3>
+                        <div class="options-list" id="optionsList">
+                            <!-- Filled by JS -->
+                        </div>
+                        <div class="skip-button-container">
+                            <button class="btn btn-skip" onclick="prevQuestion()" id="prevBtn" disabled>
+                                ⬅️ Précédente
+                            </button>
+                            <button class="btn btn-skip" onclick="skipQuestion()">
+                                ⏭️ Passer
+                            </button>
+                            <button class="btn btn-skip" onclick="randomQuestion()">
+                                🔀 Aléatoire
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="explanation-card glass-card" id="explanationCard" style="display: none;">
+                        <div class="explanation-section">
+                            <h4>💡 Pourquoi cette réponse ?</h4>
+                            <p id="explanationText"></p>
+                        </div>
+
+                        <div class="explanation-section trap-section" id="trapSection" style="display: none;">
+                            <h4>⚠️ Le Piège</h4>
+                            <p id="trapText"></p>
+                        </div>
+
+                        <div class="explanation-section debunk-section" id="debunkSection" style="display: none;">
+                            <h4>❌ Pourquoi les autres sont fausses ?</h4>
+                            <ul id="wrongReasonsList"></ul>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="nextQuestion()">
+                            Question suivante →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div class="quiz-results glass-card" id="quizResults" style="display: none;">
+                    <div class="results-header">
+                        <span class="results-emoji" id="resultsEmoji">🎉</span>
+                        <h2 id="resultsTitle">Excellent !</h2>
+                    </div>
+                    <div class="results-score">
+                        <span class="score-big" id="finalScore">0</span>
+                        <span class="score-total">/ 30</span>
+                    </div>
+                    <div class="results-percentage" id="resultsPercentage">0%</div>
+                    <div class="results-breakdown" id="resultsBreakdown">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div class="results-actions">
+                        <button class="btn btn-primary" onclick="restartQuiz()">
+                            🔄 Refaire le Quiz
+                        </button>
+                        <button class="btn btn-secondary" onclick="reviewMistakes()">
+                            📋 Revoir les erreurs
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Traps Section -->
+            <section class="section" id="traps">
+                <div class="section-header">
+                    <h2>⚠️ Pièges à Éviter</h2>
+                    <p class="section-subtitle">Les erreurs les plus fréquentes</p>
+                </div>
+
+                <div class="traps-list" id="trapsList">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div class="reflexes-card glass-card">
+                    <h3>🧠 Réflexes "Si tu vois X → Pense Y"</h3>
+                    <div class="reflexes-grid" id="reflexesGrid">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🧠 Basé sur le cours Angular - Préparation Examen</p>
+            <p>🦸<a href="https://instagram.com/itssamifz" target="_blank" class="footer-link">@itssamifz</a> │ الله
+                يسهّل عليا وعليكم 🤲</p>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="data-section1.js"></script>
+    <script src="data-section2.js"></script>
+    <script src="data-section3.js"></script>
+    <script src="data-section4.js"></script>
+    <script src="data-section5.js"></script>
+    <script src="data-section6.js"></script>
+    <script src="data-section7.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

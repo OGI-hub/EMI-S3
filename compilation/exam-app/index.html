@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compilation Master - Préparation Examen EMI</title>
+    <meta name="description"
+        content="Application interactive pour maîtriser la compilation et théorie des langages - EMI 2025-2026">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">Compilation <br><small>Master</small></span>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item active" data-section="accueil">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Accueil</span>
+            </li>
+            <li class="nav-item" data-section="astuces">
+                <span class="nav-icon">💡</span>
+                <span class="nav-label">Astuces Examen</span>
+                <span class="nav-badge new">Essentiel</span>
+            </li>
+            <li class="nav-item" data-section="td">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">Exercices TDs</span>
+            </li>
+            <li class="nav-item" data-section="qcm">
+                <span class="nav-icon">❓</span>
+                <span class="nav-label">QCM Interactif</span>
+            </li>
+            <li class="nav-item" data-section="examen">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Simulation Examen</span>
+            </li>
+            <li class="nav-item" data-section="prediction">
+                <span class="nav-icon">🔮</span>
+                <span class="nav-label">Prédiction Examen</span>
+            </li>
+            <li class="nav-item" data-section="progres">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Ma Progression</span>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="xp-display">
+                <div class="xp-bar">
+                    <div class="xp-fill" id="xpFill"></div>
+                </div>
+                <span class="xp-text"><span id="currentXP">0</span> XP</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un concept..." id="searchInput">
+            </div>
+            <div class="user-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-value" id="streakCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-value" id="levelDisplay">Niveau 1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <div class="content-area" id="contentArea">
+            <!-- Content will be loaded dynamically -->
+        </div>
+    </main>
+
+    <!-- Modal for Solutions -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modalClose">×</button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="data/astuces-examen.js"></script>
+    <script src="data/td-exercises.js"></script>
+    <script src="data/questions.js"></script>
+    <script src="data/exam-simulation.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

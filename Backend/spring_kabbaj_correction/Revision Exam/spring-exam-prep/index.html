@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Exam Prep</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <h1>🍃 Spring Prep</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-section="cours" class="nav-link active">📚 Cours de Base</a></li>
+                <li><a href="#" data-section="topics" class="nav-link">📋 Topics & Traps</a></li>
+                <li><a href="#" data-section="exercises" class="nav-link">✏️ Exercices</a></li>
+                <li><a href="#" data-section="mockexams" class="nav-link">📝 Mock Exams</a></li>
+                <li><a href="#" data-section="cheatsheet" class="nav-link">⚡ Cheatsheet</a></li>
+                <li><a href="#" data-section="rapid" class="nav-link">🚀 Révision Rapide</a></li>
+            </ul>
+            <div class="keyboard-hints">
+                <p><kbd>H</kbd> Hint</p>
+                <p><kbd>S</kbd> Solution</p>
+                <p><kbd>N</kbd> Next</p>
+                <p><kbd>R</kbd> Random Trap</p>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Cours de Base Section -->
+            <section id="cours" class="section active">
+                <h2>📚 Cours de Base — Réflexes Essentiels</h2>
+                <p class="section-intro">43 réflexes extraits du cours2024.pdf. Mémorise ces patterns!</p>
+
+                <div class="cours-grid">
+                    <!-- Spring Boot Fundamentals -->
+                    <div class="cours-category">
+                        <h3>🚀 Spring Boot Fundamentals</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">@SpringBootApplication</span>
+                                <span class="arrow">→</span>
+                                <span class="then">= @Configuration + @EnableAutoConfiguration + @ComponentScan</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Main class + SpringApplication.run()</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Point d'entrée, doit avoir @SpringBootApplication</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">spring-boot-starter-web</span>
+                                <span class="arrow">→</span>
+                                <span class="then">= Spring MVC + Tomcat + JSON</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">spring-boot-starter-data-jpa</span>
+                                <span class="arrow">→</span>
+                                <span class="then">= JPA + Hibernate + JDBC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dependency Injection -->
+                    <div class="cours-category">
+                        <h3>💉 Injection de Dépendances</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Couplage fort avec new</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Problème! Utiliser DI à la place</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">@Autowired sur un champ</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Spring injecte automatiquement</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">@Service, @Repository, @Controller</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Composants gérés par Spring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JPA Entity Mapping -->
+                    <div class="cours-category">
+                        <h3>🗄️ JPA Entity Mapping</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Classe à persister</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Entity + @Id</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">ID auto-incrémenté</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@GeneratedValue(strategy = IDENTITY)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Champ non persisté</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Transient</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Champ enum</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Enumerated(EnumType.STRING)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JPA Relations -->
+                    <div class="cours-category">
+                        <h3>🔗 Relations JPA</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">OneToOne unidirectionnel</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@OneToOne sur le propriétaire</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">OneToOne bidirectionnel</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Propriétaire: @OneToOne, Autre: @OneToOne(mappedBy)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">ManyToOne unidirectionnel</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@ManyToOne sur l'enfant → FK dans table enfant</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">ManyToOne/OneToMany bidirectionnel</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Enfant: @ManyToOne, Parent: @OneToMany(mappedBy)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">ManyToMany</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Propriétaire: @ManyToMany + @JoinTable, Autre: mappedBy</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Classe d'association</span>
+                                <span class="arrow">→</span>
+                                <span class="then">2x @ManyToOne + clé composite @EmbeddedId</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JPA Inheritance -->
+                    <div class="cours-category">
+                        <h3>👨‍👧‍👦 Héritage JPA</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Héritage JOINED</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Parent: @Inheritance(strategy = JOINED) → tables séparées</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Héritage SINGLE_TABLE</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Une seule table avec discriminateur</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">TABLE_PER_CLASS + IDENTITY</span>
+                                <span class="arrow">→</span>
+                                <span class="then">❌ Ne fonctionne pas!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spring Data JPA -->
+                    <div class="cours-category">
+                        <h3>📦 Spring Data JPA</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Interface Repository</span>
+                                <span class="arrow">→</span>
+                                <span class="then">extends JpaRepository&lt;Entity, IdType&gt;</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Requête par nom de méthode</span>
+                                <span class="arrow">→</span>
+                                <span class="then">findByNom(), findByNomAndPrenom()</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Requête personnalisée JPQL</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Query("from Entity e where...")</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Méthodes héritées CRUD</span>
+                                <span class="arrow">→</span>
+                                <span class="then">findAll(), findById(id), save(e), deleteById(id)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Tri des résultats</span>
+                                <span class="arrow">→</span>
+                                <span class="then">findAll(Sort.by("nom")) ou findAll(Sort.by(Direction.DESC,
+                                    "date"))</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Pagination</span>
+                                <span class="arrow">→</span>
+                                <span class="then">findAll(PageRequest.of(0, 10)) → retourne Page&lt;Entity&gt;</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Forcer flush immédiat</span>
+                                <span class="arrow">→</span>
+                                <span class="then">saveAndFlush(entity), flush()</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Suppression en lot (performance)</span>
+                                <span class="arrow">→</span>
+                                <span class="then">deleteAllInBatch(), deleteAllByIdInBatch(ids)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Vérifier existence</span>
+                                <span class="arrow">→</span>
+                                <span class="then">existsById(id) → boolean</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Compter les entités</span>
+                                <span class="arrow">→</span>
+                                <span class="then">count() → long</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">findBy retourne Optional</span>
+                                <span class="arrow">→</span>
+                                <span class="then">findByNom("x") peut retourner Optional&lt;Entity&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spring MVC/REST -->
+                    <div class="cours-category">
+                        <h3>🌐 Spring MVC / REST</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">API REST Controller</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@RestController + @RequestMapping("/path")</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">GET toutes entités</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@GetMapping + return List&lt;Entity&gt;</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">GET par ID</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@GetMapping("/{id}") + @PathVariable</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">POST créer</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@PostMapping + @RequestBody Entity</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">PUT modifier</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@PutMapping("/{id}") + @PathVariable + @RequestBody</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">DELETE supprimer</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@DeleteMapping("/{id}") + @PathVariable</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Path vs Query param</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Path: /users/{id}, Query: /users?id=1</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Forcer JSON avec @Controller</span>
+                                <span class="arrow">→</span>
+                                <span class="then">Ajouter @ResponseBody sur la méthode</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">@RestController</span>
+                                <span class="arrow">→</span>
+                                <span class="then">= @Controller + @ResponseBody (sur toutes méthodes)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Retourner status HTTP</span>
+                                <span class="arrow">→</span>
+                                <span class="then">ResponseEntity.ok(entity) ou ResponseEntity.notFound().build()</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">CORS global</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@CrossOrigin sur controller ou config WebMvcConfigurer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configuration Spring Boot -->
+                    <div class="cours-category">
+                        <h3>⚙️ Configuration Spring Boot</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Activer un profil</span>
+                                <span class="arrow">→</span>
+                                <span class="then">spring.profiles.active=dev (dans application.properties)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Fichier profil spécifique</span>
+                                <span class="arrow">→</span>
+                                <span class="then">application-dev.properties, application-prod.properties</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Port serveur</span>
+                                <span class="arrow">→</span>
+                                <span class="then">server.port=8081</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Context path</span>
+                                <span class="arrow">→</span>
+                                <span class="then">server.servlet.context-path=/api</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Datasource H2</span>
+                                <span class="arrow">→</span>
+                                <span class="then">spring.datasource.url=jdbc:h2:mem:testdb</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Console H2</span>
+                                <span class="arrow">→</span>
+                                <span class="then">spring.h2.console.enabled=true → /h2-console</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">JPA auto DDL</span>
+                                <span class="arrow">→</span>
+                                <span class="then">spring.jpa.hibernate.ddl-auto=create/update/none</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Afficher SQL</span>
+                                <span class="arrow">→</span>
+                                <span class="then">spring.jpa.show-sql=true</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Injecter valeur config</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Value("${ma.propriete}") private String prop;</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Bean conditionnel par profil</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Profile("dev") sur @Bean ou @Component</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Annotations de Stéréotype -->
+                    <div class="cours-category">
+                        <h3>🏷️ Annotations Stéréotype</h3>
+                        <div class="reflex-list">
+                            <div class="reflex-item">
+                                <span class="if">Classe métier logique</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Service</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Accès données</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Repository (traduit exceptions DB)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Controller web/MVC</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Controller (retourne vues)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Controller REST API</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@RestController (retourne JSON)</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Composant générique</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Component</span>
+                            </div>
+                            <div class="reflex-item">
+                                <span class="if">Classe de configuration</span>
+                                <span class="arrow">→</span>
+                                <span class="then">@Configuration + @Bean methods</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Topics & Traps Section -->
+            <section id="topics" class="section">
+                <h2>📋 Topics & Traps</h2>
+
+                <div class="filter-bar">
+                    <label>Poids Exam:</label>
+                    <select id="weight-filter">
+                        <option value="all">Tous</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+                <div class="traps-container">
+                    <h3>🪤 Pièges Fréquents</h3>
+                    <div class="trap-list" id="trap-list">
+                        <!-- Traps will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <button class="random-trap-btn" id="random-trap-btn">🎲 Piège Aléatoire</button>
+
+                <div class="random-trap-display" id="random-trap-display" style="display: none;">
+                    <h4>🪤 Piège:</h4>
+                    <p id="trap-text"></p>
+                    <h4>❌ Pourquoi c'est faux:</h4>
+                    <p id="trap-why"></p>
+                    <h4>✅ Réflexe correct:</h4>
+                    <p id="trap-reflex"></p>
+                </div>
+            </section>
+
+            <!-- Exercises Section -->
+            <section id="exercises" class="section">
+                <h2>✏️ Exercices — Code à Compléter</h2>
+
+                <div class="filter-bar">
+                    <label>Domaine:</label>
+                    <select id="domain-filter">
+                        <option value="all">Tous</option>
+                        <option value="training">Training</option>
+                        <option value="aeroport">Aéroport</option>
+                        <option value="dossier-medical">Dossier Médical</option>
+                        <option value="gestion-notes">Gestion Notes</option>
+                        <option value="mediatheque">Médiathèque</option>
+                    </select>
+
+                    <label>Difficulté:</label>
+                    <select id="difficulty-filter">
+                        <option value="all">Toutes</option>
+                        <option value="Easy">Facile</option>
+                        <option value="Medium">Moyen</option>
+                        <option value="Hard">Difficile</option>
+                    </select>
+
+                    <label>Topic:</label>
+                    <select id="topic-filter">
+                        <option value="all">Tous</option>
+                        <option value="entity-annotation">Entity</option>
+                        <option value="relation">Relations</option>
+                        <option value="composite-key">Clé Composite</option>
+                        <option value="inheritance">Héritage</option>
+                        <option value="service">Service</option>
+                        <option value="controller">Controller</option>
+                    </select>
+                </div>
+
+                <div class="exercise-container" id="exercise-container">
+                    <div class="exercise-header">
+                        <span class="exercise-badge" id="exercise-domain">Domain</span>
+                        <span class="exercise-badge" id="exercise-difficulty">Difficulty</span>
+                        <span class="exercise-badge" id="exercise-weight">Weight</span>
+                        <span class="exercise-counter" id="exercise-counter">1 / 25</span>
+                    </div>
+
+                    <h3 id="exercise-statement">Chargement...</h3>
+
+                    <div class="code-block">
+                        <h4>📝 Code à compléter:</h4>
+                        <pre id="starter-code"></pre>
+                    </div>
+
+                    <div class="hints-container" id="hints-container" style="display: none;">
+                        <h4>💡 Indices:</h4>
+                        <ul id="hints-list"></ul>
+                    </div>
+
+                    <div class="solution-container" id="solution-container" style="display: none;">
+                        <h4>✅ Solution:</h4>
+                        <pre id="solution-code"></pre>
+                        <div class="explanation">
+                            <h4>📖 Explication:</h4>
+                            <p id="explanation-text"></p>
+                        </div>
+                        <div class="traps-warning" id="exercise-traps">
+                            <h4>⚠️ Pièges à éviter:</h4>
+                            <ul id="exercise-traps-list"></ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-buttons">
+                        <button class="btn btn-hint" id="hint-btn">💡 Indice (H)</button>
+                        <button class="btn btn-solution" id="solution-btn">✅ Solution (S)</button>
+                        <button class="btn btn-next" id="next-btn">➡️ Suivant (N)</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mock Exams Section -->
+            <section id="mockexams" class="section">
+                <h2>📝 Examens Blancs</h2>
+                <p class="section-intro">9 examens complets style papier avec barème. Cliquez sur les TODO pour révéler
+                    la correction!</p>
+
+                <div class="mock-exam-list">
+                    <div class="mock-exam-card" data-exam="1">
+                        <h3>📄 Examen Blanc #1</h3>
+                        <p>Thème: Gestion de Formations</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="1">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="2">
+                        <h3>📄 Examen Blanc #2</h3>
+                        <p>Thème: Bibliothèque</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="2">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="3">
+                        <h3>📄 Examen Blanc #3</h3>
+                        <p>Thème: Aéroport (Clé Composite)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="3">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="4">
+                        <h3>📄 Examen Blanc #4</h3>
+                        <p>Thème: Gestion des Notes (ManyToMany)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="4">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="5">
+                        <h3>📄 Examen Blanc #5</h3>
+                        <p>Thème: Dossier Médical (OneToOne)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="5">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="6">
+                        <h3>📄 Examen Blanc #6</h3>
+                        <p>Thème: Bibliothèque (@Column + Relations)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="6">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="7">
+                        <h3>📄 Examen Blanc #7</h3>
+                        <p>Thème: Notes Étudiant (@Transient + ManyToOne)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="7">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="8">
+                        <h3>📄 Examen Blanc #8</h3>
+                        <p>Thème: RH - Héritage JOINED</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="8">Commencer</button>
+                    </div>
+                    <div class="mock-exam-card" data-exam="9">
+                        <h3>📄 Examen Blanc #9</h3>
+                        <p>Thème: Paiements (TABLE_PER_CLASS ⚠️)</p>
+                        <p>Durée: 1h30 | Points: 20</p>
+                        <button class="btn btn-start-exam" data-exam="9">Commencer</button>
+                    </div>
+                </div>
+
+                <div class="mock-exam-content" id="mock-exam-content" style="display: none;">
+                    <!-- Mock exam content loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Cheatsheet Section -->
+            <section id="cheatsheet" class="section">
+                <h2>⚡ Cheatsheet — Annotations Essentielles</h2>
+
+                <div class="cheatsheet-grid">
+                    <div class="cheat-card">
+                        <h4>Entity</h4>
+                        <pre>@Entity
+@Id
+@GeneratedValue(strategy = IDENTITY)</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>ManyToOne</h4>
+                        <pre>@ManyToOne
+@JoinColumn(name = "fk_col")</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>OneToMany</h4>
+                        <pre>@OneToMany(mappedBy = "field")
+@JsonIgnore</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>ManyToMany (Owner)</h4>
+                        <pre>@ManyToMany
+@JoinTable(name = "...",
+  joinColumns = @JoinColumn(...),
+  inverseJoinColumns = ...)</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Composite Key</h4>
+                        <pre>// PK class:
+@Embeddable
+
+// Entity:
+@EmbeddedId</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Inheritance</h4>
+                        <pre>@Entity
+@Inheritance(strategy = JOINED)</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Repository</h4>
+                        <pre>extends JpaRepository&lt;E, Long&gt;</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Service</h4>
+                        <pre>@Service
+@Autowired
+repo.findById(id).orElse(null)
+repo.save(entity)
+repo.deleteById(id)</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Controller GET</h4>
+                        <pre>@RestController
+@RequestMapping("/path")
+@GetMapping("/{id}")
+@PathVariable Long id</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Controller POST</h4>
+                        <pre>@PostMapping("/add")
+@RequestBody Entity e</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Controller PUT</h4>
+                        <pre>@PutMapping("/update/{id}")
+@PathVariable + @RequestBody</pre>
+                    </div>
+                    <div class="cheat-card">
+                        <h4>Controller DELETE</h4>
+                        <pre>@DeleteMapping("/delete/{id}")
+@PathVariable Long id</pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rapid Revision Section -->
+            <section id="rapid" class="section">
+                <h2>🚀 Révision Rapide</h2>
+                <p class="section-intro">Pièges + Réflexes + 10 exercices les plus rapides</p>
+
+                <div class="rapid-mode-container">
+                    <div class="rapid-traps">
+                        <h3>🪤 Pièges Essentiels (Top 5)</h3>
+                        <div class="trap-card">
+                            <span class="trap-name">❌ Oublier @Entity</span>
+                            <span class="trap-fix">→ Toujours @Entity sur la classe</span>
+                        </div>
+                        <div class="trap-card">
+                            <span class="trap-name">❌ @Id sans @GeneratedValue</span>
+                            <span class="trap-fix">→ Les deux ensemble</span>
+                        </div>
+                        <div class="trap-card">
+                            <span class="trap-name">❌ Mauvais mappedBy</span>
+                            <span class="trap-fix">→ = nom du champ dans l'AUTRE classe</span>
+                        </div>
+                        <div class="trap-card">
+                            <span class="trap-name">❌ Oublier @RequestBody</span>
+                            <span class="trap-fix">→ Toujours sur POST/PUT body</span>
+                        </div>
+                        <div class="trap-card">
+                            <span class="trap-name">❌ findById() sans .orElse()</span>
+                            <span class="trap-fix">→ Retourne Optional, pas Entity</span>
+                        </div>
+                    </div>
+
+                    <div class="rapid-exercises">
+                        <h3>⚡ 10 Exercices Express</h3>
+                        <div id="rapid-exercise-list">
+                            <!-- Loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

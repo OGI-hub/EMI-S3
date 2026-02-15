@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Résumé QCM CI/CD - Révision Rapide</title>
+    <style>
+        @media print {
+            .question {
+                page-break-inside: avoid;
+            }
+
+            body {
+                font-size: 10pt;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.4;
+            padding: 20px;
+            background: #fff;
+            color: #1a1a2e;
+        }
+
+        h1 {
+            text-align: center;
+            color: #16213e;
+            margin-bottom: 10px;
+            font-size: 24px;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            columns: 3;
+            column-gap: 20px;
+        }
+
+        .toc h2 {
+            column-span: all;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #16213e;
+        }
+
+        .toc-item {
+            font-size: 11px;
+            margin: 3px 0;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .question {
+            background: #f8f9fa;
+            border-left: 4px solid #0f3460;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .q-num {
+            display: inline-block;
+            background: #0f3460;
+            color: white;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 11px;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+
+        .q-text {
+            font-weight: 600;
+            color: #1a1a2e;
+            font-size: 11px;
+        }
+
+        .answer {
+            color: #155724;
+            background: #d4edda;
+            padding: 4px 8px;
+            border-radius: 3px;
+            margin: 6px 0;
+            font-size: 11px;
+            display: inline-block;
+        }
+
+        .traps {
+            font-size: 10px;
+            color: #721c24;
+        }
+
+        .trap {
+            background: #f8d7da;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 2px 4px 2px 0;
+            display: inline-block;
+        }
+
+        .trap-why {
+            color: #856404;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📚 Résumé QCM CI/CD</h1>
+    <p class="subtitle">116 Questions avec Réponses et Pièges à Éviter | Révision Rapide</p>
+
+    <div class="toc">
+        <h2>📋 Table des Matières</h2>
+        <div class="toc-item">1-5: Maven & .NET Basics</div>
+        <div class="toc-item">6-10: GitLab CI/CD Basics</div>
+        <div class="toc-item">11-16: Docker & Tomcat</div>
+        <div class="toc-item">17-26: SonarCloud & SAST</div>
+        <div class="toc-item">27-32: Git & Ansible</div>
+        <div class="toc-item">33-40: Jenkins & Pipelines</div>
+        <div class="toc-item">41-60: Commands Deep Dive</div>
+        <div class="toc-item">61-80: Security & Best Practices</div>
+        <div class="toc-item">81-100: Advanced Concepts</div>
+        <div class="toc-item">101-116: Tools & Commands</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🔧 Maven, .NET & Node.js (Q1-5)</div>
+
+        <div class="question">
+            <span class="q-num">1</span>
+            <span class="q-text">Fichier définissant dépendances/plugins Maven ?</span>
+            <div class="answer">✅ pom.xml (Project Object Model)</div>
+            <div class="traps">❌ <span class="trap">build.gradle</span> <span class="trap-why">(Gradle)</span> <span
+                    class="trap">package.json</span> <span class="trap-why">(Node)</span> <span
+                    class="trap">settings.xml</span> <span class="trap-why">(config globale)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">2</span>
+            <span class="q-text">Compiler Maven SANS tests ?</span>
+            <div class="answer">✅ mvn clean package -DskipTests</div>
+            <div class="traps">❌ <span class="trap">mvn compile</span> <span class="trap-why">(ne package pas)</span>
+                <span class="trap">--no-tests</span> <span class="trap-why">(syntaxe invalide)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">3</span>
+            <span class="q-text">Restaurer dépendances NuGet (.NET) ?</span>
+            <div class="answer">✅ dotnet restore</div>
+            <div class="traps">❌ <span class="trap">dotnet install</span> <span class="trap-why">(n'existe pas)</span>
+                <span class="trap">nuget restore</span> <span class="trap-why">(pas CLI standard)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">4</span>
+            <span class="q-text">Plugin Jenkins pour Maven ?</span>
+            <div class="answer">✅ Maven Integration</div>
+            <div class="traps">❌ <span class="trap">Maven Builder</span> <span class="trap">Apache Maven</span> <span
+                    class="trap">Build Maven</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">5</span>
+            <span class="q-text">Différence npm install vs npm ci ?</span>
+            <div class="answer">✅ npm ci = package-lock.json strict (CI/CD déterministe)</div>
+            <div class="traps">❌ <span class="trap">ci = devDeps only</span> <span class="trap-why">(faux, toutes
+                    deps)</span> <span class="trap">install plus rapide</span> <span class="trap-why">(inverse)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🔄 GitLab CI/CD (Q6-10)</div>
+
+        <div class="question">
+            <span class="q-num">6</span>
+            <span class="q-text">Mot-clé pour étapes du pipeline ?</span>
+            <div class="answer">✅ stages</div>
+            <div class="traps">❌ <span class="trap">phases</span> <span class="trap-why">(Maven)</span> <span
+                    class="trap">steps</span> <span class="trap-why">(Jenkins/GitHub)</span> <span
+                    class="trap">jobs</span> <span class="trap-why">(tâches, pas étapes)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">7</span>
+            <span class="q-text">Spécifier image Docker pour job ?</span>
+            <div class="answer">✅ image:</div>
+            <div class="traps">❌ <span class="trap">container:</span> <span class="trap">docker:</span> <span
+                    class="trap">from:</span> <span class="trap-why">(Dockerfile)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">8</span>
+            <span class="q-text">Clé 'artifacts' permet de ?</span>
+            <div class="answer">✅ Conserver/partager fichiers entre jobs/stages</div>
+            <div class="traps">❌ <span class="trap">télécharger deps</span> <span class="trap">variables env</span>
+                <span class="trap">cache Docker</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">9</span>
+            <span class="q-text">Image Docker pour Spring Boot ?</span>
+            <div class="answer">✅ maven:3.9-eclipse-temurin-17</div>
+            <div class="traps">❌ <span class="trap">openjdk:17</span> <span class="trap-why">(pas Maven)</span> <span
+                    class="trap">springboot:latest</span> <span class="trap-why">(n'existe pas)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">10</span>
+            <span class="q-text">Clé 'needs' fait quoi ?</span>
+            <div class="answer">✅ Exécuter job sans attendre fin du stage (DAG)</div>
+            <div class="traps">❌ <span class="trap">pré-requis système</span> <span class="trap">tags runner</span>
+                <span class="trap-why">(= tags:)</span> <span class="trap">secrets</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🐳 Docker & Tomcat (Q11-16)</div>
+
+        <div class="question">
+            <span class="q-num">11</span>
+            <span class="q-text">Vérifier Docker installé ?</span>
+            <div class="answer">✅ docker run hello-world</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">12</span>
+            <span class="q-text">Packaging pour Tomcat externe ?</span>
+            <div class="answer">✅ &lt;packaging&gt;war&lt;/packaging&gt;</div>
+            <div class="traps">❌ <span class="trap">jar</span> <span class="trap-why">(standalone)</span> <span
+                    class="trap">ear</span> <span class="trap-why">(Java EE)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">13</span>
+            <span class="q-text">Pourquoi spring-boot-starter-tomcat scope 'provided' ?</span>
+            <div class="answer">✅ Tomcat externe fournit déjà ces libs (évite conflits)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">14</span>
+            <span class="q-text">Classe pour init Spring Boot sur Servlet externe ?</span>
+            <div class="answer">✅ ServletInitializer extends SpringBootServletInitializer</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">15</span>
+            <span class="q-text">Dossier Tomcat pour .war ?</span>
+            <div class="answer">✅ /var/lib/tomcat/webapps/</div>
+            <div class="traps">❌ <span class="trap">/deploy/</span> <span class="trap">/applications/</span> <span
+                    class="trap">/wars/</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">16</span>
+            <span class="q-text">Récupérer artifacts d'un job build ?</span>
+            <div class="answer">✅ needs: [{job: 'build', artifacts: true}]</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🔍 SonarCloud & SAST (Q17-26)</div>
+
+        <div class="question">
+            <span class="q-num">17</span>
+            <span class="q-text">Variable pour token SonarCloud ?</span>
+            <div class="answer">✅ SONAR_TOKEN</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">18</span>
+            <span class="q-text">Goal Maven pour SonarCloud ?</span>
+            <div class="answer">✅ mvn sonar:sonar</div>
+            <div class="traps">❌ <span class="trap">sonar:analyze</span> <span class="trap">sonar:scan</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">19</span>
+            <span class="q-text">Propriété URL serveur Sonar ?</span>
+            <div class="answer">✅ -Dsonar.host.url</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">20</span>
+            <span class="q-text">Code Smell c'est quoi ?</span>
+            <div class="answer">✅ Problème de maintenabilité (pas un bug)</div>
+            <div class="traps">❌ <span class="trap">faille sécurité</span> <span class="trap-why">(=
+                    Vulnerability)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">21</span>
+            <span class="q-text">Config SonarCloud dans Jenkins ?</span>
+            <div class="answer">✅ Manage Jenkins → Configure System → SonarQube servers</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">22</span>
+            <span class="q-text">SAST signifie ?</span>
+            <div class="answer">✅ Static Application Security Testing</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">23</span>
+            <span class="q-text">CWE-89 = ?</span>
+            <div class="answer">✅ SQL Injection</div>
+            <div class="traps">❌ <span class="trap">XSS</span> <span class="trap-why">(= CWE-79)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">24</span>
+            <span class="q-text">Outil GitLab pour secrets hardcodés ?</span>
+            <div class="answer">✅ Gitleaks</div>
+            <div class="traps">❌ <span class="trap">Semgrep</span> <span class="trap-why">(SAST)</span> <span
+                    class="trap">Trivy</span> <span class="trap-why">(conteneurs)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">25</span>
+            <span class="q-text">Bonne pratique correction vulnérabilité ?</span>
+            <div class="answer">✅ 1 vulnérabilité = 1 branche = 1 MR</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">26</span>
+            <span class="q-text">Corriger secret dans .env versionné ?</span>
+            <div class="answer">✅ Ajouter .env au .gitignore + variables CI/CD</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🌿 Git & Ansible (Q27-32)</div>
+
+        <div class="question">
+            <span class="q-num">27</span>
+            <span class="q-text">Merge vs Rebase ?</span>
+            <div class="answer">✅ Rebase = historique linéaire | Merge = garde historique fusion</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">28</span>
+            <span class="q-text">Fichier Ansible pour hosts ?</span>
+            <div class="answer">✅ inventory</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">29</span>
+            <span class="q-text">Tester connectivité SSH Ansible ?</span>
+            <div class="answer">✅ ansible all -m ping</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">30</span>
+            <span class="q-text">Fichier YAML Ansible pour tâches ?</span>
+            <div class="answer">✅ Playbook</div>
+            <div class="traps">❌ <span class="trap">Runbook</span> <span class="trap">Recipe</span> <span
+                    class="trap-why">(Chef)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">31</span>
+            <span class="q-text">Module Ansible pour copier fichier ?</span>
+            <div class="answer">✅ copy</div>
+            <div class="traps">❌ <span class="trap">file</span> <span class="trap-why">(permissions)</span> <span
+                    class="trap">scp</span> <span class="trap-why">(cmd système)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">32</span>
+            <span class="q-text">Exécuter playbook via SSH dans Jenkinsfile ?</span>
+            <div class="answer">✅ sh 'ssh user@host ansible-playbook playbook.yml'</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">⚙️ Jenkins & Pipelines (Q33-40)</div>
+
+        <div class="question">
+            <span class="q-num">33</span>
+            <span class="q-text">Jenkins vs GitLab CI/CD format ?</span>
+            <div class="answer">✅ Jenkins = Jenkinsfile (Groovy) | GitLab = .gitlab-ci.yml (YAML)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">34</span>
+            <span class="q-text">Équivalent pom.xml pour Node.js ?</span>
+            <div class="answer">✅ package.json</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">35</span>
+            <span class="q-text">Équivalent 'mvn clean package' pour .NET ?</span>
+            <div class="answer">✅ dotnet restore && dotnet build --configuration Release</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">36</span>
+            <span class="q-text">Runner pour déployer sur Tomcat local ?</span>
+            <div class="answer">✅ Shell runner (accès direct services locaux)</div>
+            <div class="traps">❌ <span class="trap">Docker runner</span> <span class="trap-why">(isolé)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">37</span>
+            <span class="q-text">Restreindre job à branche main ?</span>
+            <div class="answer">✅ only: [main]</div>
+            <div class="traps">❌ <span class="trap">branch:</span> <span class="trap">restrict:</span> <span
+                    class="trap">when:</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">38</span>
+            <span class="q-text">Artifact en CI/CD = ?</span>
+            <div class="answer">✅ Fichier généré par build (JAR/WAR) à conserver</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">39</span>
+            <span class="q-text">GIT_DEPTH = ?</span>
+            <div class="answer">✅ Limiter commits clonés (shallow clone)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">40</span>
+            <span class="q-text">Empêcher push directs sur branche ?</span>
+            <div class="answer">✅ Allowed to push: No one</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">💻 Commandes Essentielles (Q41-60)</div>
+
+        <div class="question">
+            <span class="q-num">41</span>
+            <span class="q-text">Version Maven ?</span>
+            <div class="answer">✅ mvn -v</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">42</span>
+            <span class="q-text">Créer projet console .NET ?</span>
+            <div class="answer">✅ dotnet new console -n MonProjet</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">43</span>
+            <span class="q-text">Clé initiale Jenkins Linux ?</span>
+            <div class="answer">✅ /var/lib/jenkins/secrets/initialAdminPassword</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">44</span>
+            <span class="q-text">Où est pom.xml ?</span>
+            <div class="answer">✅ À la racine du projet</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">45</span>
+            <span class="q-text">Fichier .NET pour dépendances NuGet ?</span>
+            <div class="answer">✅ *.csproj</div>
+            <div class="traps">❌ <span class="trap">packages.config</span> <span class="trap-why">(ancien format)</span>
+            </div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">46</span>
+            <span class="q-text">Pourquoi stages séquentiels, jobs parallèles ?</span>
+            <div class="answer">✅ Garantir dépendances entre étapes (test après build)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">47</span>
+            <span class="q-text">script vs before_script ?</span>
+            <div class="answer">✅ before_script = avant chaque job | script = commandes principales</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">48</span>
+            <span class="q-text">Job build-dotnet commande ?</span>
+            <div class="answer">✅ dotnet restore && dotnet build --configuration Release</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">49</span>
+            <span class="q-text">Syntaxe stage Jenkinsfile ?</span>
+            <div class="answer">✅ stage('Build') { steps { } }</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">50</span>
+            <span class="q-text">Script shell dans Jenkins ?</span>
+            <div class="answer">✅ sh 'commande'</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">51</span>
+            <span class="q-text">Changer répertoire Jenkins ?</span>
+            <div class="answer">✅ dir('/chemin') { }</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">52</span>
+            <span class="q-text">bat vs sh ?</span>
+            <div class="answer">✅ sh = Unix/Linux | bat = Windows cmd</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">53</span>
+            <span class="q-text">Vérifier Tomcat actif ?</span>
+            <div class="answer">✅ systemctl status tomcat10</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">54</span>
+            <span class="q-text">Pourquoi port 80 nécessite root ?</span>
+            <div class="answer">✅ Ports &lt; 1024 sont privilégiés</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">55</span>
+            <span class="q-text">Dépendance scope 'provided' pour Tomcat ?</span>
+            <div class="answer">✅ spring-boot-starter-tomcat</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">56</span>
+            <span class="q-text">Copier WAR vers Tomcat ?</span>
+            <div class="answer">✅ sudo cp springboot-app/target/*.war /var/lib/tomcat10/webapps/</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">57</span>
+            <span class="q-text">Redémarrer Tomcat ?</span>
+            <div class="answer">✅ sudo systemctl restart tomcat10</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">58</span>
+            <span class="q-text">Pourquoi Shell runner pour Tomcat local ?</span>
+            <div class="answer">✅ Accès direct aux services locaux</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">59</span>
+            <span class="q-text">Variables CI/CD pour SonarCloud ?</span>
+            <div class="answer">✅ SONAR_TOKEN, SONAR_HOST_URL, SONAR_ORGANIZATION</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">60</span>
+            <span class="q-text">Pourquoi GIT_DEPTH: '0' pour Sonar ?</span>
+            <div class="answer">✅ Cloner tout l'historique Git (analyses avancées)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🔐 Sécurité & Best Practices (Q61-80)</div>
+
+        <div class="question">
+            <span class="q-num">61</span>
+            <span class="q-text">Bug vs Code Smell vs Vulnerability ?</span>
+            <div class="answer">✅ Bug = erreur | Code Smell = maintenabilité | Vulnerability = faille sécurité</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">62</span>
+            <span class="q-text">Token SonarCloud dans Jenkins ?</span>
+            <div class="answer">✅ Manage Jenkins → Credentials → Add (Secret text)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">63</span>
+            <span class="q-text">Injecter variables Sonar dans pipeline ?</span>
+            <div class="answer">✅ withSonarQubeEnv('SonarCloudServer')</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">64</span>
+            <span class="q-text">Pourquoi Sonar APRÈS build ?</span>
+            <div class="answer">✅ Besoin des .class pour certaines analyses</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">65</span>
+            <span class="q-text">Pourquoi branche 'develop' ?</span>
+            <div class="answer">✅ Intégrer/tester features avant production (main)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">66</span>
+            <span class="q-text">Comment SAST détecte SQL injection ?</span>
+            <div class="answer">✅ Analyse statique + patterns dangereux (concaténation strings)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">67</span>
+            <span class="q-text">Pourquoi .env JAMAIS commité ?</span>
+            <div class="answer">✅ Contient secrets (clés API, mots de passe)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">68</span>
+            <span class="q-text">Corriger SQL injection ?</span>
+            <div class="answer">✅ Requêtes paramétrées (PreparedStatement)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">69</span>
+            <span class="q-text">Outil GitLab SAST ?</span>
+            <div class="answer">✅ Semgrep</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">70</span>
+            <span class="q-text">Corriger secret hardcodé ?</span>
+            <div class="answer">✅ .gitignore + variable CI/CD masquée</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">71</span>
+            <span class="q-text">Option 'Masked' pour variable GitLab ?</span>
+            <div class="answer">✅ Project → Settings → CI/CD → Variables</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">72</span>
+            <span class="q-text">Pourquoi 1 vuln = 1 branche = 1 MR ?</span>
+            <div class="answer">✅ Revue ciblée, rollback facile, traçabilité</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">73</span>
+            <span class="q-text">Pourquoi Ansible utilise SSH ?</span>
+            <div class="answer">✅ Agentless (pas d'agent à installer/maintenir)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">74</span>
+            <span class="q-text">Clé publique vs privée SSH ?</span>
+            <div class="answer">✅ Publique = partagée serveurs | Privée = secrète locale</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">75</span>
+            <span class="q-text">Pourquoi ssh-copy-id ?</span>
+            <div class="answer">✅ Ajoute clé dans authorized_keys avec bonnes permissions</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">76</span>
+            <span class="q-text">Groupes dans inventory Ansible ?</span>
+            <div class="answer">✅ Cibler ensembles de serveurs avec playbooks spécifiques</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">77</span>
+            <span class="q-text">Exécuter shell sur tous hosts ?</span>
+            <div class="answer">✅ ansible all -m shell -a 'whoami && hostname'</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">78</span>
+            <span class="q-text">Module command vs shell ?</span>
+            <div class="answer">✅ shell = pipes, redirections | command = exécution directe</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">79</span>
+            <span class="q-text">copy vs fetch Ansible ?</span>
+            <div class="answer">✅ copy = envoie vers hosts | fetch = récupère depuis hosts</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">80</span>
+            <span class="q-text">Module stat avant copy ?</span>
+            <div class="answer">✅ Vérifier si fichier existe (idempotence)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">📚 Concepts Avancés (Q81-100)</div>
+
+        <div class="question">
+            <span class="q-num">81</span>
+            <span class="q-text">Idempotence Ansible ?</span>
+            <div class="answer">✅ Même résultat peu importe combien de fois exécuté</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">82</span>
+            <span class="q-text">Syntaxe artifact avec expiration ?</span>
+            <div class="answer">✅ artifacts: paths: [...] expire_in: 1 week</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">83</span>
+            <span class="q-text">Agent Jenkinsfile déclaratif ?</span>
+            <div class="answer">✅ agent any</div>
+            <div class="traps">❌ <span class="trap">runner</span> <span class="trap-why">(GitLab)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">84</span>
+            <span class="q-text">Variable chemin projet GitLab ?</span>
+            <div class="answer">✅ $CI_PROJECT_DIR</div>
+            <div class="traps">❌ <span class="trap">$WORKSPACE</span> <span class="trap-why">(Jenkins)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">85</span>
+            <span class="q-text">Commande complète SonarCloud Maven ?</span>
+            <div class="answer">✅ mvn clean verify sonar:sonar -Dsonar.projectKey=... -Dsonar.host.url=...
+                -Dsonar.token=...</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">86</span>
+            <span class="q-text">mvn clean fait quoi ?</span>
+            <div class="answer">✅ Supprime target/ (fichiers générés)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">87</span>
+            <span class="q-text">mvn compile vs mvn package ?</span>
+            <div class="answer">✅ compile = code source | package = compile + test + JAR/WAR</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">88</span>
+            <span class="q-text">-DskipTests ?</span>
+            <div class="answer">✅ Skip exécution tests (mais compile les tests)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">89</span>
+            <span class="q-text">mvn test ?</span>
+            <div class="answer">✅ Compile code + compile tests + exécute tests</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">90</span>
+            <span class="q-text">Créer projet Maven interactif ?</span>
+            <div class="answer">✅ mvn archetype:generate</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">91</span>
+            <span class="q-text">mvn install vs mvn package ?</span>
+            <div class="answer">✅ install = package + copie dans ~/.m2/repository</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">92</span>
+            <span class="q-text">Créer branche ET se positionner ?</span>
+            <div class="answer">✅ git checkout -b nouvelle-branche</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">93</span>
+            <span class="q-text">git merge vs git rebase ?</span>
+            <div class="answer">✅ merge = commit fusion | rebase = historique linéaire</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">94</span>
+            <span class="q-text">git push origin develop ?</span>
+            <div class="answer">✅ Envoie branche develop locale vers remote origin</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">95</span>
+            <span class="q-text">git stash ?</span>
+            <div class="answer">✅ Sauvegarde temporaire sans commit</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">96</span>
+            <span class="q-text">Annuler modifs fichier non stagé ?</span>
+            <div class="answer">✅ git checkout -- fichier</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">97</span>
+            <span class="q-text">dotnet restore ?</span>
+            <div class="answer">✅ Télécharge packages NuGet</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">98</span>
+            <span class="q-text">dotnet build mode Release ?</span>
+            <div class="answer">✅ --configuration Release</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">99</span>
+            <span class="q-text">dotnet run ?</span>
+            <div class="answer">✅ Compile + exécute en une commande</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">100</span>
+            <span class="q-text">npm install vs npm ci ?</span>
+            <div class="answer">✅ ci = package-lock.json strict | install = peut modifier</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🛠️ Outils & Commandes (Q101-116)</div>
+
+        <div class="question">
+            <span class="q-num">101</span>
+            <span class="q-text">npm run build ?</span>
+            <div class="answer">✅ Exécute script 'build' de package.json</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">102</span>
+            <span class="q-text">Installer comme devDependency ?</span>
+            <div class="answer">✅ npm install package --save-dev</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">103</span>
+            <span class="q-text">ansible all -m ping ?</span>
+            <div class="answer">✅ Teste SSH + disponibilité Python</div>
+            <div class="traps">❌ <span class="trap">ICMP ping</span> <span class="trap-why">(pas réseau)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">104</span>
+            <span class="q-text">Playbook avec inventory spécifique ?</span>
+            <div class="answer">✅ ansible-playbook -i inventory.ini playbook.yml</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">105</span>
+            <span class="q-text">Dry-run Ansible ?</span>
+            <div class="answer">✅ --check</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">106</span>
+            <span class="q-text">Shell sur groupe 'webservers' ?</span>
+            <div class="answer">✅ ansible webservers -m shell -a 'df -h'</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">107</span>
+            <span class="q-text">ssh-keygen -t rsa -b 4096 ?</span>
+            <div class="answer">✅ Paire clés RSA 4096 bits (publique + privée)</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">108</span>
+            <span class="q-text">ssh-copy-id user@host ?</span>
+            <div class="answer">✅ Copie clé PUBLIQUE dans ~/.ssh/authorized_keys</div>
+            <div class="traps">❌ <span class="trap">clé privée</span> <span class="trap-why">(JAMAIS!)</span></div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">109</span>
+            <span class="q-text">Redémarrer Tomcat ?</span>
+            <div class="answer">✅ sudo systemctl restart tomcat10</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">110</span>
+            <span class="q-text">Logs temps réel service ?</span>
+            <div class="answer">✅ journalctl -u tomcat10 -f</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">111</span>
+            <span class="q-text">docker run hello-world ?</span>
+            <div class="answer">✅ Télécharge + exécute image test</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">112</span>
+            <span class="q-text">Tous conteneurs (+ arrêtés) ?</span>
+            <div class="answer">✅ docker ps -a</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">113</span>
+            <span class="q-text">sh vs bat Jenkinsfile ?</span>
+            <div class="answer">✅ sh = Unix/Linux | bat = Windows</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">114</span>
+            <span class="q-text">Changer répertoire Jenkinsfile ?</span>
+            <div class="answer">✅ dir('/path') { ... }</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">115</span>
+            <span class="q-text">Plusieurs commandes .gitlab-ci.yml ?</span>
+            <div class="answer">✅ script: - cmd1 - cmd2 - cmd3</div>
+        </div>
+
+        <div class="question">
+            <span class="q-num">116</span>
+            <span class="q-text">Accéder variable CI/CD ?</span>
+            <div class="answer">✅ $VARIABLE ou ${VARIABLE}</div>
+            <div class="traps">❌ <span class="trap">%VAR%</span> <span class="trap-why">(Windows cmd)</span></div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; padding: 15px; background: #f0f0f0; border-radius: 8px;">
+        <strong>💡 Astuce Révision:</strong> Concentre-toi sur les pièges ❌ - ce sont les erreurs les plus fréquentes à
+        l'examen!<br>
+        <small style="color: #666;">Généré le 4 Janvier 2026 | 116 Questions CI/CD</small>
+    </div>
+</body>
+
+</html>

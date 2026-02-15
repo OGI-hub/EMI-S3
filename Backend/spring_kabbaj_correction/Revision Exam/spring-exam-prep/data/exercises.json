@@ -1,0 +1,609 @@
+{
+  "exercises": [
+    {
+      "id": "entity-basic-01",
+      "domain": "training",
+      "topic": "entity-annotation",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Complétez les annotations JPA pour transformer la classe Training en entité persistante avec un ID auto-incrémenté.",
+      "starterCode": "/* TODO: annotation entité */\npublic class Training {\n    /* TODO: annotation clé primaire */\n    /* TODO: annotation génération auto */\n    private Long id;\n    private String title;\n    private Integer duration;\n    private Double price;\n\n    public Training() {}\n\n    // getters et setters...\n}",
+      "solutionCode": "@Entity\npublic class Training {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String title;\n    private Integer duration;\n    private Double price;\n\n    public Training() {}\n\n    // getters et setters...\n}",
+      "explanation": "Toute classe JPA doit avoir @Entity au niveau de la classe, @Id sur le champ clé primaire, et @GeneratedValue pour l'auto-incrémentation.",
+      "hints": [
+        "Quelle annotation marque une classe comme entité JPA?",
+        "Comment indiquer que le champ id est la clé primaire?",
+        "GenerationType.IDENTITY est utilisé pour l'auto-incrémentation"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier @GeneratedValue",
+          "whyWrong": "L'ID ne sera pas auto-généré, causant des erreurs de contrainte",
+          "correctReflex": "Toujours mettre @Id ET @GeneratedValue ensemble"
+        }
+      ],
+      "sourceRefs": [{"file": "cours2024.pdf", "lines": "57-59", "note": "Mapping de base JPA"}]
+    },
+    {
+      "id": "entity-basic-02",
+      "domain": "aeroport",
+      "topic": "entity-annotation",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Complétez les annotations pour l'entité Aeroport. Le code doit être une chaîne non auto-générée.",
+      "starterCode": "/* TODO: annotation */\npublic class Aeroport {\n    /* TODO: annotation clé primaire */\n    private String code;\n    private String nom;\n    private String ville;\n\n    public Aeroport() {}\n}",
+      "solutionCode": "@Entity\npublic class Aeroport {\n    @Id\n    private String code;\n    private String nom;\n    private String ville;\n\n    public Aeroport() {}\n}",
+      "explanation": "Quand l'ID est un String assigné manuellement (comme un code aéroport), on met @Id sans @GeneratedValue.",
+      "hints": [
+        "L'ID n'est pas un Long auto-généré ici",
+        "Le code aéroport est fourni, pas généré"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Ajouter @GeneratedValue sur String",
+          "whyWrong": "@GeneratedValue ne fonctionne pas bien avec les IDs String",
+          "correctReflex": "Pour les IDs String manuels, utiliser seulement @Id"
+        }
+      ],
+      "sourceRefs": [{"file": "mediatheque/model/Document.java", "lines": "16-17", "note": "ID String sans génération"}]
+    },
+    {
+      "id": "relation-manytoone-01",
+      "domain": "aeroport",
+      "topic": "relation",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Une Reservation appartient à un Client. Complétez l'annotation de relation.",
+      "starterCode": "@Entity\npublic class Reservation {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private LocalDate date;\n    \n    /* TODO: annotation relation */\n    private Client client;\n\n    public Reservation() {}\n}",
+      "solutionCode": "@Entity\npublic class Reservation {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private LocalDate date;\n    \n    @ManyToOne\n    private Client client;\n\n    public Reservation() {}\n}",
+      "explanation": "Plusieurs réservations peuvent appartenir à un seul client → @ManyToOne sur le côté 'Many'.",
+      "hints": [
+        "Plusieurs réservations, un client → quel côté de la relation?",
+        "La FK sera dans la table Reservation"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Mettre @OneToMany",
+          "whyWrong": "@OneToMany irait sur Client, pas Reservation",
+          "correctReflex": "Le côté Many porte @ManyToOne"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/models/Reservation.java", "lines": "18-20", "note": "Relation ManyToOne"}]
+    },
+    {
+      "id": "relation-onetomany-01",
+      "domain": "aeroport",
+      "topic": "relation",
+      "difficulty": "Medium",
+      "examWeight": "High",
+      "statement": "Un Passager peut avoir plusieurs Reservations. Complétez la relation bidirectionnelle côté Passager.",
+      "starterCode": "@Entity\npublic class Passager extends Personne {\n    /* TODO: annotation relation inverse */\n    /* TODO: annotation pour éviter boucle JSON */\n    private List<Reservation> reservations;\n\n    public Passager() {}\n}",
+      "solutionCode": "@Entity\npublic class Passager extends Personne {\n    @OneToMany(mappedBy = \"passager\")\n    @JsonIgnore\n    private List<Reservation> reservations;\n\n    public Passager() {}\n}",
+      "explanation": "Côté inverse (One) utilise @OneToMany avec mappedBy pointant vers le champ dans l'autre entité. @JsonIgnore évite la récursion JSON.",
+      "hints": [
+        "mappedBy = nom du champ dans Reservation qui pointe vers Passager",
+        "Sans @JsonIgnore, JSON boucle infiniment"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier mappedBy",
+          "whyWrong": "Crée une table de jointure inutile",
+          "correctReflex": "Toujours mappedBy sur @OneToMany bidirectionnel"
+        },
+        {
+          "wrongAnswer": "mappedBy = \"Passager\" (majuscule)",
+          "whyWrong": "C'est le nom du champ Java (camelCase), pas le nom de classe",
+          "correctReflex": "mappedBy = nom exact du champ dans l'autre entité"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/models/Passager.java", "lines": "13-15", "note": "OneToMany avec mappedBy"}]
+    },
+    {
+      "id": "relation-manytoone-joincolumn-01",
+      "domain": "dossier-medical",
+      "topic": "relation",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Complétez la relation entre Reservation et Vol, en spécifiant le nom de la colonne FK.",
+      "starterCode": "@Entity\npublic class Reservation {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    /* TODO: annotation relation */\n    /* TODO: annotation nom colonne FK = \"vol\" */\n    private Vol vol;\n}",
+      "solutionCode": "@Entity\npublic class Reservation {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    \n    @ManyToOne\n    @JoinColumn(name = \"vol\")\n    private Vol vol;\n}",
+      "explanation": "@JoinColumn permet de personnaliser le nom de la colonne FK dans la table.",
+      "hints": [
+        "@JoinColumn est optionnel mais permet de contrôler le nom",
+        "name = nom de la colonne dans la base de données"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier @ManyToOne",
+          "whyWrong": "@JoinColumn seul ne définit pas la relation",
+          "correctReflex": "@ManyToOne + @JoinColumn vont ensemble"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/models/Reservation.java", "lines": "24-26", "note": "@JoinColumn usage"}]
+    },
+    {
+      "id": "relation-onetoone-01",
+      "domain": "dossier-medical",
+      "topic": "relation",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Un Patient a un seul DossierMedical. Complétez la relation OneToOne.",
+      "starterCode": "@Entity\npublic class Patient {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String nom;\n    \n    /* TODO: annotation relation */\n    /* TODO: annotation colonne FK = \"dossier\", référence = \"numero\" */\n    private DossierMedical dossier;\n}",
+      "solutionCode": "@Entity\npublic class Patient {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String nom;\n    \n    @OneToOne\n    @JoinColumn(name = \"dossier\", referencedColumnName = \"numero\")\n    private DossierMedical dossier;\n}",
+      "explanation": "@OneToOne pour relation 1-1. referencedColumnName spécifie quelle colonne de l'autre table est référencée (utile si PK a un nom différent).",
+      "hints": [
+        "referencedColumnName pointe vers la PK de DossierMedical",
+        "La PK de DossierMedical s'appelle 'numero'"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Confondre name et referencedColumnName",
+          "whyWrong": "name = colonne locale, referencedColumnName = colonne distante",
+          "correctReflex": "name = ma colonne FK, referencedColumnName = leur PK"
+        }
+      ],
+      "sourceRefs": [{"file": "dossier-medical/model/Patient.java", "lines": "24-26", "note": "OneToOne avec referencedColumnName"}]
+    },
+    {
+      "id": "relation-manytomany-01",
+      "domain": "gestion-notes",
+      "topic": "relation",
+      "difficulty": "Hard",
+      "examWeight": "Medium",
+      "statement": "Plusieurs Professeurs enseignent plusieurs Matieres. Complétez le côté propriétaire (Matiere).",
+      "starterCode": "@Entity\npublic class Matiere {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String nom;\n    \n    /* TODO: annotation ManyToMany */\n    /* TODO: annotation table jointure \"prof_matiere\" */\n    /* TODO: joinColumns = colonne locale \"matiere_id\" */\n    /* TODO: inverseJoinColumns = colonne distante \"prof_id\" */\n    private Set<Professeur> professeurs = new HashSet<>();\n}",
+      "solutionCode": "@Entity\npublic class Matiere {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String nom;\n    \n    @ManyToMany\n    @JoinTable(name = \"prof_matiere\",\n        joinColumns = @JoinColumn(name = \"matiere_id\"),\n        inverseJoinColumns = @JoinColumn(name = \"prof_id\"))\n    private Set<Professeur> professeurs = new HashSet<>();\n}",
+      "explanation": "Le côté propriétaire d'un ManyToMany définit @JoinTable. joinColumns = FK vers cette entité, inverseJoinColumns = FK vers l'autre.",
+      "hints": [
+        "joinColumns pointe vers l'entité actuelle (Matiere)",
+        "inverseJoinColumns pointe vers l'autre (Professeur)"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Inverser joinColumns et inverseJoinColumns",
+          "whyWrong": "Les FKs seront dans le mauvais sens",
+          "correctReflex": "join = moi, inverse = l'autre"
+        }
+      ],
+      "sourceRefs": [{"file": "gestion-notes/models/Matiere.java", "lines": "30-32", "note": "ManyToMany avec JoinTable"}]
+    },
+    {
+      "id": "relation-manytomany-inverse-01",
+      "domain": "gestion-notes",
+      "topic": "relation",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Complétez le côté inverse de la relation ManyToMany dans Professeur.",
+      "starterCode": "@Entity\npublic class Professeur extends Personne {\n    private String grade;\n    \n    /* TODO: annotation ManyToMany inverse */\n    private Set<Matiere> matieres = new HashSet<>();\n}",
+      "solutionCode": "@Entity\npublic class Professeur extends Personne {\n    private String grade;\n    \n    @ManyToMany(mappedBy = \"professeurs\")\n    private Set<Matiere> matieres = new HashSet<>();\n}",
+      "explanation": "Le côté inverse utilise mappedBy pointant vers le nom du champ dans l'entité propriétaire.",
+      "hints": [
+        "mappedBy = nom du champ Set<Professeur> dans Matiere",
+        "Pas de @JoinTable sur le côté inverse"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Mettre @JoinTable des deux côtés",
+          "whyWrong": "Crée deux tables de jointure!",
+          "correctReflex": "@JoinTable sur un seul côté, mappedBy sur l'autre"
+        }
+      ],
+      "sourceRefs": [{"file": "gestion-notes/models/Professeur.java", "lines": "21-22", "note": "ManyToMany inverse"}]
+    },
+    {
+      "id": "composite-key-01",
+      "domain": "aeroport",
+      "topic": "composite-key",
+      "difficulty": "Hard",
+      "examWeight": "Medium",
+      "statement": "Créez la classe de clé composite PK pour Escale (Vol + Aeroport).",
+      "starterCode": "/* TODO: annotation classe imbriquable */\npublic class PK {\n    /* TODO: annotation relation */\n    private Aeroport aeroport;\n    /* TODO: annotation relation */\n    private Vol vol;\n\n    public PK() {}\n    public PK(Aeroport aeroport, Vol vol) {\n        this.aeroport = aeroport;\n        this.vol = vol;\n    }\n}",
+      "solutionCode": "@Embeddable\npublic class PK {\n    @ManyToOne\n    private Aeroport aeroport;\n    @ManyToOne\n    private Vol vol;\n\n    public PK() {}\n    public PK(Aeroport aeroport, Vol vol) {\n        this.aeroport = aeroport;\n        this.vol = vol;\n    }\n}",
+      "explanation": "@Embeddable marque une classe comme clé composite. Les champs peuvent être des relations @ManyToOne.",
+      "hints": [
+        "Une clé composite est 'imbriquable' dans l'entité",
+        "Les relations dans la PK utilisent aussi @ManyToOne"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Utiliser @Entity au lieu de @Embeddable",
+          "whyWrong": "@Embeddable n'est pas une entité indépendante",
+          "correctReflex": "PK composite = @Embeddable, pas @Entity"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/models/PK.java", "lines": "6-11", "note": "Clé composite Embeddable"}]
+    },
+    {
+      "id": "composite-key-02",
+      "domain": "aeroport",
+      "topic": "composite-key",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Utilisez la clé composite PK dans l'entité Escale.",
+      "starterCode": "@Entity\npublic class Escale {\n    /* TODO: annotation pour clé composite */\n    private PK id;\n    private LocalTime heureDepart;\n    private LocalTime heureArrivee;\n\n    public Escale() {}\n}",
+      "solutionCode": "@Entity\npublic class Escale {\n    @EmbeddedId\n    private PK id;\n    private LocalTime heureDepart;\n    private LocalTime heureArrivee;\n\n    public Escale() {}\n}",
+      "explanation": "@EmbeddedId indique que l'ID est une clé composite définie dans une classe @Embeddable.",
+      "hints": [
+        "La PK est 'embedded' (imbriquée) dans l'entité",
+        "Pas de @Id simple quand on utilise @EmbeddedId"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Mettre @Id sur un champ de type PK",
+          "whyWrong": "@Id est pour les types simples, @EmbeddedId pour les composites",
+          "correctReflex": "Clé composite → @EmbeddedId"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/models/Escale.java", "lines": "11-12", "note": "Utilisation @EmbeddedId"}]
+    },
+    {
+      "id": "inheritance-01",
+      "domain": "mediatheque",
+      "topic": "inheritance",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Document est une classe abstraite parente de Livre, Audio, Video. Configurez l'héritage JOINED.",
+      "starterCode": "@Entity\n/* TODO: annotation stratégie héritage JOINED */\npublic abstract class Document {\n    @Id\n    private String code;\n    private String titre;\n    private String auteur;\n\n    public abstract Double getTarif();\n}",
+      "solutionCode": "@Entity\n@Inheritance(strategy = InheritanceType.JOINED)\npublic abstract class Document {\n    @Id\n    private String code;\n    private String titre;\n    private String auteur;\n\n    public abstract Double getTarif();\n}",
+      "explanation": "JOINED = chaque classe a sa propre table, liées par FK. La table parent contient les champs communs.",
+      "hints": [
+        "InheritanceType.JOINED = tables séparées jointes par FK",
+        "L'annotation va sur la classe parent"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Mettre @Inheritance sur les sous-classes",
+          "whyWrong": "@Inheritance se met sur la classe parent uniquement",
+          "correctReflex": "Parent: @Inheritance, Enfants: juste extends"
+        }
+      ],
+      "sourceRefs": [{"file": "mediatheque/model/Document.java", "lines": "13-14", "note": "Héritage JOINED"}]
+    },
+    {
+      "id": "inheritance-child-01",
+      "domain": "mediatheque",
+      "topic": "inheritance",
+      "difficulty": "Easy",
+      "examWeight": "Medium",
+      "statement": "Livre hérite de Document. Que faut-il mettre comme annotations?",
+      "starterCode": "/* TODO: annotation entité */\npublic class Livre extends Document {\n    private Integer nombrePage;\n\n    @Override\n    public Double getTarif() {\n        return 0.5;\n    }\n}",
+      "solutionCode": "@Entity\npublic class Livre extends Document {\n    private Integer nombrePage;\n\n    @Override\n    public Double getTarif() {\n        return 0.5;\n    }\n}",
+      "explanation": "Les sous-classes d'une entité héritent de la stratégie d'héritage du parent. Elles ont juste besoin de @Entity.",
+      "hints": [
+        "La stratégie est déjà définie sur Document",
+        "Juste @Entity suffit pour la sous-classe"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Répéter @Inheritance sur Livre",
+          "whyWrong": "La stratégie est héritée du parent",
+          "correctReflex": "@Inheritance seulement sur la racine de l'héritage"
+        }
+      ],
+      "sourceRefs": [{"file": "mediatheque/model/Livre.java", "lines": "5-6", "note": "Sous-classe d'entité"}]
+    },
+    {
+      "id": "enum-01",
+      "domain": "gestion-notes",
+      "topic": "entity-annotation",
+      "difficulty": "Easy",
+      "examWeight": "Low",
+      "statement": "Professeur a un champ 'grade' de type enum GradeType. Configurez-le pour stocker le nom de l'enum.",
+      "starterCode": "@Entity\npublic class Professeur extends Personne {\n    /* TODO: annotation pour stocker en STRING */\n    private GradeType grade;\n}",
+      "solutionCode": "@Entity\npublic class Professeur extends Personne {\n    @Enumerated(EnumType.STRING)\n    private GradeType grade;\n}",
+      "explanation": "@Enumerated(EnumType.STRING) stocke le nom de l'enum ('PA', 'PH') au lieu de l'ordinal (0, 1).",
+      "hints": [
+        "Sans annotation, les enums sont stockés comme nombres (ordinal)",
+        "STRING est plus lisible et robuste aux changements d'ordre"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier @Enumerated",
+          "whyWrong": "L'enum sera stocké comme 0, 1, 2... fragile si l'ordre change",
+          "correctReflex": "Toujours @Enumerated(EnumType.STRING) pour les enums"
+        }
+      ],
+      "sourceRefs": [{"file": "gestion-notes/models/Professeur.java", "lines": "17-18", "note": "@Enumerated usage"}]
+    },
+    {
+      "id": "transient-01",
+      "domain": "mediatheque",
+      "topic": "entity-annotation",
+      "difficulty": "Easy",
+      "examWeight": "Low",
+      "statement": "Le champ 'depasse' est calculé dynamiquement, il ne doit pas être persisté. Quelle annotation?",
+      "starterCode": "@Entity\npublic class FicheEmprunt {\n    @EmbeddedId\n    private PK id;\n    private LocalDate dateLimite;\n    \n    /* TODO: annotation champ non persisté */\n    private Boolean depasse;\n\n    public Boolean isDepasse() {\n        return LocalDate.now().isAfter(this.dateLimite);\n    }\n}",
+      "solutionCode": "@Entity\npublic class FicheEmprunt {\n    @EmbeddedId\n    private PK id;\n    private LocalDate dateLimite;\n    \n    @Transient\n    private Boolean depasse;\n\n    public Boolean isDepasse() {\n        return LocalDate.now().isAfter(this.dateLimite);\n    }\n}",
+      "explanation": "@Transient indique que le champ ne doit pas être persisté en base de données.",
+      "hints": [
+        "Le champ est calculé, pas stocké",
+        "Transitoire = temporaire, pas persisté"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Utiliser le mot-clé Java 'transient'",
+          "whyWrong": "Le mot-clé Java fonctionne mais @Transient JPA est plus explicite",
+          "correctReflex": "Utiliser @Transient (jakarta.persistence) pour JPA"
+        }
+      ],
+      "sourceRefs": [{"file": "mediatheque/model/FicheEmprunt.java", "lines": "17-18", "note": "@Transient usage"}]
+    },
+    {
+      "id": "repository-01",
+      "domain": "training",
+      "topic": "service",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Créez le repository pour l'entité Training avec un ID Long.",
+      "starterCode": "/* TODO: annotation ou interface à étendre? */\npublic interface TrainingRepo {\n\n}",
+      "solutionCode": "public interface TrainingRepo extends JpaRepository<Training, Long> {\n\n}",
+      "explanation": "Un repository JPA étend JpaRepository<Entity, IdType> pour obtenir les méthodes CRUD.",
+      "hints": [
+        "JpaRepository fournit findAll(), findById(), save(), deleteById()...",
+        "Premier paramètre = entité, second = type de l'ID"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Mettre @Repository",
+          "whyWrong": "@Repository est optionnel avec Spring Data JPA",
+          "correctReflex": "Juste extends JpaRepository suffit"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/repo/VolRepo.java", "lines": "7", "note": "Extension JpaRepository"}]
+    },
+    {
+      "id": "repository-custom-01",
+      "domain": "aeroport",
+      "topic": "service",
+      "difficulty": "Medium",
+      "examWeight": "Low",
+      "statement": "Ajoutez une méthode pour trouver les vols par compagnie.",
+      "starterCode": "public interface VolRepo extends JpaRepository<Vol, Long> {\n    /* TODO: méthode personnalisée */\n}",
+      "solutionCode": "public interface VolRepo extends JpaRepository<Vol, Long> {\n    List<Vol> findByCompagnie(Compagnie compagnie);\n}",
+      "explanation": "Spring Data génère la requête à partir du nom de méthode: findBy + nom du champ.",
+      "hints": [
+        "Le champ s'appelle 'compagnie' dans Vol",
+        "Spring génère: SELECT * FROM vol WHERE compagnie_id = ?"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "findByCompagnieId au lieu de findByCompagnie",
+          "whyWrong": "Les deux fonctionnent, mais findByCompagnie est plus naturel avec l'objet",
+          "correctReflex": "Utiliser le nom exact du champ Java"
+        }
+      ],
+      "sourceRefs": [{"file": "cours2024.pdf", "lines": "94", "note": "Custom query methods"}]
+    },
+    {
+      "id": "service-getbyid-01",
+      "domain": "training",
+      "topic": "service",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Complétez la méthode getById dans le service.",
+      "starterCode": "@Service\npublic class TrainingService {\n    @Autowired\n    private TrainingRepo trainingRepo;\n\n    public Training getById(Long id) {\n        /* TODO: appel repository + gestion null */\n    }\n}",
+      "solutionCode": "@Service\npublic class TrainingService {\n    @Autowired\n    private TrainingRepo trainingRepo;\n\n    public Training getById(Long id) {\n        return trainingRepo.findById(id).orElse(null);\n    }\n}",
+      "explanation": "findById retourne un Optional. orElse(null) retourne l'entité ou null si non trouvée.",
+      "hints": [
+        "findById retourne Optional<Training>",
+        "orElse(null) décompresse l'Optional"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "trainingRepo.findById(id) sans .orElse()",
+          "whyWrong": "Retourne Optional, pas Training. Erreur de compilation!",
+          "correctReflex": "Toujours .orElse(null) ou .orElseThrow() après findById"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/service/VolService.java", "lines": "31-33", "note": "findById avec orElse"}]
+    },
+    {
+      "id": "service-save-01",
+      "domain": "dossier-medical",
+      "topic": "service",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Complétez la méthode pour sauvegarder un patient.",
+      "starterCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n\n    public Patient savePatient(Patient patient) {\n        /* TODO: appel repository */\n    }\n}",
+      "solutionCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n\n    public Patient savePatient(Patient patient) {\n        return patientRepo.save(patient);\n    }\n}",
+      "explanation": "save() persiste une nouvelle entité ou met à jour une existante. Retourne l'entité avec l'ID généré.",
+      "hints": [
+        "save() fonctionne pour create ET update",
+        "Retourner l'entité permet de récupérer l'ID généré"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Ne pas retourner le résultat",
+          "whyWrong": "Le client ne récupère pas l'ID auto-généré",
+          "correctReflex": "Toujours return repo.save(entity)"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/service/VolService.java", "lines": "35-40", "note": "save() usage"}]
+    },
+    {
+      "id": "service-delete-01",
+      "domain": "dossier-medical",
+      "topic": "service",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Complétez la méthode pour supprimer un patient par ID.",
+      "starterCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n\n    public void deleteById(Long id) {\n        /* TODO: appel repository */\n    }\n}",
+      "solutionCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n\n    public void deleteById(Long id) {\n        patientRepo.deleteById(id);\n    }\n}",
+      "explanation": "deleteById supprime l'entité correspondant à l'ID. Ne retourne rien (void).",
+      "hints": [
+        "La méthode est void, pas besoin de return",
+        "deleteById ne lance pas d'exception si l'ID n'existe pas"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Écrire delete(id) au lieu de deleteById(id)",
+          "whyWrong": "delete() prend une entité, pas un ID",
+          "correctReflex": "deleteById(id) pour supprimer par ID"
+        }
+      ],
+      "sourceRefs": [{"file": "dossier-medical/service/PatientService.java", "lines": "58-60", "note": "deleteById usage"}]
+    },
+    {
+      "id": "service-link-01",
+      "domain": "dossier-medical",
+      "topic": "service",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Créez un Patient et liez-le à un DossierMedical existant.",
+      "starterCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n    @Autowired\n    private DossierMedicalService dossierService;\n\n    public Patient createWithDossier(Patient patient, Long dossierId) {\n        /* TODO: récupérer dossier, vérifier null, lier, sauvegarder */\n    }\n}",
+      "solutionCode": "@Service\npublic class PatientService {\n    @Autowired\n    private PatientRepo patientRepo;\n    @Autowired\n    private DossierMedicalService dossierService;\n\n    public Patient createWithDossier(Patient patient, Long dossierId) {\n        DossierMedical dossier = dossierService.getDossierById(dossierId);\n        if (dossier == null) {\n            return null;\n        }\n        patient.setDossier(dossier);\n        return patientRepo.save(patient);\n    }\n}",
+      "explanation": "Pour lier des entités: 1) Récupérer l'entité liée, 2) Vérifier non null, 3) Setter la relation, 4) Sauvegarder.",
+      "hints": [
+        "D'abord récupérer le dossier existant",
+        "Vérifier null avant d'utiliser",
+        "Setter la relation avant save"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Sauvegarder sans setter la relation",
+          "whyWrong": "La FK sera null en base",
+          "correctReflex": "Toujours setter la relation AVANT save()"
+        }
+      ],
+      "sourceRefs": [{"file": "dossier-medical/service/PatientService.java", "lines": "27-37", "note": "Business logic linking"}]
+    },
+    {
+      "id": "controller-getall-01",
+      "domain": "training",
+      "topic": "controller",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Créez un endpoint GET pour récupérer toutes les formations.",
+      "starterCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    /* TODO: annotation mapping GET */\n    public List<Training> getAll() {\n        return trainingService.getAll();\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    @GetMapping(\"\")\n    public List<Training> getAll() {\n        return trainingService.getAll();\n    }\n}",
+      "explanation": "@GetMapping(\"\") sur /training = GET /training retourne toutes les formations.",
+      "hints": [
+        "@GetMapping pour les requêtes GET",
+        "Chemin vide = même URL que le @RequestMapping de base"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "@GetMapping sans paramètre",
+          "whyWrong": "Fonctionne, mais @GetMapping(\"\") est plus explicite",
+          "correctReflex": "@GetMapping(\"\") ou @GetMapping pour la racine"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/controller/ClientController.java", "lines": "28-31", "note": "GetMapping usage"}]
+    },
+    {
+      "id": "controller-getbyid-01",
+      "domain": "training",
+      "topic": "controller",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Créez un endpoint GET pour récupérer une formation par ID.",
+      "starterCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    /* TODO: annotation mapping GET avec path variable */\n    public Training getById(/* TODO: annotation pour extraire id */ Long id) {\n        return trainingService.getById(id);\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    @GetMapping(\"/{id}\")\n    public Training getById(@PathVariable Long id) {\n        return trainingService.getById(id);\n    }\n}",
+      "explanation": "@GetMapping(\"/{id}\") définit une variable de chemin. @PathVariable l'extrait.",
+      "hints": [
+        "{id} dans le path = variable",
+        "@PathVariable lie le paramètre à la variable du path"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier @PathVariable",
+          "whyWrong": "Le paramètre id sera null",
+          "correctReflex": "Path variable = {x} dans path + @PathVariable x"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/controller/ClientController.java", "lines": "33-36", "note": "@PathVariable usage"}]
+    },
+    {
+      "id": "controller-post-01",
+      "domain": "training",
+      "topic": "controller",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Créez un endpoint POST pour ajouter une formation.",
+      "starterCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    /* TODO: annotation mapping POST */\n    public Training create(/* TODO: annotation pour corps JSON */ Training training) {\n        return trainingService.save(training);\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    @PostMapping(\"/add\")\n    public Training create(@RequestBody Training training) {\n        return trainingService.save(training);\n    }\n}",
+      "explanation": "@PostMapping pour créer. @RequestBody désérialise le JSON du corps de la requête en objet Java.",
+      "hints": [
+        "POST = création de ressource",
+        "@RequestBody convertit JSON → Java"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Oublier @RequestBody",
+          "whyWrong": "L'objet training sera vide/null",
+          "correctReflex": "Toujours @RequestBody pour les données JSON entrantes"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/controller/ClientController.java", "lines": "38-41", "note": "@PostMapping + @RequestBody"}]
+    },
+    {
+      "id": "controller-put-01",
+      "domain": "training",
+      "topic": "controller",
+      "difficulty": "Medium",
+      "examWeight": "High",
+      "statement": "Créez un endpoint PUT pour modifier une formation.",
+      "starterCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    /* TODO: annotation mapping PUT */\n    public Training update(\n            /* TODO: annotation path variable */ Long id,\n            /* TODO: annotation corps JSON */ Training training) {\n        return trainingService.update(id, training);\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    @PutMapping(\"/update/{id}\")\n    public Training update(\n            @PathVariable Long id,\n            @RequestBody Training training) {\n        return trainingService.update(id, training);\n    }\n}",
+      "explanation": "PUT combine @PathVariable pour l'ID et @RequestBody pour les nouvelles données.",
+      "hints": [
+        "PUT = mise à jour complète",
+        "On a besoin de l'ID (path) ET des données (body)"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Utiliser @RequestParam au lieu de @PathVariable",
+          "whyWrong": "@RequestParam = ?id=1, @PathVariable = /update/1",
+          "correctReflex": "RESTful = ID dans le path, donc @PathVariable"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/controller/ClientController.java", "lines": "48-51", "note": "@PutMapping usage"}]
+    },
+    {
+      "id": "controller-delete-01",
+      "domain": "training",
+      "topic": "controller",
+      "difficulty": "Easy",
+      "examWeight": "High",
+      "statement": "Créez un endpoint DELETE pour supprimer une formation.",
+      "starterCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    /* TODO: annotation mapping DELETE */\n    public void delete(/* TODO: annotation */ Long id) {\n        trainingService.delete(id);\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/training\")\npublic class TrainingController {\n    @Autowired\n    private TrainingService trainingService;\n\n    @DeleteMapping(\"/delete/{id}\")\n    public void delete(@PathVariable Long id) {\n        trainingService.delete(id);\n    }\n}",
+      "explanation": "@DeleteMapping avec @PathVariable pour l'ID à supprimer. Retour void car pas de données à retourner.",
+      "hints": [
+        "DELETE = suppression de ressource",
+        "L'ID identifie quoi supprimer"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "@DeleteMapping sans path variable",
+          "whyWrong": "Comment savoir quoi supprimer?",
+          "correctReflex": "DELETE a besoin d'un identifiant"
+        }
+      ],
+      "sourceRefs": [{"file": "aeroport/controller/ClientController.java", "lines": "43-46", "note": "@DeleteMapping usage"}]
+    },
+    {
+      "id": "controller-requestparam-01",
+      "domain": "dossier-medical",
+      "topic": "controller",
+      "difficulty": "Medium",
+      "examWeight": "Medium",
+      "statement": "Créez un endpoint POST qui prend un patient en body ET un ID de dossier en query param.",
+      "starterCode": "@RestController\n@RequestMapping(\"/patient\")\npublic class PatientController {\n    @Autowired\n    private PatientService patientService;\n\n    /* TODO: annotation mapping POST */\n    public Patient create(\n            /* TODO: annotation corps JSON */ Patient patient,\n            /* TODO: annotation query param \"dossier\" */ Long dossierId) {\n        return patientService.createWithDossier(patient, dossierId);\n    }\n}",
+      "solutionCode": "@RestController\n@RequestMapping(\"/patient\")\npublic class PatientController {\n    @Autowired\n    private PatientService patientService;\n\n    @PostMapping(\"/add\")\n    public Patient create(\n            @RequestBody Patient patient,\n            @RequestParam(\"dossier\") Long dossierId) {\n        return patientService.createWithDossier(patient, dossierId);\n    }\n}",
+      "explanation": "@RequestParam extrait les paramètres de query string (?dossier=1). On peut combiner avec @RequestBody.",
+      "hints": [
+        "URL: POST /patient/add?dossier=5",
+        "@RequestParam(\"dossier\") mappe le param 'dossier' de l'URL"
+      ],
+      "traps": [
+        {
+          "wrongAnswer": "Confondre @PathVariable et @RequestParam",
+          "whyWrong": "Path: /path/{id}, Query: /path?id=1",
+          "correctReflex": "? dans URL = @RequestParam"
+        }
+      ],
+      "sourceRefs": [{"file": "dossier-medical/controllers/PatientController.java", "lines": "39-42", "note": "@RequestParam usage"}]
+    }
+  ]
+}

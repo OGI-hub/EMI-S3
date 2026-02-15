@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Exam Réseaux - Préparation Intensive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <button class="active" onclick="showSection('synthese')">📖 Synthèse</button>
+        <button onclick="showSection('qcm-new')">🎯 QCM Complémentaire (50)</button>
+        <button onclick="showSection('qcm-advanced')">🧠 QCM Avancé (30)</button>
+        <button onclick="showSection('qcm-srwe')">🔄 QCM SRWE (50)</button>
+        <button onclick="showSection('qcm-examfinal')">📝 Exam Final (30)</button>
+        <button onclick="showSection('quiz-saidi')">📋 Quiz Saidi (100)</button>
+        <button onclick="showSection('code')">💻 Sockets C</button>
+        <button onclick="showSection('wireless')">🔌 Sans Fil</button>
+        <button onclick="showSection('lan')">🖧 LAN</button>
+    </nav>
+
+    <div class="container">
+        <!-- SYNTHÈSE -->
+        <div id="synthese" class="section active">
+            <h1>📚 Synthèse Orientée Examen</h1>
+
+            <h2>🔑 Définitions Clés</h2>
+            <div class="card">
+                <h3>LAN vs WAN</h3>
+                <ul>
+                    <li><strong>LAN</strong>: Réseau Local - Gestion autonome, diffusion, support partagé, qq km max.
+                    </li>
+                    <li><strong>WAN</strong>: Liaisons point-à-point, longues distances, géré par opérateur.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>TCP vs UDP</h3>
+                <table>
+                    <tr>
+                        <th>TCP (SOCK_STREAM)</th>
+                        <th>UDP (SOCK_DGRAM)</th>
+                    </tr>
+                    <tr>
+                        <td>Connecté, fiable, ordonné</td>
+                        <td>Non connecté, rapide, best effort</td>
+                    </tr>
+                    <tr>
+                        <td>3-way handshake (SYN, SYN-ACK, ACK)</td>
+                        <td>Pas d'établissement de connexion</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP, FTP, SSH, Email</td>
+                        <td>DNS, DHCP, TFTP, Streaming, VoIP</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3>Adresse MAC</h3>
+                <ul>
+                    <li>Taille: <span class="highlight">48 bits = 6 octets</span></li>
+                    <li>Structure: OUI (24 bits constructeur) + NIC (24 bits série)</li>
+                    <li>Broadcast: <span class="highlight">FF:FF:FF:FF:FF:FF</span></li>
+                    <li>Bit I/G (1er octet, bit 0) : 0=Unicast, 1=Multicast</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Classes IP (1er octet)</h3>
+                <table>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Plage</th>
+                        <th>Masque Défaut</th>
+                        <th>Hôtes</th>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>1 - 126</td>
+                        <td>255.0.0.0</td>
+                        <td>16 millions</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>128 - 191</td>
+                        <td>255.255.0.0</td>
+                        <td>65 534</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>192 - 223</td>
+                        <td>255.255.255.0</td>
+                        <td>254</td>
+                    </tr>
+                </table>
+                <p><em>Rappel: 127 = Loopback.</em></p>
+            </div>
+
+            <h2>🧱 Modèle & Unités (PDU)</h2>
+            <div class="card">
+                <table>
+                    <tr>
+                        <th>Couche</th>
+                        <th>Nom</th>
+                        <th>Unité</th>
+                        <th>Équipement</th>
+                    </tr>
+                    <tr>
+                        <td>L1</td>
+                        <td>Physique</td>
+                        <td>Bit</td>
+                        <td>Hub / Répéteur</td>
+                    </tr>
+                    <tr>
+                        <td>L2</td>
+                        <td>Liaison</td>
+                        <td>Trame</td>
+                        <td>Switch / Bridge</td>
+                    </tr>
+                    <tr>
+                        <td>L3</td>
+                        <td>Réseau</td>
+                        <td>Paquet</td>
+                        <td>Routeur</td>
+                    </tr>
+                    <tr>
+                        <td>L4</td>
+                        <td>Transport</td>
+                        <td>Segment/Datagramme</td>
+                        <td>—</td>
+                    </tr>
+                </table>
+                <p><em>Astuce : si on parle d’IP → couche 3. Si on parle de MAC → couche 2.</em></p>
+            </div>
+
+            <h2>🌐 Adressage IP & Masques</h2>
+            <div class="card">
+                <ul>
+                    <li><strong>Adresse réseau</strong> = bits hôtes à 0.</li>
+                    <li><strong>Broadcast</strong> = bits hôtes à 1.</li>
+                    <li><strong>Privées (RFC1918)</strong> : 10.0.0.0/8, 172.16.0.0–172.31.255.255, 192.168.0.0/16.
+                    </li>
+                    <li><strong>APIPA</strong> : 169.254.0.0/16 (DHCP en échec).</li>
+                    <li><strong>Multicast</strong> : 224.0.0.0–239.255.255.255 (classe D).</li>
+                    <li><strong>0.0.0.0</strong> : source DHCP / route par défaut (selon contexte).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Subnetting Express</h3>
+                <ul>
+                    <li><strong>Nb hôtes</strong> = 2^(32 - prefix) - 2.</li>
+                    <li><strong>Nb sous-réseaux</strong> = 2^n <em>(ou 2^n - 2 si le support applique l’ancienne
+                            règle)</em>.
+                    </li>
+                    <li><strong>/30</strong> → 2 hôtes (liaisons point-à-point).</li>
+                    <li><strong>/26</strong> → 62 hôtes.</li>
+                    <li><strong>Ne jamais juger une IP sans son masque</strong> (ex : .255 n’est pas toujours un
+                        broadcast).</li>
+                </ul>
+            </div>
+
+            <h2>🔁 ARP / DHCP / ICMP</h2>
+            <div class="card">
+                <ul>
+                    <li><strong>ARP</strong> : IP → MAC via broadcast (Reply en unicast).</li>
+                    <li><strong>DHCP</strong> : DORA (Discover, Offer, Request, Ack).</li>
+                    <li><strong>ICMP</strong> : Ping = Echo, Traceroute = TTL + Time Exceeded.</li>
+                </ul>
+            </div>
+
+            <h2>🧭 Routage & NAT</h2>
+            <div class="card">
+                <ul>
+                    <li><strong>Longest Prefix Match</strong> : Route hôte > route réseau > route par défaut.</li>
+                    <li><strong>IGP</strong> : RIP (distance, 15 sauts max) / OSPF (état de lien).</li>
+                    <li><strong>EGP</strong> : BGP (inter-AS).</li>
+                    <li><strong>NAT</strong> : IP privée ↔ IP publique (économie d’IPv4).</li>
+                </ul>
+            </div>
+
+            <h2>🔌 Ethernet, Commutation & Boucles</h2>
+            <div class="card">
+                <ul>
+                    <li><strong>Trame Ethernet</strong> : 64 octets min, FCS = CRC.</li>
+                    <li><strong>Switch</strong> : apprend via MAC source, ne bloque pas le broadcast.</li>
+                    <li><strong>Domaine de collision</strong> ≠ domaine de broadcast.</li>
+                    <li><strong>STP</strong> : supprime les boucles (BPDU, Root Bridge, ports Blocking).</li>
+                    <li><strong>VLAN</strong> : segmentation L2, 1 VLAN = 1 domaine de broadcast.</li>
+                </ul>
+            </div>
+
+            <h2>🧪 TPs Réalisés (à connaître)</h2>
+            <div class="card">
+                <ul>
+                    <li><strong>TP1</strong> : échange simple client/serveur C (TCP).</li>
+                    <li><strong>TP2</strong> : transfert de fichiers client/serveur (TCP + lecture/écriture).</li>
+                    <li><strong>TP3</strong> : Packet Tracer, transfert entre réseaux de natures différentes.</li>
+                </ul>
+            </div>
+
+            <h2>⚡ Réflexes "Si tu vois X → Pense Y"</h2>
+            <div class="card reflex">
+                <ul>
+                    <li><strong>Hub</strong> → Couche 1, Répéteur bête, Collision partout.</li>
+                    <li><strong>Switch</strong> → Couche 2, Table MAC, Sépare collisions, Diffuse Broadcast.</li>
+                    <li><strong>Routeur</strong> → Couche 3, Table Routage, Sépare tout (collisions & broadcast).</li>
+                    <li><strong>accept()</strong> → Retourne un <strong>NOUVEAU</strong> socket (le socket d'écoute ne
+                        sert qu'à écouter).</li>
+                    <li><strong>htons()</strong> → Obligatoire pour le Port (Host to Network Short).</li>
+                    <li><strong>.255</strong> → Broadcast ? <em>Regarde le masque</em>.</li>
+                    <li><strong>ICMP Time Exceeded</strong> → Provoqué par TTL=0 (traceroute).</li>
+                    <li><strong>ARP</strong> → Diffusion (broadcast) pour trouver une MAC.</li>
+                    <li><strong>Longest Prefix</strong> → La route la plus précise gagne.</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Pièges Classiques</h2>
+            <div class="card trap">
+                <ul>
+                    <li><strong>IP est NON FIABLE</strong> : C'est TCP qui gère la fiabilité, pas IP.</li>
+                    <li><strong>Un Switch ne bloque PAS les broadcast</strong> : Si PC1 envoie à FF:FF..., tout le monde
+                        reçoit, même avec un switch.</li>
+                    <li><strong>Trame Ethernet Min = 64 octets</strong> : Pour assurer la détection de collision
+                        (CSMA/CD).</li>
+                    <li><strong>sin_family</strong> : Doit rester en Host Byte Order (AF_INET), ne pas utiliser htons()
+                        dessus.</li>
+                    <li><strong>recv() = 0</strong> : Connexion fermée proprement par le pair.</li>
+                    <li><strong>Route par défaut</strong> : 0.0.0.0/0 est le dernier recours, pas le premier.</li>
+                </ul>
+            </div>
+
+            <h2>📊 Mémo Sockets</h2>
+            <div class="card">
+                <p><strong>Serveur TCP :</strong></p>
+                <div class="code-block">socket() → bind() → listen() → accept() → recv()/send() → close()</div>
+                <p><strong>Client TCP :</strong></p>
+                <div class="code-block">socket() → connect() → send()/recv() → close()</div>
+                <p><strong>UDP :</strong></p>
+                <div class="code-block">socket() → sendto()/recvfrom() → close()</div>
+            </div>
+        </div>
+
+        <!-- QCM COMPLÉMENTAIRE -->
+        <div id="qcm-new" class="section">
+            <h1>🎯 QCM Complémentaire</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1rem;">
+                50 questions difficiles sur TCP/IP, Sockets, Routage et Sous-réseaux (Sujets hors Quiz Saidi)
+            </p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-new"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-new">Question 1 / 50</span></div>
+
+                <div id="quiz-content-new" class="quiz-question"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-new" onclick="prevQuestion('new')">← Précédent</button>
+                    <!-- Bouton Vérifier / Suivant géré par JS -->
+                    <button class="btn" id="check-new" onclick="checkAnswer('new')">Vérifier</button>
+                    <button class="btn btn-success" id="next-new" onclick="nextQuestion('new')"
+                        style="display:none;">Suivant ➡</button>
+                </div>
+            </div>
+
+            <div id="score-new" class="score-card" style="display:none;">
+                <h2>Résultat Final</h2>
+                <h2 id="final-score-new">0 / 50</h2>
+                <button class="btn" onclick="resetQuiz('new')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- QCM AVANCÉ -->
+        <div id="qcm-advanced" class="section">
+            <h1>🧠 QCM Avancé</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1rem;">
+                30 questions pointues : select(), macros, options, et concepts avancés
+            </p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-advanced"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-advanced">Question 1 / 30</span></div>
+
+                <div id="quiz-content-advanced" class="quiz-question"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-advanced" onclick="prevQuestion('advanced')">←
+                        Précédent</button>
+                    <button class="btn" id="check-advanced" onclick="checkAnswer('advanced')">Vérifier</button>
+                    <button class="btn btn-success" id="next-advanced" onclick="nextQuestion('advanced')"
+                        style="display:none;">Suivant ➡</button>
+                </div>
+            </div>
+
+            <div id="score-advanced" class="score-card" style="display:none;">
+                <h2>Résultat Final</h2>
+                <h2 id="final-score-advanced">0 / 30</h2>
+                <button class="btn" onclick="resetQuiz('advanced')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- QUIZ SAIDI -->
+        <div id="quiz-saidi" class="section">
+            <h1>📋 Quiz Saidi (L'Intégrale)</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1rem;">
+                100 Questions (LAN + Sans Fil) - Contenu 100% fidèle au document original
+            </p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-saidi"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-saidi">Question 1 / 100</span></div>
+
+                <div id="quiz-content-saidi" class="quiz-question"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-saidi" onclick="prevQuestion('saidi')">← Précédent</button>
+                    <button class="btn" id="check-saidi" onclick="checkAnswer('saidi')">Vérifier</button>
+                    <button class="btn btn-success" id="next-saidi" onclick="nextQuestion('saidi')"
+                        style="display:none;">Suivant ➡</button>
+                </div>
+            </div>
+
+            <div id="score-saidi" class="score-card" style="display:none;">
+                <h2>Résultat Final</h2>
+                <h2 id="final-score-saidi">0 / 100</h2>
+                <button class="btn" onclick="resetQuiz('saidi')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- QCM SRWE (CCNA 2 SRWE v7) -->
+        <div id="qcm-srwe" class="section">
+            <h1>🔄 QCM CCNA 2 SRWE v7</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1rem;">
+                50 questions faciles (style CCNA 2 SRWE) — VLANs, STP, EtherChannel, Routage, OSPF, DHCP, WLAN, IPv6
+            </p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-srwe"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-srwe">Question 1 / 50</span></div>
+
+                <div id="quiz-content-srwe" class="quiz-question"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-srwe" onclick="prevQuestion('srwe')">← Précédent</button>
+                    <button class="btn" id="check-srwe" onclick="checkAnswer('srwe')">Vérifier</button>
+                    <button class="btn btn-success" id="next-srwe" onclick="nextQuestion('srwe')"
+                        style="display:none;">Suivant ➡</button>
+                </div>
+            </div>
+
+            <div id="score-srwe" class="score-card" style="display:none;">
+                <h2>Résultat Final</h2>
+                <h2 id="final-score-srwe">0 / 50</h2>
+                <button class="btn" onclick="resetQuiz('srwe')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- QCM EXAM FINAL (exam-final1.pdf) -->
+        <div id="qcm-examfinal" class="section">
+            <h1>📝 Exam Final — Préparation</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1rem;">
+                30 questions basées sur l'examen final — Transport, Adressage, IOS, Routage, CSMA/CD
+            </p>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="progress-examfinal"></div>
+                </div>
+                <div class="quiz-header"><span id="quiz-counter-examfinal">Question 1 / 30</span></div>
+
+                <div id="quiz-content-examfinal" class="quiz-question"></div>
+
+                <div class="quiz-nav">
+                    <button class="btn btn-outline" id="prev-examfinal" onclick="prevQuestion('examfinal')">←
+                        Précédent</button>
+                    <button class="btn" id="check-examfinal" onclick="checkAnswer('examfinal')">Vérifier</button>
+                    <button class="btn btn-success" id="next-examfinal" onclick="nextQuestion('examfinal')"
+                        style="display:none;">Suivant ➡</button>
+                </div>
+            </div>
+
+            <div id="score-examfinal" class="score-card" style="display:none;">
+                <h2>Résultat Final</h2>
+                <h2 id="final-score-examfinal">0 / 30</h2>
+                <button class="btn" onclick="resetQuiz('examfinal')">🔄 Recommencer</button>
+            </div>
+        </div>
+
+        <!-- CODE SOCKETS -->
+        <div id="code" class="section">
+            <h1>💻 Maîtrise Sockets C</h1>
+
+            <div class="card">
+                <h3>Rappel Structure</h3>
+                <div class="code-block">struct sockaddr_in {
+                    sin_family; // AF_INET
+                    sin_port; // htons(PORT)
+                    sin_addr; // inet_addr("IP")
+                    sin_zero[8]; // Padding
+                    };</div>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 1: Serveur TCP Basic</h3>
+                <p>Complétez pour initialiser un serveur sur le port 8080.</p>
+                <div class="code-block">
+                    int server_fd = <input type="text" class="code-input" id="c1-1" placeholder="socket(...)">;
+
+                    struct sockaddr_in addr;
+                    addr.sin_family = <input type="text" class="code-input" id="c1-2" placeholder="???">;
+                    addr.sin_port = <input type="text" class="code-input" id="c1-3" placeholder="htons(...)">;
+                    addr.sin_addr.s_addr = <input type="text" class="code-input" id="c1-4" placeholder="INADDR_ANY">;
+
+                    bind(server_fd, ...);
+                    <input type="text" class="code-input" id="c1-5" placeholder="???">(server_fd, 5); // Backlog 5
+
+                    struct sockaddr_in client;
+                    int new_sock = <input type="text" class="code-input" id="c1-6" placeholder="???">(server_fd, ...);
+                </div>
+                <button class="btn" onclick="checkCode(1)">Vérifier</button>
+                <div id="code-result-1"></div>
+                <details class="correction">
+                    <summary>✅ Correction (serveur TCP)</summary>
+                    <div class="code-block">
+                        int server_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+                        struct sockaddr_in addr;
+                        memset(&addr, 0, sizeof(addr));
+                        addr.sin_family = AF_INET;
+                        addr.sin_port = htons(8080);
+                        addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+                        bind(server_fd, (struct sockaddr*)&addr, sizeof(addr));
+                        listen(server_fd, 5);
+
+                        struct sockaddr_in client;
+                        socklen_t len = sizeof(client);
+                        int new_sock = accept(server_fd, (struct sockaddr*)&client, &len);
+                    </div>
+                    <p><em>accept()</em> crée un nouveau socket pour le client; le socket d’écoute reste disponible.</p>
+                </details>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 2: Client TCP</h3>
+                <p>Se connecter à 127.0.0.1 sur le port 5000.</p>
+                <div class="code-block">
+                    int sock = socket(<input type="text" class="code-input" id="c2-1" placeholder="AF_...">,
+                    SOCK_STREAM, 0);
+
+                    struct sockaddr_in serv;
+                    serv.sin_family = AF_INET;
+                    serv.sin_port = <input type="text" class="code-input" id="c2-2" placeholder="???">;
+                    serv.sin_addr.s_addr = <input type="text" class="code-input" id="c2-3"
+                        placeholder="inet_addr(...)">;
+
+                    <input type="text" class="code-input" id="c2-4" placeholder="???">(sock, (struct sockaddr*)&serv,
+                    sizeof(serv));
+
+                    char buf[1024];
+                    <input type="text" class="code-input" id="c2-5" placeholder="???">(sock, buf, 1024, 0);
+                </div>
+                <button class="btn" onclick="checkCode(2)">Vérifier</button>
+                <div id="code-result-2"></div>
+                <details class="correction">
+                    <summary>✅ Correction (client TCP)</summary>
+                    <div class="code-block">
+                        int sock = socket(AF_INET, SOCK_STREAM, 0);
+
+                        struct sockaddr_in serv;
+                        memset(&serv, 0, sizeof(serv));
+                        serv.sin_family = AF_INET;
+                        serv.sin_port = htons(5000);
+                        serv.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+                        connect(sock, (struct sockaddr*)&serv, sizeof(serv));
+
+                        char buf[1024];
+                        recv(sock, buf, sizeof(buf), 0);
+                    </div>
+                    <p><em>connect()</em> associe la socket à l’IP+port du serveur.</p>
+                </details>
+            </div>
+
+            <div class="card">
+                <h3>Exercice 3: Mode UDP</h3>
+                <p>Envoi d'un message sans connexion.</p>
+                <div class="code-block">
+                    int sock = socket(AF_INET, <input type="text" class="code-input" id="c3-1" placeholder="SOCK_...">,
+                    0);
+
+                    // Pas de connect() nécessaire
+                    <input type="text" class="code-input" id="c3-2" placeholder="???">(sock, msg, len, 0, &dest,
+                    sizeof(dest));
+                </div>
+                <button class="btn" onclick="checkCode(3)">Vérifier</button>
+                <div id="code-result-3"></div>
+                <details class="correction">
+                    <summary>✅ Correction (UDP)</summary>
+                    <div class="code-block">
+                        int sock = socket(AF_INET, SOCK_DGRAM, 0);
+
+                        // Pas de connect() nécessaire
+                        sendto(sock, msg, len, 0, (struct sockaddr*)&dest, sizeof(dest));
+                    </div>
+                    <p>En UDP, on envoie directement à une adresse de destination.</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- WIRELESS MODULE -->
+        <div id="wireless" class="section">
+            <h1>🔌 Réseaux Sans Fil — Révision</h1>
+            <p style="text-align:center; color:var(--muted); margin-bottom:1.5rem;">
+                Module complet basé sur le cours Lasq Wireless — Préparation intensive à l'examen
+            </p>
+
+            <!-- Sub-tabs navigation -->
+            <div class="wireless-tabs">
+                <button class="wireless-tab active" onclick="showWirelessTab('resume')">📖 Résumé</button>
+                <button class="wireless-tab" onclick="showWirelessTab('flashcards')">🧠 Flashcards</button>
+                <button class="wireless-tab" onclick="showWirelessTab('qcm')">⚠️ QCM Pièges</button>
+                <button class="wireless-tab" onclick="showWirelessTab('exam')">📝 Examen Blanc</button>
+                <button class="wireless-tab" onclick="showWirelessTab('revision')">🔄 Révision</button>
+            </div>
+
+            <!-- Filter chips -->
+            <div class="filter-chips" id="wireless-filters">
+                <span class="chip active" onclick="filterWireless('all')">Tout</span>
+                <span class="chip" onclick="filterWireless('intro')">Intro</span>
+                <span class="chip" onclick="filterWireless('wsn')">WSN</span>
+                <span class="chip" onclick="filterWireless('wpan')">WPAN</span>
+                <span class="chip" onclick="filterWireless('wlan')">WLAN</span>
+                <span class="chip" onclick="filterWireless('securite')">Sécurité</span>
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-bar">
+                <input type="text" id="wireless-search" placeholder="🔍 Rechercher un concept..."
+                    oninput="searchWireless(this.value)">
+            </div>
+
+            <!-- TAB 1: RÉSUMÉ -->
+            <div id="wireless-resume" class="wireless-content active">
+                <div id="resume-container">
+                    <!-- Content will be dynamically populated from wirelessData -->
+                </div>
+            </div>
+
+            <!-- TAB 2: FLASHCARDS -->
+            <div id="wireless-flashcards" class="wireless-content">
+                <!-- Leitner Box Stats -->
+                <div class="leitner-stats">
+                    <div class="leitner-box" data-box="1"><span class="box-count" id="box-1-count">0</span><span
+                            class="box-label">Box 1</span><span class="box-interval">Quotidien</span></div>
+                    <div class="leitner-box" data-box="2"><span class="box-count" id="box-2-count">0</span><span
+                            class="box-label">Box 2</span><span class="box-interval">2 jours</span></div>
+                    <div class="leitner-box" data-box="3"><span class="box-count" id="box-3-count">0</span><span
+                            class="box-label">Box 3</span><span class="box-interval">4 jours</span></div>
+                    <div class="leitner-box" data-box="4"><span class="box-count" id="box-4-count">0</span><span
+                            class="box-label">Box 4</span><span class="box-interval">8 jours</span></div>
+                    <div class="leitner-box" data-box="5"><span class="box-count" id="box-5-count">0</span><span
+                            class="box-label">Box 5</span><span class="box-interval">Maîtrisé ✓</span></div>
+                </div>
+
+                <!-- Due cards info -->
+                <div class="due-info" id="due-info">
+                    <span id="due-count">0</span> cartes à réviser aujourd'hui
+                </div>
+
+                <!-- Flashcard container -->
+                <div class="flashcard-container" id="flashcard-container">
+                    <div class="flashcard" id="current-flashcard" onclick="flipFlashcard()">
+                        <div class="flashcard-face flashcard-front">
+                            <span class="flashcard-topic" id="fc-topic"></span>
+                            <h3 id="fc-question">Cliquez sur "Commencer" pour démarrer</h3>
+                        </div>
+                        <div class="flashcard-face flashcard-back">
+                            <p id="fc-answer"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flashcard controls -->
+                <div class="flashcard-controls">
+                    <div class="fc-progress">
+                        <span id="fc-current">0</span> / <span id="fc-total">0</span>
+                    </div>
+                    <div class="fc-buttons">
+                        <button class="btn btn-outline" id="fc-start" onclick="startFlashcards()">🎯 Commencer</button>
+                        <button class="btn" style="background:var(--danger);" id="fc-wrong"
+                            onclick="answerFlashcard(false)" disabled>❌ Je ne savais pas</button>
+                        <button class="btn btn-success" id="fc-correct" onclick="answerFlashcard(true)" disabled>✅ Je
+                            savais</button>
+                    </div>
+                </div>
+
+                <!-- Session summary (hidden by default) -->
+                <div class="fc-summary" id="fc-summary" style="display:none;">
+                    <h3>📊 Session terminée !</h3>
+                    <div class="summary-stats">
+                        <div class="stat-box"><span class="stat-value" id="summary-correct">0</span><span
+                                class="stat-label">Correctes</span></div>
+                        <div class="stat-box"><span class="stat-value" id="summary-wrong">0</span><span
+                                class="stat-label">À revoir</span></div>
+                        <div class="stat-box"><span class="stat-value" id="summary-accuracy">0%</span><span
+                                class="stat-label">Précision</span></div>
+                    </div>
+                    <button class="btn" onclick="startFlashcards()" style="margin-top:1rem;">🔄 Nouvelle
+                        session</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: QCM PIÈGES -->
+            <div id="wireless-qcm" class="wireless-content">
+                <!-- QCM Progress -->
+                <div class="quiz-container" id="wireless-qcm-container">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" id="wqcm-progress"></div>
+                    </div>
+                    <div class="quiz-header">
+                        <span id="wqcm-counter">Question 1 / 25</span>
+                    </div>
+
+                    <div id="wqcm-content" class="quiz-question">
+                        <h3 id="wqcm-question"></h3>
+                        <div class="quiz-options" id="wqcm-options"></div>
+
+                        <!-- Explanation (hidden until checked) -->
+                        <div id="wqcm-explanation" class="quiz-explanation"></div>
+                        <div id="wqcm-trap" class="quiz-trap"></div>
+                    </div>
+
+                    <div class="quiz-nav">
+                        <button class="btn btn-outline" id="wqcm-prev" onclick="prevWirelessQcm()">← Précédent</button>
+                        <button class="btn" id="wqcm-check" onclick="checkWirelessQcm()">Vérifier</button>
+                        <button class="btn btn-success" id="wqcm-next" onclick="nextWirelessQcm()"
+                            style="display:none;">Suivant ➡</button>
+                    </div>
+                </div>
+
+                <!-- QCM Score Card -->
+                <div id="wqcm-score" class="score-card" style="display:none;">
+                    <h2>📊 Résultat QCM Pièges</h2>
+                    <h2 id="wqcm-final-score">0 / 25</h2>
+                    <div class="weak-topics" id="wqcm-weak-topics"></div>
+                    <button class="btn" onclick="resetWirelessQcm()">🔄 Recommencer</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: EXAMEN BLANC -->
+            <div id="wireless-exam" class="wireless-content">
+                <!-- Mode Selection -->
+                <div id="exam-start-screen" class="card">
+                    <h3>📝 Examen Blanc — Réseaux Sans Fil</h3>
+                    <p style="color:var(--muted); margin-bottom: 1rem;">26 questions format examen réel : définitions,
+                        listes, schémas, comparaisons</p>
+
+                    <div class="exam-modes">
+                        <div class="exam-mode-card" onclick="startExam('timed')">
+                            <div class="mode-icon">⏱️</div>
+                            <h4>Mode Examen</h4>
+                            <p>45 minutes chronométrées<br>Corrigé à la fin</p>
+                        </div>
+                        <div class="exam-mode-card" onclick="startExam('practice')">
+                            <div class="mode-icon">📖</div>
+                            <h4>Mode Entraînement</h4>
+                            <p>Sans limite de temps<br>Réponses disponibles</p>
+                        </div>
+                        <div class="exam-mode-card" onclick="showExamCorrige()">
+                            <div class="mode-icon">✅</div>
+                            <h4>Voir Corrigé</h4>
+                            <p>Toutes les réponses<br>Format imprimable</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exam In Progress -->
+                <div id="exam-in-progress" class="card" style="display:none;">
+                    <div class="exam-header">
+                        <div class="exam-progress">
+                            <span id="exam-question-num">1</span> / <span id="exam-total">26</span>
+                        </div>
+                        <div id="exam-timer" class="exam-timer">45:00</div>
+                    </div>
+
+                    <div class="exam-progress-bar">
+                        <div id="exam-progress-fill" class="progress-fill" style="width:0%"></div>
+                    </div>
+
+                    <div id="exam-question-container">
+                        <div class="exam-question-badge" id="exam-q-type">Définition</div>
+                        <h4 id="exam-prompt" class="exam-prompt">Question...</h4>
+                        <textarea id="exam-answer" class="exam-answer-input" placeholder="Écrivez votre réponse ici..."
+                            rows="6"></textarea>
+                    </div>
+
+                    <div id="exam-corrige-inline" class="exam-corrige-inline" style="display:none;">
+                        <h5>📋 Corrigé :</h5>
+                        <pre id="exam-corrige-text"></pre>
+                    </div>
+
+                    <div class="exam-controls">
+                        <button class="btn btn-outline" onclick="prevExamQuestion()">← Précédent</button>
+                        <button class="btn" id="exam-show-answer-btn" onclick="showExamAnswer()"
+                            style="display:none;">👁️ Voir réponse</button>
+                        <button class="btn btn-outline" onclick="resetExam()" style="font-size:0.85rem;">🚪
+                            Quitter</button>
+                        <button class="btn" onclick="nextExamQuestion()">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Exam Complete / Results -->
+                <div id="exam-complete" class="card" style="display:none;">
+                    <h3>🎉 Examen Terminé !</h3>
+                    <div id="exam-time-taken" class="exam-time-result"></div>
+                    <p style="margin:1rem 0;">Vos réponses ont été enregistrées. Consultez le corrigé pour évaluer votre
+                        performance.</p>
+                    <div class="exam-final-actions">
+                        <button class="btn" onclick="showExamCorrige()">📋 Voir le Corrigé Complet</button>
+                        <button class="btn btn-outline" onclick="resetExam()">🔄 Recommencer</button>
+                        <button class="btn btn-outline" onclick="printExam()">🖨️ Imprimer</button>
+                    </div>
+                </div>
+
+                <!-- Full Corrigé View -->
+                <div id="exam-corrige-full" class="card" style="display:none;">
+                    <div class="corrige-header">
+                        <h3>📋 Corrigé — Examen Réseaux Sans Fil</h3>
+                        <div class="corrige-actions">
+                            <button class="btn btn-outline" onclick="printCorrige()">🖨️ Imprimer</button>
+                            <button class="btn btn-outline" onclick="backToExamStart()">← Retour</button>
+                        </div>
+                    </div>
+                    <div id="corrige-content" class="corrige-content"></div>
+                </div>
+            </div>
+
+            <!-- TAB 5: RÉVISION -->
+            <div id="wireless-revision" class="wireless-content">
+                <div class="card">
+                    <h3>🔄 Erreurs & Révision</h3>
+                    <p style="color:var(--muted);">Priorité: erreurs → cartes dues → sujets faibles</p>
+                    <div class="revision-stats">
+                        <div class="stat-box">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Erreurs</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">À réviser</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value">0%</span>
+                            <span class="stat-label">Précision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===============================================
+             LAN — RÉSEAUX LOCAUX MODULE
+             =============================================== -->
+        <div id="lan" class="section">
+            <h1>🖧 Réseaux Locaux (LAN) — Révision</h1>
+
+            <!-- Sub-tabs -->
+            <div class="lan-tabs">
+                <button class="lan-tab active" onclick="showLanTab('resume')">📖 Résumé du cours</button>
+                <button class="lan-tab" onclick="showLanTab('flashcards')">🧠 Flashcards</button>
+                <button class="lan-tab" onclick="showLanTab('qcm')">⚠️ QCM Pièges</button>
+                <button class="lan-tab" onclick="showLanTab('exam')">📝 Examen Blanc</button>
+                <button class="lan-tab" onclick="showLanTab('revision')">🔄 Erreurs & Révision</button>
+            </div>
+
+            <!-- Filter chips -->
+            <div class="filter-chips" id="lan-filters">
+                <span class="chip active" onclick="filterLan('all')">Tout</span>
+                <span class="chip" onclick="filterLan('topologies')">Topologies</span>
+                <span class="chip" onclick="filterLan('supports')">Supports</span>
+                <span class="chip" onclick="filterLan('mac')">MAC</span>
+                <span class="chip" onclick="filterLan('adressage')">Adressage</span>
+                <span class="chip" onclick="filterLan('llc')">LLC</span>
+                <span class="chip" onclick="filterLan('ethernet')">Ethernet</span>
+                <span class="chip" onclick="filterLan('equipements')">Équipements</span>
+                <span class="chip" onclick="filterLan('vlan')">VLANs/STP</span>
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-bar">
+                <input type="text" id="lan-search" placeholder="🔍 Rechercher..." oninput="searchLan(this.value)">
+            </div>
+
+            <!-- TAB 1: RÉSUMÉ -->
+            <div id="lan-resume" class="lan-content active">
+                <div id="lan-resume-container">
+                    <p style="color:var(--muted);">Chargement du contenu...</p>
+                </div>
+            </div>
+
+            <!-- TAB 2: FLASHCARDS -->
+            <div id="lan-flashcards" class="lan-content">
+                <div class="leitner-stats" id="lan-leitner-stats">
+                    <div class="leitner-box" data-box="1"><span class="box-count">0</span><span class="box-label">Box
+                            1</span></div>
+                    <div class="leitner-box" data-box="2"><span class="box-count">0</span><span class="box-label">Box
+                            2</span></div>
+                    <div class="leitner-box" data-box="3"><span class="box-count">0</span><span class="box-label">Box
+                            3</span></div>
+                    <div class="leitner-box" data-box="4"><span class="box-count">0</span><span class="box-label">Box
+                            4</span></div>
+                    <div class="leitner-box" data-box="5"><span class="box-count">0</span><span class="box-label">Box
+                            5</span></div>
+                </div>
+                <div class="due-info" id="lan-due-info">📅 <span id="lan-due-count">0</span> carte(s) à réviser</div>
+                <div class="flashcard-container" id="lan-fc-container">
+                    <div class="flashcard" id="lan-flashcard" onclick="flipLanFlashcard()">
+                        <div class="flashcard-face front" id="lan-fc-front">
+                            <span class="flashcard-topic" id="lan-fc-topic">Topic</span>
+                            <p id="lan-fc-question">Cliquez sur "Commencer" pour démarrer</p>
+                        </div>
+                        <div class="flashcard-face back" id="lan-fc-back">
+                            <p id="lan-fc-answer">Réponse...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard-controls" id="lan-fc-controls">
+                    <button class="btn" id="lan-fc-start" onclick="startLanFlashcards()">🚀 Commencer</button>
+                    <button class="btn btn-outline" id="lan-fc-wrong" onclick="answerLanFlashcard(false)"
+                        style="display:none;">❌ Je ne savais pas</button>
+                    <button class="btn" id="lan-fc-right" onclick="answerLanFlashcard(true)" style="display:none;">✅ Je
+                        savais</button>
+                </div>
+                <div class="fc-summary" id="lan-fc-summary" style="display:none;">
+                    <h4>📊 Session terminée !</h4>
+                    <p>✅ Correctes: <span id="lan-fc-correct">0</span> | ❌ Incorrectes: <span
+                            id="lan-fc-wrong-count">0</span></p>
+                    <p>📈 Précision: <span id="lan-fc-accuracy">0%</span></p>
+                </div>
+            </div>
+
+            <!-- TAB 3: QCM -->
+            <div id="lan-qcm" class="lan-content">
+                <div id="lan-qcm-container" class="quiz-container">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div id="lan-qcm-progress" class="progress-fill" style="width:0%"></div>
+                        </div>
+                        <span id="lan-qcm-counter">1 / 20</span>
+                    </div>
+                    <div class="quiz-question" id="lan-qcm-question">
+                        <span class="topic-tag" id="lan-qcm-topic">Topic</span>
+                        <p id="lan-qcm-text">Question...</p>
+                    </div>
+                    <div class="options" id="lan-qcm-options"></div>
+                    <div id="lan-qcm-explanation" class="explanation" style="display:none;"></div>
+                    <div id="lan-qcm-trap" class="quiz-trap" style="display:none;"></div>
+                    <div class="quiz-nav">
+                        <button class="btn btn-outline" onclick="prevLanQcm()">← Précédent</button>
+                        <button class="btn" id="lan-qcm-check" onclick="checkLanQcm()">Vérifier</button>
+                        <button class="btn" onclick="nextLanQcm()">Suivant →</button>
+                    </div>
+                </div>
+                <div id="lan-qcm-score" class="score-card" style="display:none;">
+                    <h3>🏆 Score Final</h3>
+                    <p class="score-value"><span id="lan-final-score">0</span> / <span
+                            id="lan-total-questions">20</span></p>
+                    <div class="weak-topics" id="lan-weak-topics" style="display:none;">
+                        <h4>📉 Sujets à revoir :</h4>
+                        <ul id="lan-weak-list"></ul>
+                    </div>
+                    <button class="btn" onclick="resetLanQcm()">🔄 Recommencer</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: EXAMEN BLANC -->
+            <div id="lan-exam" class="lan-content">
+                <div id="lan-exam-start-screen" class="card">
+                    <h3>📝 Examens Blancs — LAN & Réseaux</h3>
+                    <p style="color:var(--muted); margin-bottom: 1rem;">Choisissez un examen puis un mode</p>
+
+                    <!-- Exam Selection -->
+                    <div class="exam-select-group" style="margin-bottom: 1.5rem;">
+                        <label style="color:var(--text); display:block; margin-bottom: 0.5rem;">📋 Choisir un examen
+                            :</label>
+                        <select id="lan-exam-select"
+                            style="width:100%; padding:0.75rem; border-radius:8px; background:var(--card); color:var(--text); border:1px solid var(--border); font-size:1rem;">
+                            <option value="lan">🖧 Examen LAN (20 questions)</option>
+                            <option value="predit1">🔮 Examen Prédit #1 — Mixte (26 questions)</option>
+                            <option value="predit2">🔮 Examen Prédit #2 — Mixte (26 questions)</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-modes">
+                        <div class="exam-mode-card" onclick="startLanExam('timed')">
+                            <div class="mode-icon">⏱️</div>
+                            <h4>Mode Examen</h4>
+                            <p>Chronométré<br>Corrigé à la fin</p>
+                        </div>
+                        <div class="exam-mode-card" onclick="startLanExam('practice')">
+                            <div class="mode-icon">📖</div>
+                            <h4>Mode Entraînement</h4>
+                            <p>Sans limite de temps<br>Réponses disponibles</p>
+                        </div>
+                        <div class="exam-mode-card" onclick="showLanExamCorrige()">
+                            <div class="mode-icon">✅</div>
+                            <h4>Voir Corrigé</h4>
+                            <p>Toutes les réponses<br>Format imprimable</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="lan-exam-in-progress" class="card" style="display:none;">
+                    <div class="exam-header">
+                        <div class="exam-progress"><span id="lan-exam-question-num">1</span> / <span
+                                id="lan-exam-total">20</span></div>
+                        <div id="lan-exam-timer" class="exam-timer">30:00</div>
+                    </div>
+                    <div class="exam-progress-bar">
+                        <div id="lan-exam-progress-fill" class="progress-fill" style="width:0%"></div>
+                    </div>
+                    <div id="lan-exam-question-container">
+                        <div class="exam-question-badge" id="lan-exam-q-type">Définition</div>
+                        <h4 id="lan-exam-prompt" class="exam-prompt">Question...</h4>
+                        <textarea id="lan-exam-answer" class="exam-answer-input"
+                            placeholder="Écrivez votre réponse ici..." rows="6"></textarea>
+                    </div>
+                    <div id="lan-exam-corrige-inline" class="exam-corrige-inline" style="display:none;">
+                        <h5>📋 Corrigé :</h5>
+                        <pre id="lan-exam-corrige-text"></pre>
+                    </div>
+                    <div class="exam-controls">
+                        <button class="btn btn-outline" onclick="prevLanExamQuestion()">← Précédent</button>
+                        <button class="btn" id="lan-exam-show-answer-btn" onclick="showLanExamAnswer()"
+                            style="display:none;">👁️ Voir réponse</button>
+                        <button class="btn btn-outline" onclick="resetLanExam()" style="font-size:0.85rem;">🚪
+                            Quitter</button>
+                        <button class="btn" onclick="nextLanExamQuestion()">Suivant →</button>
+                    </div>
+                </div>
+                <div id="lan-exam-complete" class="card" style="display:none;">
+                    <h3>🎉 Examen Terminé !</h3>
+                    <div id="lan-exam-time-taken" class="exam-time-result"></div>
+                    <p style="margin:1rem 0;">Vos réponses ont été enregistrées. Consultez le corrigé pour évaluer votre
+                        performance.</p>
+                    <div class="exam-final-actions">
+                        <button class="btn" onclick="showLanExamCorrige()">📋 Voir le Corrigé Complet</button>
+                        <button class="btn btn-outline" onclick="resetLanExam()">🔄 Recommencer</button>
+                    </div>
+                </div>
+                <div id="lan-exam-corrige-full" class="card" style="display:none;">
+                    <div class="corrige-header">
+                        <h3>📋 Corrigé — Examen Réseaux Locaux</h3>
+                        <div class="corrige-actions">
+                            <button class="btn btn-outline" onclick="window.print()">🖨️ Imprimer</button>
+                            <button class="btn btn-outline" onclick="backToLanExamStart()">← Retour</button>
+                        </div>
+                    </div>
+                    <div id="lan-corrige-content" class="corrige-content"></div>
+                </div>
+            </div>
+
+            <!-- TAB 5: RÉVISION -->
+            <div id="lan-revision" class="lan-content">
+                <div class="card">
+                    <h3>🔄 Erreurs & Révision</h3>
+                    <p style="color:var(--muted);">Priorité: erreurs → cartes dues → sujets faibles</p>
+                    <div class="revision-stats">
+                        <div class="stat-box">
+                            <span class="stat-value" id="lan-errors-count">0</span>
+                            <span class="stat-label">Erreurs</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value" id="lan-due-cards">0</span>
+                            <span class="stat-label">Cartes dues</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value" id="lan-mastered">0</span>
+                            <span class="stat-label">Maîtrisées</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer-main">🧠 Basé sur le cours Réseaux - Préparation Examen</div>
+        <div class="footer-credit">
+            <a href="https://instagram.com/itssamifz" target="_blank">🦸 @itssamifz</a>
+            <span>|</span>
+            <span class="footer-prayer">🤲 الله يسهّل عليا وعليكم</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

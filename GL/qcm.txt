@@ -1,0 +1,161 @@
+QCM - Gestion de Projet Agile & Scrum
+1. Quelle est la caractéristique principale de la méthode Agile ?
+A) Une documentation exhaustive et détaillée
+B) Une planification rigide et séquentielle
+C) Une approche itérative, incrémentale et adaptative
+D) Un suivi strict du plan initial
+
+2. Parmi ces propositions, laquelle n'est PAS une valeur du Manifeste Agile ?
+A) Les individus et leurs interactions
+B) Un logiciel fonctionnel
+C) Une documentation complète
+D) La collaboration avec le client
+
+3. Quel est le rôle principal du Product Owner ?
+A) Garantir l'application du cadre Scrum
+B) Définir la vision du produit et prioriser le backlog
+C) Réaliser le développement technique
+D) Éliminer les obstacles pour l'équipe
+
+4. Combien de membres compte généralement une équipe de développement Scrum ?
+A) 1 à 3
+B) 3 à 9
+C) 10 à 15
+D) Plus de 15
+
+5. Quel artefact représente "la liste priorisée de tout ce qu'on veut dans le produit" ?
+A) Le Sprint Backlog
+B) Le Burndown Chart
+C) Le Product Backlog
+D) L'Incément
+
+6. Quelle est la durée maximale d'un Daily Scrum ?
+A) 15 minutes
+B) 30 minutes
+C) 1 heure
+D) 2 heures
+
+7. Lors du Daily Scrum, chaque membre répond à trois questions. Laquelle ne fait PAS partie de ces questions ?
+A) Qu'ai-je fait hier ?
+B) Quels obstacles ai-je rencontrés ?
+C) Que vais-je faire aujourd'hui ?
+D) Quand sera terminée ma tâche ?
+
+8. Que signifie le "V" dans l'acronyme INVEST ?
+A) Vérifiable
+B) Valorissante
+C) Viable
+D) Volumineuse
+
+9. Quelle méthode d'estimation utilise souvent la suite de Fibonacci ?
+A) La méthode du diagramme de Gantt
+B) Le Planning Poker
+C) La loi de Parkinson
+D) La méthode PERT
+
+10. Quel événement Scrum a pour but de présenter le travail fini et d'obtenir du feedback ?
+A) Le Sprint Planning
+B) Le Daily Scrum
+C) La Sprint Review
+D) La Sprint Retrospective
+
+11. Quel événement Scrum est réservé uniquement à l'équipe Scrum ?
+A) La Sprint Review
+B) Le Sprint Planning
+C) La Sprint Retrospective
+D) Le Daily Scrum
+
+12. Qu'est-ce qu'un "incrément" ?
+A) La liste des tâches techniques à réaliser
+B) Le produit potentiellement livrable à la fin du sprint
+C) Le graphique montrant le travail restant
+D) La réunion de planification du sprint
+
+13. Quel indicateur mesure le nombre moyen de story points livrés par sprint ?
+A) Le Burndown Chart
+B) La Velocity
+C) Le Cycle Time
+D) Le Lead Time
+
+14. Dans la structure standard d'une User Story, quelle phrase suit "En tant que..." ?
+A) ...afin de [bénéfice attendu]
+B) ...je veux [action/fonctionnalité]
+C) ...lorsque [situation]
+D) ...alors [résultat]
+
+15. Quel pilier de Scrum concerne la vérification fréquente du travail et du processus ?
+A) Transparence
+B) Inspection
+C) Adaptation
+D) Itération
+
+16. Quelle méthode Agile est basée sur un flux continu et la visualisation des tâches ?
+A) Scrum
+B) Kanban
+C) Extreme Programming
+D) Lean
+
+17. Quel est l'objectif principal de la Sprint Retrospective ?
+A) Présenter le produit aux parties prenantes
+B) Planifier le travail du prochain sprint
+C) Analyser le processus et trouver des améliorations
+D) Synchroniser l'équipe quotidiennement
+
+18. Quelle est la durée typique d'un Sprint ?
+A) 1 à 4 semaines
+B) 1 à 6 mois
+C) 24 heures
+D) 3 à 6 mois
+
+19. Le Scrum Master est principalement responsable de :
+A) Définir les fonctionnalités du produit
+B) Développer le produit
+C) Garantir l'application du cadre Scrum
+D) Prioriser le Product Backlog
+
+20. Quel artefact est défini comme "le plan du travail du sprint" ?
+A) Le Product Backlog
+B) Le Sprint Backlog
+C) L'Incément
+D) La Definition of Done
+
+Corrigé
+C - Une approche itérative, incrémentale et adaptative
+
+C - Une documentation complète
+
+B - Définir la vision du produit et prioriser le backlog
+
+B - 3 à 9
+
+C - Le Product Backlog
+
+A - 15 minutes
+
+D - Quand sera terminée ma tâche ?
+
+B - Valorissante
+
+B - Le Planning Poker
+
+C - La Sprint Review
+
+C - La Sprint Retrospective
+
+B - Le produit potentiellement livrable à la fin du sprint
+
+B - La Velocity
+
+B - ...je veux [action/fonctionnalité]
+
+B - Inspection
+
+B - Kanban
+
+C - Analyser le processus et trouver des améliorations
+
+A - 1 à 4 semaines
+
+C - Garantir l'application du cadre Scrum
+
+B - Le Sprint Backlog
